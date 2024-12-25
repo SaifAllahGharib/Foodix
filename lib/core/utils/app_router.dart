@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 
 abstract class AppRouter {
   static final routes = GoRouter(routes: [
