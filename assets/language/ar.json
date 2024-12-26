@@ -1,0 +1,10 @@
+{
+  "signup": "تسجيل",
+  "hint_name": "الاسم",
+  "hint_email": "البريد الالكتروني",
+  "hint_phone": "رقم الهاتف",
+  "hint_pass": "كلمه السر",
+  "already_have_account": "هل عندك حساب بالفعل؟",
+  "or": "او",
+  "forget_pass": "هل نسيت كلمه السر؟"
+}
