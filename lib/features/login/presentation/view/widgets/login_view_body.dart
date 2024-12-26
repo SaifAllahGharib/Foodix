@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/functions/is_valid_email.dart';
 import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
@@ -18,6 +19,7 @@ class LoginViewBody extends StatefulWidget {
 class _LoginViewBodyState extends State<LoginViewBody> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+  bool isEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +50,14 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             CustomTextField(
               controller: email,
               hint: "hint_email".tr(context),
-              onChanged: (val) {},
+              onChanged: (val) => _validateInputs(),
             ),
             SizedBox(height: Dimensions.height15(context)),
             CustomTextField(
               controller: password,
               isPassword: true,
               hint: "hint_pass".tr(context),
-              onChanged: (val) {},
+              onChanged: (val) => _validateInputs(),
             ),
             SizedBox(height: Dimensions.height10(context)),
             Align(
@@ -68,6 +70,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             SizedBox(height: Dimensions.height30(context)),
             CustomSignupButton(
               text: "login".tr(context),
+              isEnabled: isEnabled,
               onClick: () {},
             ),
             SizedBox(height: Dimensions.height20(context)),
@@ -86,5 +89,13 @@ class _LoginViewBodyState extends State<LoginViewBody> {
 
   void _goSignup(BuildContext context) {
     GoRouter.of(context).go(SignupView.id);
+  }
+
+  void _validateInputs() {
+    setState(() {
+      isEnabled = email.text.isNotEmpty &&
+          password.text.isNotEmpty &&
+          isValidEmail(email.text);
+    });
   }
 }

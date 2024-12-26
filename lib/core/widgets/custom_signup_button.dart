@@ -17,7 +17,22 @@ class CustomSignupButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: isEnabled ? onClick : () {},
+      onPressed: isEnabled
+          ? onClick
+          : () async {
+              // var response = await Api(Dio()).post(
+              //   endPoint: "register.php",
+              //   data: {
+              //     "name": "Mohamed",
+              //     "email": "m2@g.com",
+              //     "phone_number": "11111111111",
+              //     "password": "123456",
+              //     "type": "saller",
+              //   },
+              // );
+              //
+              // print("RESPONSE: $response");
+            },
       height: Dimensions.height45(context),
       enableFeedback: isEnabled ? true : false,
       padding: EdgeInsets.symmetric(

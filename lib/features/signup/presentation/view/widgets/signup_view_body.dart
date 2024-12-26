@@ -37,7 +37,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         child: Column(
           children: [
             SizedBox(height: Dimensions.height45(context)),
-            CustomText(text: "signup".tr(context)),
+            CustomText(text: "create_account".tr(context)),
             SizedBox(height: Dimensions.height45(context) * 2),
             CustomTextField(
               controller: name,
