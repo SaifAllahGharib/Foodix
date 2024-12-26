@@ -32,6 +32,16 @@ class CustomSignupButton extends StatelessWidget {
               // );
               //
               // print("RESPONSE: $response");
+
+              // var response = await Api(Dio()).post(
+              //   endPoint: "login.php",
+              //   data: {
+              //     "email": "m2@g.com",
+              //     "password": "123456",
+              //   },
+              // );
+
+              // print("RESPONSE: $response");
             },
       height: Dimensions.height45(context),
       enableFeedback: isEnabled ? true : false,
