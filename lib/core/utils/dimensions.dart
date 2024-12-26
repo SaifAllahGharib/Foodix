@@ -72,6 +72,10 @@ abstract class Dimensions {
     return getHeight(context) / 42.2;
   }
 
+  static double fontSize30(BuildContext context) {
+    return getHeight(context) / 28.2;
+  }
+
   // Dynamic radius
   static double radius10(BuildContext context) {
     return getHeight(context) / 77.6;

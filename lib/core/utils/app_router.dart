@@ -5,11 +5,11 @@ import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 abstract class AppRouter {
   static final routes = GoRouter(routes: [
     GoRoute(
-      path: '/',
+      path: SignupView.id,
       builder: (context, state) => const SignupView(),
     ),
     GoRoute(
-      path: '/',
+      path: LoginView.id,
       builder: (context, state) => const LoginView(),
     ),
   ]);

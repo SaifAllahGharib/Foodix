@@ -14,7 +14,7 @@ void main() {
       builder: (context) => const MyApp(),
     ),
   );
-  
+
   // runApp(const MyApp());
 }
 
@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en'),
         Locale('ar'),
+        Locale('en'),
       ],
       localeResolutionCallback: (locale, supportedLocales) {
         for (var supportedLocale in supportedLocales) {
