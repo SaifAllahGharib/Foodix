@@ -8,8 +8,16 @@ import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
 
-class LoginViewBody extends StatelessWidget {
+class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
+
+  @override
+  State<LoginViewBody> createState() => _LoginViewBodyState();
+}
+
+class _LoginViewBodyState extends State<LoginViewBody> {
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +46,13 @@ class LoginViewBody extends StatelessWidget {
             CustomText(text: "login".tr(context)),
             SizedBox(height: Dimensions.height45(context) * 2),
             CustomTextField(
+              controller: email,
               hint: "hint_email".tr(context),
               onChanged: (val) {},
             ),
             SizedBox(height: Dimensions.height15(context)),
             CustomTextField(
+              controller: password,
               isPassword: true,
               hint: "hint_pass".tr(context),
               onChanged: (val) {},

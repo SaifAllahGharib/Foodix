@@ -5,12 +5,14 @@ import 'package:yummy_home/core/utils/dimensions.dart';
 class CustomTextField extends StatefulWidget {
   final String hint;
   final void Function(String val) onChanged;
+  final TextEditingController controller;
   final bool isPassword;
 
   const CustomTextField({
     super.key,
     required this.hint,
     required this.onChanged,
+    required this.controller,
     this.isPassword = false,
   });
 
@@ -24,6 +26,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       maxLines: 1,
       cursorColor: AppColors.primaryColor,
       onChanged: widget.onChanged,
@@ -47,7 +50,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
+          borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
           borderSide: BorderSide(
             color: AppColors.primaryColor,
             width: 2,
