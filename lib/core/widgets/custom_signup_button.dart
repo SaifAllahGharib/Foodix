@@ -20,28 +20,20 @@ class CustomSignupButton extends StatelessWidget {
       onPressed: isEnabled
           ? onClick
           : () async {
-              // var response = await Api(Dio()).post(
-              //   endPoint: "register.php",
-              //   data: {
-              //     "name": "Mohamed",
-              //     "email": "m2@g.com",
-              //     "phone_number": "11111111111",
-              //     "password": "123456",
-              //     "type": "saller",
-              //   },
+              // var response = await SignupRepositoryImp(Api(Dio())).signup(
+              //   SignupModel(
+              //     name: "saif",
+              //     email: "ssa@s.s",
+              //     phone_number: "01014890911",
+              //     password: "123456",
+              //     type: "saller",
+              //   ),
               // );
               //
-              // print("RESPONSE: $response");
-
-              // var response = await Api(Dio()).post(
-              //   endPoint: "login.php",
-              //   data: {
-              //     "email": "m2@g.com",
-              //     "password": "123456",
-              //   },
-              // );
-
-              // print("RESPONSE: $response");
+              // response.fold((ms) => print(ms.errorMsg), (r) {
+              //   print(r.message);
+              //   print(r.user);
+              // });
             },
       height: Dimensions.height45(context),
       enableFeedback: isEnabled ? true : false,
