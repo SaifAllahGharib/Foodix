@@ -1,8 +1,50 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/utils/functions/is_valid_email.dart';
+import 'package:yummy_home/core/utils/functions/is_valid_phone.dart';
+import 'package:yummy_home/features/signup/data/models/signup_model.dart';
+import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
-  SignupCubit() : super(SignupInit());
+  final SignupRepository _signupRepository;
+  bool _showPassword = true;
+  bool _buttonEnabled = false;
 
-  Future<void> signup() async {}
+  SignupCubit(this._signupRepository) : super(SignupInit());
+
+  Future<void> signup(SignupModel user) async {
+    emit(SignupLoading());
+    var result = await _signupRepository.signup(user);
+
+    result.fold(
+      (e) => emit(SignupFailure(e.errorMsg)),
+      (user) => emit(SignupSuccess(user)),
+    );
+  }
+
+  void togglePasswordVisibility() {
+    _showPassword = !_showPassword;
+    emit(ShowPasswordState(_showPassword));
+  }
+
+  void validationFields(
+      {required TextEditingController name,
+      required TextEditingController email,
+      required TextEditingController phone,
+      required TextEditingController password,
+      required String userType}) {
+    _buttonEnabled = name.text.isNotEmpty &&
+        email.text.isNotEmpty &&
+        phone.text.isNotEmpty &&
+        password.text.isNotEmpty &&
+        isValidEmail(email.text) &&
+        isValidPhone(phone.text) &&
+        userType.isNotEmpty;
+    emit(ButtonIsEnabledState(_buttonEnabled));
+  }
+
+  bool get showPassword => _showPassword;
+
+  bool get buttonEnabled => _buttonEnabled;
 }

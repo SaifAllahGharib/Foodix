@@ -34,6 +34,10 @@ abstract class Dimensions {
     return getHeight(context) / 18.76;
   }
 
+  static double height80(BuildContext context) {
+    return getHeight(context) / 11.3;
+  }
+
   static double height130(BuildContext context) {
     return getHeight(context) / 7;
   }

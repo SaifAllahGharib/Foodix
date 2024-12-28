@@ -17,24 +17,7 @@ class CustomSignupButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: isEnabled
-          ? onClick
-          : () async {
-              // var response = await SignupRepositoryImp(Api(Dio())).signup(
-              //   SignupModel(
-              //     name: "saif",
-              //     email: "ssa@s.s",
-              //     phone_number: "01014890911",
-              //     password: "123456",
-              //     type: "saller",
-              //   ),
-              // );
-              //
-              // response.fold((ms) => print(ms.errorMsg), (r) {
-              //   print(r.message);
-              //   print(r.user);
-              // });
-            },
+      onPressed: isEnabled ? onClick : () {},
       height: Dimensions.height45(context),
       enableFeedback: isEnabled ? true : false,
       padding: EdgeInsets.symmetric(

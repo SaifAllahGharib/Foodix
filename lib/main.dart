@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/app_router.dart';
+import 'package:yummy_home/core/utils/colors.dart';
+import 'package:yummy_home/core/utils/service_locator.dart';
 
 void main() {
+  setup();
   runApp(
     DevicePreview(
       enabled: true,
@@ -49,6 +52,11 @@ class MyApp extends StatelessWidget {
           data: ThemeData(
             scaffoldBackgroundColor: Colors.white,
             fontFamily: _getFontFamily(locale),
+            textSelectionTheme: TextSelectionThemeData(
+              selectionHandleColor: AppColors.primaryColor,
+              cursorColor: AppColors.primaryColor,
+              selectionColor: AppColors.secColor,
+            ),
           ),
           child: child!,
         );

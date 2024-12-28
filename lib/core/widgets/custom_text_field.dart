@@ -2,48 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   final String hint;
   final void Function(String val) onChanged;
   final TextEditingController controller;
+  final void Function()? onPressedShowPassword;
   final bool isPassword;
+  final bool? showPassword;
 
   const CustomTextField({
     super.key,
     required this.hint,
     required this.onChanged,
     required this.controller,
+    this.onPressedShowPassword,
     this.isPassword = false,
+    this.showPassword = false,
   });
-
-  @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  bool showPassword = false;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: widget.controller,
+      controller: controller,
       maxLines: 1,
       cursorColor: AppColors.primaryColor,
-      onChanged: widget.onChanged,
-      obscureText: widget.isPassword ? showPassword : false,
+      onChanged: onChanged,
+      obscureText: isPassword ? showPassword! : false,
       obscuringCharacter: "•",
       decoration: InputDecoration(
-        suffixIcon: widget.isPassword
+        suffixIcon: isPassword
             ? IconButton(
-                onPressed: () {
-                  showPassword = !showPassword;
-                  setState(() {});
-                },
+                onPressed: onPressedShowPassword,
                 icon: Icon(Icons.remove_red_eye_outlined),
               )
             : null,
         label: Text(
-          widget.hint,
+          hint,
           style: TextStyle(color: Colors.black),
         ),
         border: OutlineInputBorder(
