@@ -4,7 +4,7 @@ import 'package:yummy_home/core/utils/functions/is_valid_email.dart';
 import 'package:yummy_home/core/utils/functions/is_valid_phone.dart';
 import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
-import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/state.dart';
+import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
   final SignupRepository _signupRepository;
@@ -25,7 +25,7 @@ class SignupCubit extends Cubit<SignupState> {
 
   void togglePasswordVisibility() {
     _showPassword = !_showPassword;
-    emit(ShowPasswordState(_showPassword));
+    emit(SignupShowPassword(_showPassword));
   }
 
   void validationFields(
@@ -41,7 +41,7 @@ class SignupCubit extends Cubit<SignupState> {
         isValidEmail(email.text) &&
         isValidPhone(phone.text) &&
         userType.isNotEmpty;
-    emit(ButtonIsEnabledState(_buttonEnabled));
+    emit(SignupButtonIsEnabled(_buttonEnabled));
   }
 
   bool get showPassword => _showPassword;

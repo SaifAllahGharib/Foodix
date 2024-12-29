@@ -3,14 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/assets.dart';
+import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
+import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/signup/data/models/signup_model.dart';
-import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/cubit.dart';
-import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/state.dart';
+import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_cubit.dart';
+import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/or_widget.dart';
@@ -52,12 +55,36 @@ class _SignupViewBodyState extends State<SignupViewBody> {
 
   void _handelState(state) {
     if (state is SignupSuccess) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(state.response.message)),
-      );
+      String msg = state.response.message;
+
+      if (msg == "User added successfully") {
+        snackBar(
+          context: context,
+          text: "success".tr(context),
+          color: AppColors.primaryColor,
+        );
+        GoRouter.of(context).go(HomeView.id);
+      } else if (msg == "User already exists with this email") {
+        snackBar(
+          context: context,
+          text: "user_already_exists".tr(context),
+        );
+      } else if (msg == "Failed to add user") {
+        snackBar(
+          context: context,
+          text: "failed_to_create_account".tr(context),
+        );
+      } else if (msg.contains("Error:")) {
+        snackBar(
+          context: context,
+          text: msg,
+        );
+      }
     } else if (state is SignupFailure) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: ${state.errorMsg}")),
+      snackBar(
+        context: context,
+        text: "Error: ${state.errorMsg}",
+        color: Colors.red,
       );
     }
   }
@@ -98,9 +125,9 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: Dimensions.height45(context)),
+                SizedBox(height: Dimensions.height30(context)),
                 CustomText(text: "create_account".tr(context)),
-                SizedBox(height: Dimensions.height45(context) * 2),
+                SizedBox(height: Dimensions.height45(context) * 1.3),
                 ColumnOfTextFields(
                   context: context,
                   name: _name,
@@ -110,7 +137,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   userType: _userType,
                   validator: (val) => _validation(context),
                 ),
-                SizedBox(height: Dimensions.height30(context)),
+                SizedBox(height: Dimensions.height20(context)),
                 CustomSignupButton(
                   text: "signup".tr(context),
                   isEnabled: context.watch<SignupCubit>().buttonEnabled,
@@ -118,7 +145,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                     _signup(context);
                   },
                 ),
-                SizedBox(height: Dimensions.height30(context)),
+                SizedBox(height: Dimensions.height20(context)),
                 Or(),
                 SizedBox(height: Dimensions.height20(context)),
                 IconButton(
@@ -128,7 +155,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                     width: Dimensions.iconSize45(context),
                   ),
                 ),
-                SizedBox(height: Dimensions.height20(context)),
+                SizedBox(height: Dimensions.height15(context)),
                 CustomTextButton(
                   text: "already_have_account".tr(context),
                   onClick: () {

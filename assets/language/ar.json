@@ -1,16 +1,22 @@
 {
-  "create_account": "اعمل حساب",
-  "signup": "سجل",
+  "create_account": "اعمل حسابك",
+  "signup": "سجل دلوقتي",
   "hint_name": "الاسم",
-  "hint_email": "الإيميل",
+  "hint_email": "البريد الإلكتروني",
   "hint_phone": "رقم التليفون",
   "hint_pass": "كلمة السر",
   "already_have_account": "عندك حساب؟",
   "or": "أو",
   "forget_pass": "نسيت كلمة السر؟",
-  "login": "تسجيل دخول",
-  "not_have_account": "مفيش حساب؟",
+  "login": "تسجيل الدخول",
+  "not_have_account": "معندكش حساب؟",
   "type": "اختار النوع",
   "vendor": "بائع",
-  "buyer": "مشتري"
+  "buyer": "مشتري",
+  "success": "تم بنجاح",
+  "user_already_exists": "المستخدم موجود بالفعل",
+  "failed_to_create_account": "فشل في إنشاء الحساب",
+  "login_successful": "تم تسجيل الدخول بنجاح",
+  "email_or_password_incorrect": "البريد الإلكتروني أو كلمة السر غلط",
+  "this_user_does_not_exist": "المستخدم ده مش موجود"
 }

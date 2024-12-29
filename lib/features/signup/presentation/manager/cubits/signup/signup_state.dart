@@ -18,14 +18,14 @@ class SignupFailure extends SignupState {
   SignupFailure(this.errorMsg);
 }
 
-class ShowPasswordState extends SignupState {
+class SignupShowPassword extends SignupState {
   final bool showPassword;
 
-  ShowPasswordState(this.showPassword);
+  SignupShowPassword(this.showPassword);
 }
 
-class ButtonIsEnabledState extends SignupState {
+class SignupButtonIsEnabled extends SignupState {
   final bool buttonEnabled;
 
-  ButtonIsEnabledState(this.buttonEnabled);
+  SignupButtonIsEnabled(this.buttonEnabled);
 }
