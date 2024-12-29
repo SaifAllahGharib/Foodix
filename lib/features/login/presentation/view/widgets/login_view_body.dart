@@ -59,7 +59,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       } else if (msg == "Incorrect password") {
         snackBar(
           context: context,
-          text: "email_or_password_incorrect".tr(context),
+          text: "password_incorrect".tr(context),
         );
       } else if (msg == "User not found") {
         snackBar(

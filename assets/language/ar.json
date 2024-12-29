@@ -17,6 +17,6 @@
   "user_already_exists": "المستخدم موجود بالفعل",
   "failed_to_create_account": "فشل في إنشاء الحساب",
   "login_successful": "تم تسجيل الدخول بنجاح",
-  "email_or_password_incorrect": "البريد الإلكتروني أو كلمة السر غلط",
+  "password_incorrect": "كلمة السر غلط",
   "this_user_does_not_exist": "المستخدم ده مش موجود"
 }

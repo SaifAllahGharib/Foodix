@@ -17,6 +17,6 @@
   "user_already_exists": "User already exists",
   "failed_to_create_account": "Failed to create account",
   "login_successful": "Login Successful",
-  "email_or_password_incorrect": "Email or password incorrect",
+  "password_incorrect": "Password incorrect",
   "this_user_does_not_exist": "This user does not exist"
 }
