@@ -6,15 +6,14 @@ import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
-import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/cubit.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/state.dart';
+import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/or_widget.dart';
-import 'package:yummy_home/features/signup/presentation/view/widgets/user_type.dart';
 
 class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});
@@ -24,16 +23,71 @@ class SignupViewBody extends StatefulWidget {
 }
 
 class _SignupViewBodyState extends State<SignupViewBody> {
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _phone = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+  late final TextEditingController _name;
+  late final TextEditingController _email;
+  late final TextEditingController _phone;
+  late final TextEditingController _password;
+
   String? _userType;
+
+  @override
+  void initState() {
+    _name = TextEditingController();
+    _email = TextEditingController();
+    _phone = TextEditingController();
+    _password = TextEditingController();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _email.dispose();
+    _phone.dispose();
+    _password.dispose();
+
+    super.dispose();
+  }
+
+  void _handelState(state) {
+    if (state is SignupSuccess) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(state.response.message)),
+      );
+    } else if (state is SignupFailure) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error: ${state.errorMsg}")),
+      );
+    }
+  }
+
+  void _signup(BuildContext context) {
+    context.read<SignupCubit>().signup(
+          SignupModel(
+            name: _name.text,
+            email: _email.text,
+            phone_number: _phone.text,
+            password: _password.text,
+            type: _userType.toString(),
+          ),
+        );
+  }
+
+  void _validation(BuildContext context) {
+    context.read<SignupCubit>().validationFields(
+          name: _name,
+          email: _email,
+          phone: _phone,
+          password: _password,
+          userType: _userType.toString(),
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignupCubit, SignupState>(
-      listener: (context, state) => handelState(state),
+      listener: (context, state) => _handelState(state),
       builder: (context, state) {
         if (state is SignupLoading) {
           return Loading();
@@ -47,93 +101,21 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 SizedBox(height: Dimensions.height45(context)),
                 CustomText(text: "create_account".tr(context)),
                 SizedBox(height: Dimensions.height45(context) * 2),
-                CustomTextField(
-                  controller: _name,
-                  hint: "hint_name".tr(context),
-                  onChanged: (val) {
-                    context.read<SignupCubit>().validationFields(
-                          name: _name,
-                          email: _email,
-                          phone: _phone,
-                          password: _password,
-                          userType: _userType!,
-                        );
-                  },
-                ),
-                SizedBox(height: Dimensions.height15(context)),
-                CustomTextField(
-                  controller: _email,
-                  hint: "hint_email".tr(context),
-                  onChanged: (val) {
-                    context.read<SignupCubit>().validationFields(
-                          name: _name,
-                          email: _email,
-                          phone: _phone,
-                          password: _password,
-                          userType: _userType!,
-                        );
-                  },
-                ),
-                SizedBox(height: Dimensions.height15(context)),
-                CustomTextField(
-                  controller: _phone,
-                  hint: "hint_phone".tr(context),
-                  onChanged: (val) {
-                    context.read<SignupCubit>().validationFields(
-                          name: _name,
-                          email: _email,
-                          phone: _phone,
-                          password: _password,
-                          userType: _userType!,
-                        );
-                  },
-                ),
-                SizedBox(height: Dimensions.height15(context)),
-                UserType(
-                  type: _userType,
-                  onChange: (val) {
-                    _userType = val;
-                    context.read<SignupCubit>().validationFields(
-                          name: _name,
-                          email: _email,
-                          phone: _phone,
-                          password: _password,
-                          userType: _userType!,
-                        );
-                  },
-                ),
-                SizedBox(height: Dimensions.height15(context)),
-                CustomTextField(
-                  controller: _password,
-                  isPassword: true,
-                  hint: "hint_pass".tr(context),
-                  onPressedShowPassword:
-                      context.read<SignupCubit>().togglePasswordVisibility,
-                  showPassword: context.watch<SignupCubit>().showPassword,
-                  onChanged: (val) {
-                    context.read<SignupCubit>().validationFields(
-                          name: _name,
-                          email: _email,
-                          phone: _phone,
-                          password: _password,
-                          userType: _userType!,
-                        );
-                  },
+                ColumnOfTextFields(
+                  context: context,
+                  name: _name,
+                  email: _email,
+                  phone: _phone,
+                  password: _password,
+                  userType: _userType,
+                  validator: (val) => _validation(context),
                 ),
                 SizedBox(height: Dimensions.height30(context)),
                 CustomSignupButton(
                   text: "signup".tr(context),
                   isEnabled: context.watch<SignupCubit>().buttonEnabled,
                   onClick: () {
-                    context.read<SignupCubit>().signup(
-                          SignupModel(
-                            name: _name.text,
-                            email: _email.text,
-                            phone_number: _phone.text,
-                            password: _password.text,
-                            type: _userType!,
-                          ),
-                        );
+                    _signup(context);
                   },
                 ),
                 SizedBox(height: Dimensions.height30(context)),
@@ -159,17 +141,5 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         );
       },
     );
-  }
-
-  void handelState(state) {
-    if (state is SignupSuccess) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(state.response.message)),
-      );
-    } else if (state is SignupFailure) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: ${state.errorMsg}")),
-      );
-    }
   }
 }

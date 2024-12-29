@@ -12,10 +12,10 @@ class SignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => SignupCubit(getIt.get<SignupRepositoryImp>()),
-        child: SignupViewBody(),
+    return BlocProvider(
+      create: (context) => SignupCubit(getIt.get<SignupRepositoryImp>()),
+      child: Scaffold(
+        body: SignupViewBody(),
       ),
     );
   }
