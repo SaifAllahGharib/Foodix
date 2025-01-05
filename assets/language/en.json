@@ -1,9 +1,9 @@
 {
-  "create_account": "Create Account",
-  "signup": "Sign Up",
+  "create_account": "Create account",
+  "signup": "Sign up",
   "hint_name": "Name",
   "hint_email": "Email",
-  "hint_phone": "Phone Number",
+  "hint_phone": "Phone number",
   "hint_pass": "Password",
   "already_have_account": "Already have an account?",
   "or": "OR",
@@ -18,5 +18,12 @@
   "failed_to_create_account": "Failed to create account",
   "login_successful": "Login Successful",
   "password_incorrect": "Password incorrect",
-  "this_user_does_not_exist": "This user does not exist"
+  "this_user_does_not_exist": "This user does not exist",
+  "error_request": "There was an error processing your request",
+  "enter_verification_code": "Enter verification code",
+  "we_have_send_code_to": "We have send code to",
+  "verify": "Verify",
+  "didn't_get_a_code": "Didn't get a code?",
+  "click_to_resend": "Click to resend",
+  "invalid_verification_code": "Invalid verification code"
 }

@@ -7,7 +7,7 @@ import 'package:yummy_home/features/login/data/models/login_model.dart';
 import 'package:yummy_home/features/login/data/repos/login_repo.dart';
 
 class LoginRepositoryImp extends LoginRepository {
-  Api _api;
+  final Api _api;
 
   LoginRepositoryImp(this._api);
 
@@ -15,7 +15,7 @@ class LoginRepositoryImp extends LoginRepository {
   Future<Either<Failure, ResponseModel>> login(LoginModel user) async {
     try {
       var response = await _api.post(
-        endPoint: "login.php",
+        endPoint: "auth/login.php",
         data: user.toJson(),
       );
 

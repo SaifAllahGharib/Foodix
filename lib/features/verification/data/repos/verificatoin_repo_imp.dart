@@ -3,21 +3,20 @@ import 'package:dio/dio.dart';
 import 'package:yummy_home/core/errors/failure.dart';
 import 'package:yummy_home/core/models/response.dart';
 import 'package:yummy_home/core/utils/api.dart';
-import 'package:yummy_home/features/signup/data/models/signup_model.dart';
-import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
+import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
+import 'package:yummy_home/features/verification/data/repos/verificarion_repo.dart';
 
-class SignupRepositoryImp extends SignupRepository {
+class VerificationRepositoryImp extends VerificationRepository {
   final Api _api;
 
-  SignupRepositoryImp(this._api);
+  VerificationRepositoryImp(this._api);
 
   @override
-  Future<Either<Failure, ResponseModel>> signup(SignupModel user) async {
+  Future<Either<Failure, ResponseModel>> verifyCode(
+      VerifyCodeModel code) async {
     try {
-      var response = await _api.post(
-        endPoint: "auth/register.php",
-        data: user.toJson(),
-      );
+      var response =
+          await _api.post(endPoint: "auth/verify.php", data: code.toJson());
 
       return right(ResponseModel.fromJson(response));
     } catch (e) {

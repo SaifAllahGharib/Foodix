@@ -17,6 +17,7 @@ import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/si
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/or_widget.dart';
+import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});
@@ -74,17 +75,16 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           context: context,
           text: "failed_to_create_account".tr(context),
         );
-      } else if (msg.contains("Error:")) {
+      } else if (msg == "There was an error processing your request") {
         snackBar(
           context: context,
-          text: msg,
+          text: "error_request".tr(context),
         );
       }
     } else if (state is SignupFailure) {
       snackBar(
         context: context,
         text: "Error: ${state.errorMsg}",
-        color: Colors.red,
       );
     }
   }
@@ -140,9 +140,10 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 SizedBox(height: Dimensions.height20(context)),
                 CustomSignupButton(
                   text: "signup".tr(context),
-                  isEnabled: context.watch<SignupCubit>().buttonEnabled,
+                  isEnabled: true, //context.watch<SignupCubit>().buttonEnabled,
                   onClick: () {
-                    _signup(context);
+                    // _signup(context);
+                    GoRouter.of(context).push(VerificationView.id);
                   },
                 ),
                 SizedBox(height: Dimensions.height20(context)),

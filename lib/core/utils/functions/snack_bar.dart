@@ -9,7 +9,7 @@ void snackBar({
     SnackBar(
       content: Text(text),
       backgroundColor: color,
-      duration: Duration(milliseconds: 950),
+      duration: Duration(milliseconds: 1100),
     ),
   );
 }

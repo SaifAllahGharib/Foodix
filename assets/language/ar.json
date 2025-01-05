@@ -18,5 +18,11 @@
   "failed_to_create_account": "فشل في إنشاء الحساب",
   "login_successful": "تم تسجيل الدخول بنجاح",
   "password_incorrect": "كلمة السر غلط",
-  "this_user_does_not_exist": "المستخدم ده مش موجود"
+  "this_user_does_not_exist": "المستخدم ده مش موجود",
+  "error_request": "فيه مشكلة حصلت أثناء معالجة طلبك",
+  "enter_verification_code": "دخل كود التحقق",
+  "we_have_send_code_to": "بعتنا لك الكود على",
+  "verify": "إتأكد",
+  "didn't_get_a_code": "ما جابلكش الكود؟",
+  "click_to_resend": "اضغط علشان تعيد إرساله"
 }

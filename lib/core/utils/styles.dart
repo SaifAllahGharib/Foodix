@@ -2,20 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 abstract class Styles {
-  static textStyle15(BuildContext context) {
+  static TextStyle textStyle15(BuildContext context) {
     return TextStyle(
       fontSize: Dimensions.fontSize15(context),
     );
   }
 
-  static textStyle20(BuildContext context) {
+  static TextStyle textStyle20(BuildContext context) {
     return TextStyle(
       fontSize: Dimensions.fontSize20(context),
       fontWeight: FontWeight.bold,
     );
   }
 
-  static textStyle30(BuildContext context) {
+  static TextStyle textStyle30(BuildContext context) {
     return TextStyle(
       fontSize: Dimensions.fontSize30(context),
       fontWeight: FontWeight.bold,

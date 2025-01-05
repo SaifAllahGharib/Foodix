@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class Api {
-  final String _baseUrl = "http://10.0.2.2/yummy_home/";
+  final String _baseUrl = "http://10.0.2.2/yummy_home/api/";
   final Dio _dio;
 
   Api(this._dio);

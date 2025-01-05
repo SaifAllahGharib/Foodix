@@ -66,10 +66,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           context: context,
           text: "this_user_does_not_exist".tr(context),
         );
-      } else if (msg.contains("Error:")) {
+      } else if (msg == "There was an error processing your request") {
         snackBar(
           context: context,
-          text: msg,
+          text: "error_request".tr(context),
         );
       }
     } else if (state is SignupFailure) {

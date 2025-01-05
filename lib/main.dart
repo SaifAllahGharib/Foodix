@@ -4,13 +4,15 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/app_router.dart';
 import 'package:yummy_home/core/utils/colors.dart';
+import 'package:yummy_home/core/utils/functions/inti_firebase.dart';
 import 'package:yummy_home/core/utils/functions/set_portrait_orientation.dart';
 import 'package:yummy_home/core/utils/service_locator.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setup();
   setPortraitOrientation();
+  await initFirebase();
   runApp(
     DevicePreview(
       enabled: true,

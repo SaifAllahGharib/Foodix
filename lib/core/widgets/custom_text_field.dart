@@ -38,13 +38,19 @@ class CustomTextField extends StatelessWidget {
             : null,
         label: Text(
           hint,
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.grey),
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(
+            Dimensions.radius10(context),
+          ),
+          borderSide: BorderSide(
+            color: AppColors.gray,
+            width: 1.3,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+          borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
           borderSide: BorderSide(
             color: AppColors.primaryColor,
             width: 2,
