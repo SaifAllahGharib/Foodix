@@ -4,7 +4,7 @@ import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 class UserType extends StatefulWidget {
-  final String? type;
+  final String type;
   final void Function(String? val) onChange;
 
   const UserType({
@@ -48,7 +48,7 @@ class _UserTypeState extends State<UserType> {
       value: widget.type,
       items: userTypes.map((type) {
         return DropdownMenuItem(
-          value: type.tr(context),
+          value: type,
           child: Text(type.tr(context)),
         );
       }).toList(),

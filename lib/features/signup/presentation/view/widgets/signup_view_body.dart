@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
-import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
-import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_cubit.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
-import 'package:yummy_home/features/signup/presentation/view/widgets/or_widget.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -31,8 +29,6 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   late final TextEditingController _email;
   late final TextEditingController _phone;
   late final TextEditingController _password;
-
-  String? _userType;
 
   @override
   void initState() {
@@ -54,17 +50,25 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     super.dispose();
   }
 
-  void _handelState(state) {
+  void _handelState(state) async {
     if (state is SignupSuccess) {
       String msg = state.response.message;
+      Map<String, dynamic> user = state.response.user!;
 
-      if (msg == "User added successfully") {
+      if (msg == "User added successfully" ||
+          msg == "User added successfully and send code to your email") {
         snackBar(
           context: context,
           text: "success".tr(context),
           color: AppColors.primaryColor,
         );
-        GoRouter.of(context).go(HomeView.id);
+
+        await MySharedPreferences().storeUser(user);
+
+        GoRouter.of(context).push(
+          VerificationView.id,
+          extra: user["email"],
+        );
       } else if (msg == "User already exists with this email") {
         snackBar(
           context: context,
@@ -96,7 +100,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             email: _email.text,
             phone_number: _phone.text,
             password: _password.text,
-            type: _userType.toString(),
+            type: "sale",
           ),
         );
   }
@@ -107,7 +111,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           email: _email,
           phone: _phone,
           password: _password,
-          userType: _userType.toString(),
+          userType: "sale",
         );
   }
 
@@ -134,29 +138,17 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   email: _email,
                   phone: _phone,
                   password: _password,
-                  userType: _userType,
                   validator: (val) => _validation(context),
                 ),
-                SizedBox(height: Dimensions.height20(context)),
+                SizedBox(height: Dimensions.height45(context)),
                 CustomSignupButton(
                   text: "signup".tr(context),
-                  isEnabled: true, //context.watch<SignupCubit>().buttonEnabled,
+                  isEnabled: context.watch<SignupCubit>().buttonEnabled,
                   onClick: () {
-                    // _signup(context);
-                    GoRouter.of(context).push(VerificationView.id);
+                    _signup(context);
                   },
                 ),
-                SizedBox(height: Dimensions.height20(context)),
-                Or(),
-                SizedBox(height: Dimensions.height20(context)),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset(
-                    Assets.google,
-                    width: Dimensions.iconSize45(context),
-                  ),
-                ),
-                SizedBox(height: Dimensions.height15(context)),
+                SizedBox(height: Dimensions.height45(context)),
                 CustomTextButton(
                   text: "already_have_account".tr(context),
                   onClick: () {

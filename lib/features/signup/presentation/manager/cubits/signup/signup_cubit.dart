@@ -28,12 +28,13 @@ class SignupCubit extends Cubit<SignupState> {
     emit(SignupShowPassword(_showPassword));
   }
 
-  void validationFields(
-      {required TextEditingController name,
-      required TextEditingController email,
-      required TextEditingController phone,
-      required TextEditingController password,
-      required String userType}) {
+  void validationFields({
+    required TextEditingController name,
+    required TextEditingController email,
+    required TextEditingController phone,
+    required TextEditingController password,
+    required String userType,
+  }) {
     _buttonEnabled = name.text.isNotEmpty &&
         email.text.isNotEmpty &&
         phone.text.isNotEmpty &&

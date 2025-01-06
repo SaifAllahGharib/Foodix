@@ -20,7 +20,8 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: VerificationView.id,
-      builder: (context, state) => const VerificationView(),
+      builder: (context, state) =>
+          VerificationView(email: state.extra as String),
     ),
   ]);
 }

@@ -16,7 +16,9 @@ import 'package:yummy_home/features/verification/presentation/manager/cubits/ver
 import 'package:yummy_home/features/verification/presentation/view/widgets/verify_text_form_fields.dart';
 
 class VerificationViewBody extends StatefulWidget {
-  const VerificationViewBody({super.key});
+  final String email;
+
+  const VerificationViewBody({super.key, required this.email});
 
   @override
   State<VerificationViewBody> createState() => _VerificationViewBodyState();
@@ -98,7 +100,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                     ),
                     SizedBox(width: Dimensions.width15(context)),
                     Text(
-                      "saifgharib28@gmail.com".tr(context),
+                      widget.email,
                       style: Styles.textStyle15(context).copyWith(
                           color: Colors.black, fontWeight: FontWeight.w600),
                     ),
@@ -132,7 +134,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                   text: "verify".tr(context),
                   isEnabled: true,
                   onClick: () {
-                    _verify(context, "saifgharib28@gmail.com", myCode);
+                    _verify(context, widget.email, myCode);
                   },
                 ),
               ],

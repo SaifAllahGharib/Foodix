@@ -4,7 +4,6 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_cubit.dart';
-import 'package:yummy_home/features/signup/presentation/view/widgets/user_type.dart';
 
 class ColumnOfTextFields extends StatefulWidget {
   final BuildContext context;
@@ -12,7 +11,6 @@ class ColumnOfTextFields extends StatefulWidget {
   final TextEditingController email;
   final TextEditingController phone;
   final TextEditingController password;
-  final String? userType;
   final void Function(String? val) validator;
 
   const ColumnOfTextFields({
@@ -22,7 +20,6 @@ class ColumnOfTextFields extends StatefulWidget {
     required this.email,
     required this.phone,
     required this.password,
-    required this.userType,
     required this.validator,
   });
 
@@ -51,11 +48,6 @@ class _ColumnOfTextFieldsState extends State<ColumnOfTextFields> {
           controller: widget.phone,
           hint: "hint_phone".tr(widget.context),
           onChanged: widget.validator,
-        ),
-        SizedBox(height: Dimensions.height15(widget.context)),
-        UserType(
-          type: widget.userType,
-          onChange: widget.validator,
         ),
         SizedBox(height: Dimensions.height15(widget.context)),
         CustomTextField(
