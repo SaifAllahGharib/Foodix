@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
+import 'package:yummy_home/core/widgets/loading.dart';
+import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_cubit.dart';
+import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_state.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
@@ -33,37 +39,90 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
     super.dispose();
   }
 
+  void _onSuccess(user) {
+    GoRouter.of(context).push(
+      VerificationView.id,
+      extra: user["email"],
+    );
+  }
+
+  void _handleState(state) {
+    if (state is ForgetPasswordSuccess) {
+      final msg = state.response.message;
+      final user = state.response.user;
+
+      if (msg == "Send code successfully") {
+        snackBar(
+          context: context,
+          text: "code_send_successfully".tr(context),
+          color: AppColors.primaryColor,
+        );
+
+        _onSuccess(user);
+      } else if (msg == "Not send code success") {
+        snackBar(
+          context: context,
+          text: "code_not_send_success".tr(context),
+        );
+
+        _onSuccess(user);
+      } else if (msg == "User not found") {
+        snackBar(
+          context: context,
+          text: "this_user_does_not_exist".tr(context),
+        );
+      }
+    } else if (state is ForgetPasswordFailure) {
+      snackBar(
+        context: context,
+        text: "Error: ${state.errorMsg}",
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(Dimensions.height20(context)),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: Dimensions.height20(context)),
-            CustomBackButton(
-              onPressed: () => GoRouter.of(context).go(LoginView.id),
+    return BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+      listener: (context, state) => _handleState(state),
+      builder: (context, state) {
+        if (state is ForgetPasswordLoading) {
+          return Loading();
+        }
+
+        return Padding(
+          padding: EdgeInsets.all(Dimensions.height20(context)),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: Dimensions.height20(context)),
+                CustomBackButton(
+                  onPressed: () => GoRouter.of(context).go(LoginView.id),
+                ),
+                SizedBox(height: Dimensions.height30(context)),
+                CustomText(text: "re_password".tr(context)),
+                SizedBox(height: Dimensions.height45(context) * 2),
+                CustomTextField(
+                  controller: _email,
+                  hint: "hint_email".tr(context),
+                  onChanged: (val) => context
+                      .read<ForgetPasswordCubit>()
+                      .validationFields(email: _email),
+                ),
+                SizedBox(height: Dimensions.height30(context)),
+                CustomSignupButton(
+                  text: "verify".tr(context),
+                  isEnabled: context.watch<ForgetPasswordCubit>().buttonEnabled,
+                  onClick: () {
+                    context
+                        .read<ForgetPasswordCubit>()
+                        .forgetPassword(_email.text);
+                  },
+                ),
+              ],
             ),
-            SizedBox(height: Dimensions.height30(context)),
-            CustomText(text: "re_password".tr(context)),
-            SizedBox(height: Dimensions.height45(context) * 2),
-            CustomTextField(
-              controller: _email,
-              hint: "hint_email".tr(context),
-              onChanged: (val) => {},
-            ),
-            SizedBox(height: Dimensions.height30(context)),
-            CustomSignupButton(
-              text: "verify".tr(context),
-              isEnabled: true,
-              onClick: () {
-                GoRouter.of(context)
-                    .go(VerificationView.id, extra: "saif@dfg.dfg");
-              },
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

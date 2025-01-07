@@ -10,16 +10,15 @@ import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
+import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
 import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_cubit.dart';
 import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_state.dart';
 import 'package:yummy_home/features/verification/presentation/view/widgets/verify_text_form_fields.dart';
 
 class VerificationViewBody extends StatefulWidget {
   final String email;
-  final void Function(BuildContext context, String email, String code) verify;
 
-  const VerificationViewBody(
-      {super.key, required this.email, required this.verify});
+  const VerificationViewBody({super.key, required this.email});
 
   @override
   State<VerificationViewBody> createState() => _VerificationViewBodyState();
@@ -57,6 +56,15 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
         text: "Error: ${state.errorMsg}",
       );
     }
+  }
+
+  void _verify(BuildContext context, String email, String code) {
+    context.read<VerificationCubit>().verifyCode(
+          VerifyCodeModel(
+            email: email,
+            code: code,
+          ),
+        );
   }
 
   @override
@@ -125,11 +133,8 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                 CustomSignupButton(
                   text: "verify".tr(context),
                   isEnabled: true,
-                  // onClick: widget.verify,
                   onClick: () {
-                    // _verify(context, widget.email, myCode);
-
-                    widget.verify(context, widget.email, myCode);
+                    _verify(context, widget.email, myCode);
                   },
                 ),
               ],

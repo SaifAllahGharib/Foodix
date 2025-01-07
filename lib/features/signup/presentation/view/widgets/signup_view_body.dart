@@ -15,8 +15,6 @@ import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/si
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
-import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
-import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_cubit.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -57,22 +55,8 @@ class _SignupViewBodyState extends State<SignupViewBody> {
 
     GoRouter.of(context).push(
       VerificationView.id,
-      extra: {
-        "email": user["email"],
-        "onPress": (BuildContext context, String email, String code) {
-          _verify(context, email, code);
-        },
-      },
+      extra: user["email"],
     );
-  }
-
-  void _verify(BuildContext context, String email, String code) {
-    context.read<VerificationCubit>().verifyCode(
-          VerifyCodeModel(
-            email: email,
-            code: code,
-          ),
-        );
   }
 
   void _handelState(state) {

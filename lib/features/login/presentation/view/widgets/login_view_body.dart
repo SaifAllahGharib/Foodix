@@ -19,8 +19,6 @@ import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
-import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
-import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_cubit.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -50,26 +48,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     super.dispose();
   }
 
-  void _verify(BuildContext context, String email, String code) {
-    context.read<VerificationCubit>().verifyCode(
-          VerifyCodeModel(
-            email: email,
-            code: code,
-          ),
-        );
-  }
-
-  void onSuccess(user) async {
+  void _onSuccess(user) async {
     await MySharedPreferences().storeUser(user);
 
     GoRouter.of(context).push(
       VerificationView.id,
-      extra: {
-        "email": user["email"],
-        "onPress": (BuildContext context, String email, String code) {
-          _verify(context, email, code);
-        },
-      },
+      extra: user["email"],
     );
   }
 
@@ -93,14 +77,14 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           color: AppColors.primaryColor,
         );
 
-        onSuccess(user);
+        _onSuccess(user);
       } else if (msg == "code not send successfully") {
         snackBar(
           context: context,
           text: "code_not_send_success".tr(context),
         );
 
-        onSuccess(user);
+        _onSuccess(user);
       } else if (msg == "Incorrect password") {
         snackBar(
           context: context,

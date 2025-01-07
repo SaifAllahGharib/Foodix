@@ -8,10 +8,8 @@ import 'package:yummy_home/features/verification/presentation/view/widgets/verif
 class VerificationView extends StatelessWidget {
   static const String id = "/verification_view";
   final String email;
-  final void Function(BuildContext context, String email, String code) verify;
 
-  const VerificationView(
-      {super.key, required this.email, required this.verify});
+  const VerificationView({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +17,7 @@ class VerificationView extends StatelessWidget {
       create: (context) =>
           VerificationCubit(getIt.get<VerificationRepositoryImp>()),
       child: Scaffold(
-        body: VerificationViewBody(
-          email: email,
-          verify: verify,
-        ),
+        body: VerificationViewBody(email: email),
       ),
     );
   }

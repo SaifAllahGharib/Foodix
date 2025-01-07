@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/presentation/view/forget_password_view.dart';
@@ -24,15 +23,7 @@ abstract class AppRouter {
       GoRoute(
         path: VerificationView.id,
         builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>;
-          final email = extra["email"] as String;
-          final onPress = extra["onPress"] as Function(
-              BuildContext context, String email, String code);
-
-          return VerificationView(
-            email: email,
-            verify: onPress,
-          );
+          return VerificationView(email: state.extra as String);
         },
       ),
       GoRoute(
