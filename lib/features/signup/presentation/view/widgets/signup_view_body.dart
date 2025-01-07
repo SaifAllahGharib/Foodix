@@ -5,7 +5,6 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
-import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
@@ -50,12 +49,13 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     super.dispose();
   }
 
-  void onSuccess(user) async {
-    await MySharedPreferences().storeUser(user);
-
+  void _onSuccess(user) async {
     GoRouter.of(context).push(
       VerificationView.id,
-      extra: user["email"],
+      extra: {
+        "user": user,
+        "purpose": "signup",
+      },
     );
   }
 
@@ -71,7 +71,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           color: AppColors.primaryColor,
         );
 
-        onSuccess(user);
+        _onSuccess(user);
       } else if (msg ==
           "User added successfully, but not send code successfully") {
         snackBar(
@@ -79,7 +79,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           text: "code_not_send_success".tr(context),
         );
 
-        onSuccess(user);
+        _onSuccess(user);
       } else if (msg == "User already exists with this email") {
         snackBar(
           context: context,

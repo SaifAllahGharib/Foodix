@@ -42,7 +42,10 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   void _onSuccess(user) {
     GoRouter.of(context).push(
       VerificationView.id,
-      extra: user["email"],
+      extra: {
+        "user": user,
+        "purpose": "forget_password",
+      },
     );
   }
 

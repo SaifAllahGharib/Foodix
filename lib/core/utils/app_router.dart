@@ -23,7 +23,12 @@ abstract class AppRouter {
       GoRoute(
         path: VerificationView.id,
         builder: (context, state) {
-          return VerificationView(email: state.extra as String);
+          final extra = state.extra as Map<String, dynamic>;
+          
+          return VerificationView(
+            user: extra["user"],
+            purpose: extra["purpose"],
+          );
         },
       ),
       GoRoute(

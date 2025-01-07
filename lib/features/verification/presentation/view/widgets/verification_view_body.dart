@@ -5,6 +5,7 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
@@ -16,9 +17,14 @@ import 'package:yummy_home/features/verification/presentation/manager/cubits/ver
 import 'package:yummy_home/features/verification/presentation/view/widgets/verify_text_form_fields.dart';
 
 class VerificationViewBody extends StatefulWidget {
-  final String email;
+  final Map<String, dynamic> user;
+  final String purpose;
 
-  const VerificationViewBody({super.key, required this.email});
+  const VerificationViewBody({
+    super.key,
+    required this.user,
+    required this.purpose,
+  });
 
   @override
   State<VerificationViewBody> createState() => _VerificationViewBodyState();
@@ -27,18 +33,29 @@ class VerificationViewBody extends StatefulWidget {
 class _VerificationViewBodyState extends State<VerificationViewBody> {
   String myCode = "";
 
-  void _handelState(BuildContext context, state) {
+  void _handelState(BuildContext context, state) async {
     if (state is VerificationSuccess) {
       String msg = state.response.message;
 
       if (msg == "Verification successful") {
+        myCode = "";
+
         snackBar(
           context: context,
           text: "success".tr(context),
           color: AppColors.primaryColor,
         );
 
-        GoRouter.of(context).go(HomeView.id);
+        if (widget.purpose == "signup" || widget.purpose == "login") {
+          await MySharedPreferences().storeUser(widget.user);
+
+          GoRouter.of(context).go(HomeView.id);
+        } else {
+          snackBar(
+            context: context,
+            text: "Change password",
+          );
+        }
       } else if (msg == "Invalid verification code or email") {
         snackBar(
           context: context,
@@ -100,7 +117,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                     ),
                     SizedBox(width: Dimensions.width15(context)),
                     Text(
-                      widget.email,
+                      widget.user["email"],
                       style: Styles.textStyle15(context).copyWith(
                           color: Colors.black, fontWeight: FontWeight.w600),
                     ),
@@ -134,7 +151,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                   text: "verify".tr(context),
                   isEnabled: true,
                   onClick: () {
-                    _verify(context, widget.email, myCode);
+                    _verify(context, widget.user["email"], myCode);
                   },
                 ),
               ],

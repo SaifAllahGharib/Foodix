@@ -48,16 +48,17 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     super.dispose();
   }
 
-  void _onSuccess(user) async {
-    await MySharedPreferences().storeUser(user);
-
+  void _onSuccess(user) {
     GoRouter.of(context).push(
       VerificationView.id,
-      extra: user["email"],
+      extra: {
+        "user": user,
+        "purpose": "login",
+      },
     );
   }
 
-  void _handelState(state) {
+  void _handelState(state) async {
     if (state is LoginSuccess) {
       String msg = state.response.message;
       Map<String, dynamic> user = state.response.user!;
@@ -68,6 +69,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           text: "login_successful".tr(context),
           color: AppColors.primaryColor,
         );
+
+        await MySharedPreferences().storeUser(user);
 
         GoRouter.of(context).go(HomeView.id);
       } else if (msg == "is not verified") {

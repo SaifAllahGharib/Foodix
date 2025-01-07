@@ -7,9 +7,14 @@ import 'package:yummy_home/features/verification/presentation/view/widgets/verif
 
 class VerificationView extends StatelessWidget {
   static const String id = "/verification_view";
-  final String email;
+  final Map<String, dynamic> user;
+  final String purpose;
 
-  const VerificationView({super.key, required this.email});
+  const VerificationView({
+    super.key,
+    required this.user,
+    required this.purpose,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,7 @@ class VerificationView extends StatelessWidget {
       create: (context) =>
           VerificationCubit(getIt.get<VerificationRepositoryImp>()),
       child: Scaffold(
-        body: VerificationViewBody(email: email),
+        body: VerificationViewBody(user: user, purpose: purpose),
       ),
     );
   }
