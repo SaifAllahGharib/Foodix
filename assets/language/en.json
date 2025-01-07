@@ -25,5 +25,8 @@
   "verify": "Verify",
   "didn't_get_a_code": "Didn't get a code?",
   "click_to_resend": "Click to resend",
-  "invalid_verification_code": "Invalid verification code"
+  "invalid_verification_code": "Invalid verification code",
+  "code_not_send_success": "Code not send success",
+  "code_send_successfully": "Code send successfully",
+  "re_password": "Re password"
 }

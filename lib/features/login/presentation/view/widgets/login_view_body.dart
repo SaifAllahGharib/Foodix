@@ -5,6 +5,7 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
@@ -13,10 +14,14 @@ import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/data/models/login_model.dart';
 import 'package:yummy_home/features/login/presentation/manager/cubits/login/login_cubit.dart';
 import 'package:yummy_home/features/login/presentation/manager/cubits/login/login_state.dart';
+import 'package:yummy_home/features/login/presentation/view/forget_password_view.dart';
 import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
+import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
+import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_cubit.dart';
+import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -45,9 +50,33 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     super.dispose();
   }
 
+  void _verify(BuildContext context, String email, String code) {
+    context.read<VerificationCubit>().verifyCode(
+          VerifyCodeModel(
+            email: email,
+            code: code,
+          ),
+        );
+  }
+
+  void onSuccess(user) async {
+    await MySharedPreferences().storeUser(user);
+
+    GoRouter.of(context).push(
+      VerificationView.id,
+      extra: {
+        "email": user["email"],
+        "onPress": (BuildContext context, String email, String code) {
+          _verify(context, email, code);
+        },
+      },
+    );
+  }
+
   void _handelState(state) {
     if (state is LoginSuccess) {
       String msg = state.response.message;
+      Map<String, dynamic> user = state.response.user!;
 
       if (msg == "Login successful") {
         snackBar(
@@ -55,7 +84,23 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           text: "login_successful".tr(context),
           color: AppColors.primaryColor,
         );
+
         GoRouter.of(context).go(HomeView.id);
+      } else if (msg == "is not verified") {
+        snackBar(
+          context: context,
+          text: "code_send_successfully".tr(context),
+          color: AppColors.primaryColor,
+        );
+
+        onSuccess(user);
+      } else if (msg == "code not send successfully") {
+        snackBar(
+          context: context,
+          text: "code_not_send_success".tr(context),
+        );
+
+        onSuccess(user);
       } else if (msg == "Incorrect password") {
         snackBar(
           context: context,
@@ -111,7 +156,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             child: Column(
               children: [
                 SizedBox(height: Dimensions.height20(context)),
-                CustomBackButton(),
+                CustomBackButton(
+                  onPressed: () => GoRouter.of(context).go(SignupView.id),
+                ),
                 SizedBox(height: Dimensions.height30(context)),
                 CustomText(text: "login".tr(context)),
                 SizedBox(height: Dimensions.height45(context) * 2),
@@ -135,7 +182,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   alignment: Alignment.centerLeft,
                   child: CustomTextButton(
                     text: "forget_pass".tr(context),
-                    onClick: () {},
+                    onClick: () {
+                      GoRouter.of(context).push(ForgetPasswordView.id);
+                    },
                   ),
                 ),
                 SizedBox(height: Dimensions.height30(context)),

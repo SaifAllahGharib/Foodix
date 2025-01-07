@@ -15,6 +15,8 @@ import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/si
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
+import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
+import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_cubit.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -50,25 +52,50 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     super.dispose();
   }
 
-  void _handelState(state) async {
+  void onSuccess(user) async {
+    await MySharedPreferences().storeUser(user);
+
+    GoRouter.of(context).push(
+      VerificationView.id,
+      extra: {
+        "email": user["email"],
+        "onPress": (BuildContext context, String email, String code) {
+          _verify(context, email, code);
+        },
+      },
+    );
+  }
+
+  void _verify(BuildContext context, String email, String code) {
+    context.read<VerificationCubit>().verifyCode(
+          VerifyCodeModel(
+            email: email,
+            code: code,
+          ),
+        );
+  }
+
+  void _handelState(state) {
     if (state is SignupSuccess) {
       String msg = state.response.message;
       Map<String, dynamic> user = state.response.user!;
 
-      if (msg == "User added successfully" ||
-          msg == "User added successfully and send code to your email") {
+      if (msg == "User added successfully and send code to your email") {
         snackBar(
           context: context,
-          text: "success".tr(context),
+          text: "code_send_successfully".tr(context),
           color: AppColors.primaryColor,
         );
 
-        await MySharedPreferences().storeUser(user);
-
-        GoRouter.of(context).push(
-          VerificationView.id,
-          extra: user["email"],
+        onSuccess(user);
+      } else if (msg ==
+          "User added successfully, but not send code successfully") {
+        snackBar(
+          context: context,
+          text: "code_not_send_success".tr(context),
         );
+
+        onSuccess(user);
       } else if (msg == "User already exists with this email") {
         snackBar(
           context: context,

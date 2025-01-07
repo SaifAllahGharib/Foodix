@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key});
+  final void Function() onPressed;
+
+  const CustomBackButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,7 @@ class CustomBackButton extends StatelessWidget {
           ? Alignment.topRight
           : Alignment.topLeft,
       child: IconButton(
-        onPressed: () {
-          GoRouter.of(context).go(SignupView.id);
-        },
+        onPressed: onPressed,
         icon: Icon(
           Icons.arrow_back_ios_new_outlined,
           size: Dimensions.iconSize24(context),
