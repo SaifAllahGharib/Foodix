@@ -12,8 +12,21 @@ class VerificationSuccess extends VerificationState {
   VerificationSuccess(this.response);
 }
 
+class VerificationReSendCode extends VerificationState {
+  final ResponseModel response;
+
+  VerificationReSendCode(this.response);
+}
+
 class VerificationFailure extends VerificationState {
   final String errorMsg;
 
   VerificationFailure(this.errorMsg);
+}
+
+class VerificationTimerUpdated extends VerificationState {
+  final int time;
+  final bool canSend;
+
+  VerificationTimerUpdated(this.time, this.canSend);
 }

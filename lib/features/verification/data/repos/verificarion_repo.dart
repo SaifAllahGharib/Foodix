@@ -5,4 +5,6 @@ import 'package:yummy_home/features/verification/data/models/verify_code_model.d
 
 abstract class VerificationRepository {
   Future<Either<Failure, ResponseModel>> verifyCode(VerifyCodeModel code);
+
+  Future<Either<Failure, ResponseModel>> reSendCode(String email);
 }

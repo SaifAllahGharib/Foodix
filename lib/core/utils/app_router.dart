@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
+import 'package:yummy_home/features/login/presentation/view/change_password_view.dart';
 import 'package:yummy_home/features/login/presentation/view/forget_password_view.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
@@ -24,7 +25,7 @@ abstract class AppRouter {
         path: VerificationView.id,
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>;
-          
+
           return VerificationView(
             user: extra["user"],
             purpose: extra["purpose"],
@@ -34,6 +35,17 @@ abstract class AppRouter {
       GoRoute(
         path: ForgetPasswordView.id,
         builder: (context, state) => ForgetPasswordView(),
+      ),
+      GoRoute(
+        path: ChangePasswordView.id,
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>;
+
+          return ChangePasswordView(
+            verifyCode: extra["code"],
+            user: extra["user"],
+          );
+        },
       ),
     ],
   );

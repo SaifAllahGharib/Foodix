@@ -23,10 +23,15 @@
   "enter_verification_code": "Enter verification code",
   "we_have_send_code_to": "We have send code to",
   "verify": "Verify",
+  "verify_success": "Verify success",
   "didn't_get_a_code": "Didn't get a code?",
   "click_to_resend": "Click to resend",
   "invalid_verification_code": "Invalid verification code",
   "code_not_send_success": "Code not send success",
   "code_send_successfully": "Code send successfully",
-  "re_password": "Re password"
+  "re_password": "Re password",
+  "change_password_successful": "Change password successful",
+  "change_password_failed": "Change password failed",
+  "change_password": "Change password",
+  "confirm_password": "Confirm password"
 }

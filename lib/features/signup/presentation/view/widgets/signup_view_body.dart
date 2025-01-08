@@ -62,7 +62,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   void _handelState(state) {
     if (state is SignupSuccess) {
       String msg = state.response.message;
-      Map<String, dynamic> user = state.response.user!;
+      Map<String, dynamic>? user = state.response.user;
 
       if (msg == "User added successfully and send code to your email") {
         snackBar(

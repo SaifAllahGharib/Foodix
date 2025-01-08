@@ -11,6 +11,7 @@ import 'package:yummy_home/core/widgets/custom_signup_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
+import 'package:yummy_home/features/login/presentation/view/change_password_view.dart';
 import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
 import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_cubit.dart';
 import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_state.dart';
@@ -33,28 +34,40 @@ class VerificationViewBody extends StatefulWidget {
 class _VerificationViewBodyState extends State<VerificationViewBody> {
   String myCode = "";
 
+  @override
+  void initState() {
+    startTimer(context);
+
+    super.initState();
+  }
+
   void _handelState(BuildContext context, state) async {
     if (state is VerificationSuccess) {
       String msg = state.response.message;
 
       if (msg == "Verification successful") {
-        myCode = "";
-
         snackBar(
           context: context,
-          text: "success".tr(context),
+          text: "verify_success".tr(context),
           color: AppColors.primaryColor,
         );
 
         if (widget.purpose == "signup" || widget.purpose == "login") {
+          myCode = "";
+
           await MySharedPreferences().storeUser(widget.user);
 
           GoRouter.of(context).go(HomeView.id);
         } else {
-          snackBar(
-            context: context,
-            text: "Change password",
+          GoRouter.of(context).go(
+            ChangePasswordView.id,
+            extra: {
+              "code": myCode,
+              "user": widget.user,
+            },
           );
+
+          myCode = "";
         }
       } else if (msg == "Invalid verification code or email") {
         snackBar(
@@ -65,6 +78,22 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
         snackBar(
           context: context,
           text: "error_request".tr(context),
+        );
+      }
+    } else if (state is VerificationReSendCode) {
+      final msg = state.response.message;
+
+      if (msg == "Verification code sent successfully") {
+        snackBar(
+          context: context,
+          text: "code_send_successfully".tr(context),
+          color: AppColors.primaryColor,
+        );
+      } else if (msg == "Failed to update verification code" ||
+          msg == "Failed to send email") {
+        snackBar(
+          context: context,
+          text: "code_not_send_success".tr(context),
         );
       }
     } else if (state is VerificationFailure) {
@@ -82,6 +111,10 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
             code: code,
           ),
         );
+  }
+
+  void startTimer(BuildContext context) {
+    context.read<VerificationCubit>().startTimer();
   }
 
   @override
@@ -119,7 +152,8 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                     Text(
                       widget.user["email"],
                       style: Styles.textStyle15(context).copyWith(
-                          color: Colors.black, fontWeight: FontWeight.w600),
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w600),
                     ),
                   ],
                 ),
@@ -139,11 +173,25 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                         color: Colors.grey,
                       ),
                     ),
-                    CustomTextButton(
-                      text: "click_to_resend".tr(context),
-                      onClick: () {},
-                      color: Colors.black,
-                    ),
+                    state is VerificationTimerUpdated
+                        ? state.canSend
+                            ? CustomTextButton(
+                                text: "click_to_resend".tr(context),
+                                onClick: () {
+                                  context
+                                      .read<VerificationCubit>()
+                                      .reSendCode(widget.user["email"]);
+                                },
+                                color: AppColors.primaryColor,
+                              )
+                            : Text(
+                                "  ${state.time}s",
+                                style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )
+                        : SizedBox.shrink(),
                   ],
                 ),
                 SizedBox(height: Dimensions.height45(context)),

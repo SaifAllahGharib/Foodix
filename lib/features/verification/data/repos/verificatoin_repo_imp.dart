@@ -26,4 +26,21 @@ class VerificationRepositoryImp extends VerificationRepository {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, ResponseModel>> reSendCode(String email) async {
+    try {
+      var response = await _api.post(
+        endPoint: "auth/resend_code.php",
+        data: {"email": email},
+      );
+
+      return right(ResponseModel.fromJson(response));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

@@ -61,7 +61,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   void _handelState(state) async {
     if (state is LoginSuccess) {
       String msg = state.response.message;
-      Map<String, dynamic> user = state.response.user!;
+      Map<String, dynamic>? user = state.response.user;
 
       if (msg == "Login successful") {
         snackBar(
@@ -70,7 +70,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           color: AppColors.primaryColor,
         );
 
-        await MySharedPreferences().storeUser(user);
+        await MySharedPreferences().storeUser(user!);
 
         GoRouter.of(context).go(HomeView.id);
       } else if (msg == "is not verified") {
