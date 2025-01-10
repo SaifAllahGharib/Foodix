@@ -18,7 +18,7 @@ abstract class Styles {
   static TextStyle textStyle30(BuildContext context) {
     return TextStyle(
       fontSize: Dimensions.fontSize30(context),
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w600,
     );
   }
 }

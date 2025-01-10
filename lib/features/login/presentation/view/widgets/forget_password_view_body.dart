@@ -5,14 +5,14 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
-import 'package:yummy_home/core/widgets/custom_signup_button.dart';
+import 'package:yummy_home/core/widgets/custom_button.dart';
+import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_cubit.dart';
 import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_state.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
-import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class ForgetPasswordViewBody extends StatefulWidget {
@@ -112,7 +112,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
                       .validationFields(email: _email),
                 ),
                 SizedBox(height: Dimensions.height30(context)),
-                CustomSignupButton(
+                CustomButton(
                   text: "verify".tr(context),
                   isEnabled: context.watch<ForgetPasswordCubit>().buttonEnabled,
                   onClick: () {

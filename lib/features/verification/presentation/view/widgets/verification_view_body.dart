@@ -7,7 +7,7 @@ import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/utils/styles.dart';
-import 'package:yummy_home/core/widgets/custom_signup_button.dart';
+import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
@@ -163,7 +163,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                     myCode = code;
                   },
                 ),
-                SizedBox(height: Dimensions.height10(context) * 0.01),
+                SizedBox(height: Dimensions.height15(context)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -186,7 +186,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                               )
                             : Text(
                                 "  ${state.time}s",
-                                style: TextStyle(
+                                style: Styles.textStyle15(context).copyWith(
                                   color: AppColors.primaryColor,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -195,7 +195,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                   ],
                 ),
                 SizedBox(height: Dimensions.height45(context)),
-                CustomSignupButton(
+                CustomButton(
                   text: "verify".tr(context),
                   isEnabled: true,
                   onClick: () {

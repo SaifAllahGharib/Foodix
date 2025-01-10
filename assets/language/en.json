@@ -1,4 +1,8 @@
 {
+  "choose_language": "Choose language",
+  "choose_type": "Choose type",
+  "vendor": "Seller",
+  "buyer": "Buyer",
   "create_account": "Create account",
   "signup": "Sign up",
   "hint_name": "Name",
@@ -11,8 +15,6 @@
   "login": "Login",
   "not_have_account": "Don't have an account?",
   "type": "Select type",
-  "vendor": "Seller",
-  "buyer": "Buyer",
   "success": "Success",
   "user_already_exists": "User already exists",
   "failed_to_create_account": "Failed to create account",

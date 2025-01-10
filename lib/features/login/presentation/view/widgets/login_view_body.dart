@@ -6,7 +6,8 @@ import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
-import 'package:yummy_home/core/widgets/custom_signup_button.dart';
+import 'package:yummy_home/core/widgets/custom_button.dart';
+import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
@@ -18,7 +19,6 @@ import 'package:yummy_home/features/login/presentation/view/forget_password_view
 import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
-import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -175,7 +175,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   ),
                 ),
                 SizedBox(height: Dimensions.height30(context)),
-                CustomSignupButton(
+                CustomButton(
                   text: "login".tr(context),
                   isEnabled: context.watch<LoginCubit>().buttonEnabled,
                   onClick: () => _login(context),

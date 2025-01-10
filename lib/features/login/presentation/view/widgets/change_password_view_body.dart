@@ -6,14 +6,14 @@ import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
-import 'package:yummy_home/core/widgets/custom_signup_button.dart';
+import 'package:yummy_home/core/widgets/custom_button.dart';
+import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/data/models/change_password_model.dart';
 import 'package:yummy_home/features/login/presentation/manager/cubits/change_password/change_password_cubit.dart';
 import 'package:yummy_home/features/login/presentation/manager/cubits/change_password/change_password_state.dart';
-import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
 
 class ChangePasswordViewBody extends StatefulWidget {
   final String verifyCode;
@@ -127,7 +127,7 @@ class _ChangePasswordViewBodyState extends State<ChangePasswordViewBody> {
                   onChanged: (val) => _validation(context),
                 ),
                 SizedBox(height: Dimensions.height30(context)),
-                CustomSignupButton(
+                CustomButton(
                   text: "verify".tr(context),
                   isEnabled: context.watch<ChangePasswordCubit>().buttonEnabled,
                   onClick: () =>

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
-class CustomSignupButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final String text;
   final void Function() onClick;
   final bool isEnabled;
 
-  const CustomSignupButton({
+  const CustomButton({
     super.key,
     required this.text,
     required this.onClick,

@@ -5,7 +5,8 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
-import 'package:yummy_home/core/widgets/custom_signup_button.dart';
+import 'package:yummy_home/core/widgets/custom_button.dart';
+import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
@@ -13,7 +14,6 @@ import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_cubit.dart';
 import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
-import 'package:yummy_home/features/signup/presentation/view/widgets/custom_text.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -152,7 +152,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   validator: (val) => _validation(context),
                 ),
                 SizedBox(height: Dimensions.height45(context)),
-                CustomSignupButton(
+                CustomButton(
                   text: "signup".tr(context),
                   isEnabled: context.watch<SignupCubit>().buttonEnabled,
                   onClick: () {
