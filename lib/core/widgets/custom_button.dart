@@ -6,12 +6,14 @@ class CustomButton extends StatelessWidget {
   final String text;
   final void Function() onClick;
   final bool isEnabled;
+  final String? fontFamily;
 
   const CustomButton({
     super.key,
     required this.text,
     required this.onClick,
     this.isEnabled = false,
+    this.fontFamily,
   });
 
   @override
@@ -32,7 +34,10 @@ class CustomButton extends StatelessWidget {
       color: isEnabled ? AppColors.primaryColor : AppColors.secColor,
       child: Text(
         text,
-        style: TextStyle(fontSize: Dimensions.fontSize15(context)),
+        style: TextStyle(
+          fontSize: Dimensions.fontSize15(context),
+          fontFamily: fontFamily,
+        ),
       ),
     );
   }

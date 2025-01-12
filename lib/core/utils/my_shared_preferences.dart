@@ -48,4 +48,9 @@ class MySharedPreferences {
       print('Error storing string: $e');
     }
   }
+
+  Future<String?> getString(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(key);
+  }
 }

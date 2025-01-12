@@ -71,6 +71,10 @@ abstract class Dimensions {
     return getWidth(context) / 3.6;
   }
 
+  static double width380(BuildContext context) {
+    return getWidth(context) / 1.3;
+  }
+
   // Dynamic font size
   static double fontSize12(BuildContext context) {
     return getHeight(context) / 65;

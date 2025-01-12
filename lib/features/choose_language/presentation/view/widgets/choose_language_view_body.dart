@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
+import 'package:yummy_home/features/choose_type/presentation/view/choose_type_view.dart';
 
 class ChooseLanguageViewBody extends StatelessWidget {
   const ChooseLanguageViewBody({super.key});
@@ -15,21 +17,26 @@ class ChooseLanguageViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: Dimensions.height45(context) * 3),
-          CustomText(text: "choose_language".tr(context)),
+          const CustomText(
+            text: "اختار اللغه",
+            fontFamily: "cairo",
+          ),
           SizedBox(height: Dimensions.height45(context) * 7),
           CustomButton(
             text: "عربي",
             isEnabled: true,
+            fontFamily: "cairo",
             onClick: () {
-              storeLanguage("ar");
+              _storeLanguageAndNavigate(context, "ar");
             },
           ),
           SizedBox(height: Dimensions.height20(context)),
           CustomButton(
             text: "English",
             isEnabled: true,
+            fontFamily: "poppins",
             onClick: () {
-              storeLanguage("en");
+              _storeLanguageAndNavigate(context, "en");
             },
           ),
         ],
@@ -37,10 +44,8 @@ class ChooseLanguageViewBody extends StatelessWidget {
     );
   }
 
-  void storeLanguage(String lang) async {
-    var prefs = MySharedPreferences();
-    await prefs.storeString("lang", lang);
+  void _storeLanguageAndNavigate(BuildContext context, String lang) async {
+    await context.read<LocalCubit>().changeLanguage(lang);
+    GoRouter.of(context).go(ChooseTypeView.id);
   }
-
-  void goToChooseType() {}
 }

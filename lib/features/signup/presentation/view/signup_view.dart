@@ -6,16 +6,17 @@ import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/si
 import 'package:yummy_home/features/signup/presentation/view/widgets/signup_view_body.dart';
 
 class SignupView extends StatelessWidget {
-  static const id = "/";
+  static const id = "/signup_view";
+  final String type;
 
-  const SignupView({super.key});
+  const SignupView({super.key, required this.type});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignupCubit(getIt.get<SignupRepositoryImp>()),
       child: Scaffold(
-        body: SignupViewBody(),
+        body: SignupViewBody(type: type),
       ),
     );
   }

@@ -17,7 +17,9 @@ import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_t
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class SignupViewBody extends StatefulWidget {
-  const SignupViewBody({super.key});
+  final String type;
+
+  const SignupViewBody({super.key, required this.type});
 
   @override
   State<SignupViewBody> createState() => _SignupViewBodyState();
@@ -111,7 +113,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             email: _email.text,
             phone_number: _phone.text,
             password: _password.text,
-            type: "sale",
+            type: widget.type,
           ),
         );
   }
@@ -122,7 +124,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           email: _email,
           phone: _phone,
           password: _password,
-          userType: "sale",
+          userType: widget.type,
         );
   }
 
