@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/app_router.dart';
@@ -14,13 +15,15 @@ void main() async {
   setup();
   setPortraitOrientation();
 
+  final router = await AppRouter.createRouter();
+
   runApp(
     DevicePreview(
       enabled: true,
       tools: const [
         ...DevicePreview.defaultTools,
       ],
-      builder: (context) => MyApp(),
+      builder: (context) => MyApp(router: router),
     ),
   );
 
@@ -28,7 +31,9 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final GoRouter router;
+
+  const MyApp({super.key, required this.router});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<LocalCubit, Locale>(
         builder: (context, locale) {
           return MaterialApp.router(
-            routerConfig: AppRouter.routes,
+            routerConfig: router,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,

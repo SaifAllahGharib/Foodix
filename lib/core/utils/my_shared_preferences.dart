@@ -1,4 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:yummy_home/features/choose_type/presentation/view/choose_type_view.dart';
+import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 
 class MySharedPreferences {
   static final MySharedPreferences _instance = MySharedPreferences._internal();
@@ -21,18 +23,24 @@ class MySharedPreferences {
     );
   }
 
-  Future<Map<String, String>> getUser(List<String> keys) async {
-    final prefs = await SharedPreferences.getInstance();
-    final Map<String, String> user = {};
+  Future<String?> getIdUser() async {
+    return getString("id");
+  }
 
-    for (String key in keys) {
-      final String? value = prefs.getString(key);
-      if (value != null) {
-        user[key] = value;
-      }
-    }
+  Future<String?> getNameUser() async {
+    return getString("name");
+  }
 
-    return user;
+  Future<String?> getEmailUser() async {
+    return getString("email");
+  }
+
+  Future<String?> getPhoneUser() async {
+    return getString("phone_number");
+  }
+
+  Future<String?> getTypeUser() async {
+    return getString("type");
   }
 
   Future<void> clearAllData() async {
@@ -52,5 +60,17 @@ class MySharedPreferences {
   Future<String?> getString(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(key);
+  }
+
+  Future<String> getInitRoute() async {
+    final lang = await getString('lang');
+    final id = await getIdUser();
+
+    if (lang != null && id == null) {
+      return ChooseTypeView.id;
+    } else if (lang != null && id != null) {
+      return HomeView.id;
+    }
+    return '/';
   }
 }
