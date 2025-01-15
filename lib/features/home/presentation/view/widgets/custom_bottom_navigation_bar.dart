@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/colors.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+  final Function(int index) onIndexChanged;
+
+  const CustomBottomNavigationBar({super.key, required this.onIndexChanged});
 
   @override
   State<CustomBottomNavigationBar> createState() =>
@@ -15,12 +18,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(12),
-      margin: EdgeInsets.all(20),
-      height: 68,
+      padding: EdgeInsets.all(Dimensions.height12(context) * 0.7),
+      margin: EdgeInsets.all(Dimensions.height20(context)),
+      height: Dimensions.height45(context) * 1.4,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 1.2),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -33,13 +36,15 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List.generate(
-          4,
+          3,
           (index) {
             return GestureDetector(
               onTap: () {
                 setState(() {
                   selectedIndex = index;
                 });
+
+                widget.onIndexChanged(index);
               },
               child: _buildIconWithLine(
                 index: index,
@@ -55,7 +60,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget _buildIconWithLine({required int index, required bool isSelected}) {
     final List<IconData> iconData = [
       Icons.home,
-      Icons.restaurant_outlined,
       Icons.shopping_cart_outlined,
       Icons.person,
     ];
@@ -66,18 +70,18 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          height: 4,
-          width: isSelected ? 25 : 0,
+          height: Dimensions.width10(context) * 0.7,
+          width: isSelected ? Dimensions.getWidth(context) * 0.055 : 0,
           decoration: BoxDecoration(
             color: isSelected ? AppColors.primaryColor : Colors.transparent,
-            borderRadius: BorderRadius.circular(2),
+            borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
           ),
         ),
-        SizedBox(height: 8),
+        SizedBox(height: Dimensions.height10(context) * 0.5),
         Icon(
           iconData[index],
           color: isSelected ? AppColors.primaryColor : AppColors.gray,
-          size: 28,
+          size: Dimensions.getWidth(context) * 0.055,
         ),
       ],
     );

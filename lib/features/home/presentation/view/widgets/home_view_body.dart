@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/features/home/presentation/view/main_seller_view.dart';
+import 'package:yummy_home/features/home/presentation/view/order_view.dart';
+import 'package:yummy_home/features/home/presentation/view/profile_view.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+  final int selectedIndex;
+
+  const HomeViewBody({
+    super.key,
+    required this.selectedIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(Dimensions.height20(context)),
-      child: Column(
-        children: [],
-      ),
+    return IndexedStack(
+      index: selectedIndex,
+      children: [
+        MainSellerView(),
+        OrderView(),
+        ProfileView(),
+      ],
     );
   }
 }
