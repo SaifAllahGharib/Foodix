@@ -2,20 +2,19 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/app_router.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/functions/set_portrait_orientation.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/utils/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setup();
   setPortraitOrientation();
-
-  final router = await AppRouter.createRouter();
+  await MySharedPreferences().init();
 
   runApp(
     DevicePreview(
@@ -23,7 +22,7 @@ void main() async {
       tools: const [
         ...DevicePreview.defaultTools,
       ],
-      builder: (context) => MyApp(router: router),
+      builder: (context) => MyApp(),
     ),
   );
 
@@ -31,9 +30,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final GoRouter router;
-
-  const MyApp({super.key, required this.router});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +39,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<LocalCubit, Locale>(
         builder: (context, locale) {
           return MaterialApp.router(
-            routerConfig: router,
+            routerConfig: AppRouter.router,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,

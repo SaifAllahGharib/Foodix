@@ -1,10 +1,18 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 abstract class Styles {
   static TextStyle textStyle15(BuildContext context) {
     return TextStyle(
       fontSize: Dimensions.fontSize15(context),
+    );
+  }
+
+  static TextStyle textStyle18(BuildContext context) {
+    return TextStyle(
+      fontSize: Dimensions.fontSize18(context),
+      fontWeight: FontWeight.w600,
+      color: Colors.black,
     );
   }
 

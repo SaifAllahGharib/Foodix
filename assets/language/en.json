@@ -34,5 +34,9 @@
   "change_password_successful": "Change password successful",
   "change_password_failed": "Change password failed",
   "change_password": "Change password",
-  "confirm_password": "Confirm password"
+  "confirm_password": "Confirm password",
+  "food_name": "Food name",
+  "food_desc": "Food description",
+  "food_cost": "EGP",
+  "add": "Add"
 }

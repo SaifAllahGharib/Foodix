@@ -1,3 +1,4 @@
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yummy_home/features/choose_type/presentation/view/choose_type_view.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
@@ -9,68 +10,59 @@ class MySharedPreferences {
 
   MySharedPreferences._internal();
 
+  final Logger _logger = Logger();
+
+  SharedPreferences? _prefs;
+
+  Future<void> init() async {
+    _prefs = await SharedPreferences.getInstance();
+  }
+
   Future<void> storeUser(Map<String, dynamic> user) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    user.forEach(
-      (key, value) async {
-        try {
-          await prefs.setString(key, value.toString());
-        } catch (e) {
-          print('Error storing user data: $e');
-        }
-      },
-    );
+    for (var entry in user.entries) {
+      await _safeWrite(
+        () async => _prefs?.setString(entry.key, entry.value.toString()),
+        'Error storing user data',
+      );
+    }
   }
 
-  Future<String?> getIdUser() async {
-    return getString("id");
-  }
+  String? getIdUser() => getString("id");
 
-  Future<String?> getNameUser() async {
-    return getString("name");
-  }
+  String? getNameUser() => getString("name");
 
-  Future<String?> getEmailUser() async {
-    return getString("email");
-  }
+  String? getEmailUser() => getString("email");
 
-  Future<String?> getPhoneUser() async {
-    return getString("phone_number");
-  }
+  String? getPhoneUser() => getString("phone_number");
 
-  Future<String?> getTypeUser() async {
-    return getString("type");
-  }
+  String? getTypeUser() => getString("type");
 
   Future<void> clearAllData() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+    await _safeWrite(() async => _prefs?.clear(), 'Error clearing data');
   }
 
   Future<void> storeString(String key, String value) async {
-    final prefs = await SharedPreferences.getInstance();
-    try {
-      await prefs.setString(key, value);
-    } catch (e) {
-      print('Error storing string: $e');
-    }
+    await _safeWrite(
+        () async => _prefs?.setString(key, value), 'Error storing string');
   }
 
-  Future<String?> getString(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(key);
-  }
+  String? getString(String key) => _prefs?.getString(key);
 
-  Future<String> getInitRoute() async {
-    final lang = await getString('lang');
-    final id = await getIdUser();
-
-    if (lang != null && id == null) {
-      return ChooseTypeView.id;
-    } else if (lang != null && id != null) {
-      return HomeView.id;
+  String getInitRoute() {
+    final lang = getString('lang');
+    final id = getIdUser();
+    if (lang != null) {
+      return id == null ? ChooseTypeView.id : HomeView.id;
     }
     return '/';
+  }
+
+  Future<void> _safeWrite(
+      Future<void> Function() operation, String errorMessage) async {
+    try {
+      await operation();
+    } catch (e, stacktrace) {
+      _logger.e(errorMessage, error: e, stackTrace: stacktrace);
+    }
   }
 }

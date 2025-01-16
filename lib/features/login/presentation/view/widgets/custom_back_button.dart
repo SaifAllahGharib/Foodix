@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 class CustomBackButton extends StatelessWidget {
@@ -9,7 +11,7 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Localizations.localeOf(context).languageCode == "ar"
+      alignment: context.read<LocalCubit>().isDirectionRight
           ? Alignment.topRight
           : Alignment.topLeft,
       child: IconButton(
