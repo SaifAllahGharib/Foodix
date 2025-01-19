@@ -34,5 +34,10 @@
   "change_password_successful": "كلمة السر اتغيرت بنجاح",
   "change_password_failed": "معرفناش نغير كلمة السر",
   "change_password": "تغيير كلمة السر",
-  "confirm_password": "أكد كلمة السر"
+  "confirm_password": "أكد كلمة السر",
+  "food_name": "اسم الاكله",
+  "food_desc": "وصف الاكله",
+  "food_cost": "ج.م",
+  "add": "ضيف",
+  "add_food": "ضيف اكل"
 }

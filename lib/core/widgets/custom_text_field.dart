@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final void Function()? onPressedShowPassword;
   final bool isPassword;
   final bool? showPassword;
+  final TextInputType textInputType;
 
   const CustomTextField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.onPressedShowPassword,
     this.isPassword = false,
     this.showPassword = false,
+    this.textInputType = TextInputType.text,
   });
 
   @override
@@ -28,6 +30,7 @@ class CustomTextField extends StatelessWidget {
       cursorColor: AppColors.primaryColor,
       onChanged: onChanged,
       obscureText: isPassword ? showPassword! : false,
+      keyboardType: textInputType,
       obscuringCharacter: "•",
       decoration: InputDecoration(
         suffixIcon: isPassword

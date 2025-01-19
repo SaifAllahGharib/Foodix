@@ -38,5 +38,6 @@
   "food_name": "Food name",
   "food_desc": "Food description",
   "food_cost": "EGP",
-  "add": "Add"
+  "add": "Add",
+  "add_food": "Add food"
 }
