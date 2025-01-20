@@ -7,6 +7,7 @@ import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/bottom_section_details_order_view_body.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/middle_section_details_order_view_body.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/top_section_details_order_view_body.dart';
+import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
 
 class DetailsOrderViewBody extends StatelessWidget {
   const DetailsOrderViewBody({super.key});
@@ -19,6 +20,8 @@ class DetailsOrderViewBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: Dimensions.height20(context)),
+          CustomBackButton(),
+          SizedBox(height: Dimensions.height15(context)),
           TopSectionDetailsOrderViewBody(),
           SizedBox(height: Dimensions.height20(context)),
           Divider(color: AppColors.gray, height: 1),

@@ -11,7 +11,7 @@ class BottomSectionDetailsOrderViewBody extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverList.builder(
-            itemCount: 5,
+            itemCount: 7,
             itemBuilder: (context, index) {
               return CustomItemListViewDetailsOrderSection();
             },
