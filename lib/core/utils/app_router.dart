@@ -3,6 +3,7 @@ import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/features/add_food/presentation/view/add_food_view.dart';
 import 'package:yummy_home/features/choose_language/presentation/view/choose_language_view.dart';
 import 'package:yummy_home/features/choose_type/presentation/view/choose_type_view.dart';
+import 'package:yummy_home/features/details_order/presentation/view/details_order_view.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/presentation/view/change_password_view.dart';
 import 'package:yummy_home/features/login/presentation/view/forget_password_view.dart';
@@ -63,6 +64,10 @@ abstract class AppRouter {
       GoRoute(
         path: AddFoodView.id,
         builder: (context, state) => AddFoodView(),
+      ),
+      GoRoute(
+        path: DetailsOrderView.id,
+        builder: (context, state) => DetailsOrderView(),
       ),
     ],
   );

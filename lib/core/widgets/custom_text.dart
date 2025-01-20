@@ -5,18 +5,20 @@ class CustomText extends StatelessWidget {
   final String text;
   final String? fontFamily;
   final double? textSize;
+  final AlignmentGeometry alignment;
 
   const CustomText({
     super.key,
     required this.text,
     this.fontFamily,
     this.textSize,
+    this.alignment = Alignment.topCenter,
   });
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topCenter,
+      alignment: alignment,
       child: Text(
         text,
         style: Styles.textStyle30(context).copyWith(

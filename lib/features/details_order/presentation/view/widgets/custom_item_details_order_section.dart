@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/styles.dart';
+
+class CustomItemDetailsOrderSection extends StatelessWidget {
+  final String startText;
+  final String endText;
+  final bool cashEnabled;
+
+  const CustomItemDetailsOrderSection({
+    super.key,
+    required this.startText,
+    required this.endText,
+    this.cashEnabled = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: Dimensions.height10(context)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            startText,
+            style: Styles.textStyle15(context).copyWith(
+              fontWeight: FontWeight.w400,
+              color: Colors.black,
+            ),
+          ),
+          Row(
+            children: [
+              Text(
+                endText,
+                style: Styles.textStyle15(context).copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+              cashEnabled
+                  ? SizedBox(width: Dimensions.width10(context))
+                  : SizedBox.shrink(),
+              cashEnabled
+                  ? Text(
+                      "food_cost".tr(context),
+                      style: Styles.textStyle15(context).copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                      ),
+                    )
+                  : SizedBox.shrink(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

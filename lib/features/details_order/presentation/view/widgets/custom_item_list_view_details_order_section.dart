@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/core/widgets/custom_row_cost.dart';
+
+class CustomItemListViewDetailsOrderSection extends StatelessWidget {
+  const CustomItemListViewDetailsOrderSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: Dimensions.height10(context)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Text(
+                "1",
+                style: Styles.textStyle15(context).copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(width: Dimensions.width15(context)),
+              Text(
+                "x",
+                style: Styles.textStyle15(context).copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(width: Dimensions.width15(context)),
+              Text(
+                "cocakola, 200m",
+                style: Styles.textStyle15(context).copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+          CustomRowCost(egp: "280"),
+        ],
+      ),
+    );
+  }
+}

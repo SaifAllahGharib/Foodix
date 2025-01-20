@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/styles.dart';
+
+class CustomRowCost extends StatelessWidget {
+  final String egp;
+
+  const CustomRowCost({super.key, required this.egp});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          egp,
+          style: Styles.textStyle15(context).copyWith(
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+        ),
+        SizedBox(width: Dimensions.width10(context)),
+        Text(
+          "food_cost".tr(context),
+          style: Styles.textStyle15(context).copyWith(
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
+}
