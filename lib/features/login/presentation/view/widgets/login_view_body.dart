@@ -143,9 +143,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             child: Column(
               children: [
                 SizedBox(height: Dimensions.height20(context)),
-                CustomBackButton(
-                  onPressed: () => GoRouter.of(context).go(SignupView.id),
-                ),
+                CustomBackButton(),
                 SizedBox(height: Dimensions.height30(context)),
                 CustomText(text: "login".tr(context)),
                 SizedBox(height: Dimensions.height45(context) * 2),

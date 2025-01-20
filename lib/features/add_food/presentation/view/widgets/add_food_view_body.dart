@@ -8,6 +8,7 @@ import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/add_food/presentation/view/widgets/custom_button_image_picker.dart';
+import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
 
 class AddFoodViewBody extends StatefulWidget {
   const AddFoodViewBody({super.key});
@@ -57,7 +58,9 @@ class _AddFoodViewBodyState extends State<AddFoodViewBody> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: Dimensions.height45(context) * 1.5),
+            SizedBox(height: Dimensions.height20(context)),
+            CustomBackButton(),
+            SizedBox(height: Dimensions.height45(context)),
             CustomText(text: "add_food".tr(context)),
             SizedBox(height: Dimensions.height45(context)),
             CustomTextField(

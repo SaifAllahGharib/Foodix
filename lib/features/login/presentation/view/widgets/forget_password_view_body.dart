@@ -11,7 +11,6 @@ import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_cubit.dart';
 import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_state.dart';
-import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
@@ -98,9 +97,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
             child: Column(
               children: [
                 SizedBox(height: Dimensions.height20(context)),
-                CustomBackButton(
-                  onPressed: () => GoRouter.of(context).go(LoginView.id),
-                ),
+                CustomBackButton(),
                 SizedBox(height: Dimensions.height30(context)),
                 CustomText(text: "re_password".tr(context)),
                 SizedBox(height: Dimensions.height45(context) * 2),
