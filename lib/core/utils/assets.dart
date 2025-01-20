@@ -1,3 +1,1 @@
-abstract class Assets {
-  static const google = "assets/images/google.png";
-}
+abstract class Assets {}

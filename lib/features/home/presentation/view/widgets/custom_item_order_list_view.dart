@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/colors.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/features/home/presentation/view/widgets/bottom_section_custom_item_order_list_view.dart';
+import 'package:yummy_home/features/home/presentation/view/widgets/top_section_custom_item_order_list_view.dart';
+
+class CustomItemOrderListView extends StatelessWidget {
+  const CustomItemOrderListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: Dimensions.height10(context)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+        border: Border.all(
+          color: AppColors.gray,
+          width: 1,
+        ),
+      ),
+      child: Column(
+        children: [
+          TopSectionCustomItemOrderListView(),
+          Divider(color: AppColors.gray, height: 1),
+          BottomSectionCustomItemOrderListView(),
+        ],
+      ),
+    );
+  }
+}
