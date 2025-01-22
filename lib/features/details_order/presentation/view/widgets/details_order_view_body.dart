@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
@@ -31,7 +32,7 @@ class DetailsOrderViewBody extends StatelessWidget {
           Divider(color: AppColors.gray, height: 1),
           SizedBox(height: Dimensions.height20(context)),
           CustomText(
-            text: "Details of order",
+            text: "your_order".tr(context),
             textSize: Dimensions.fontSize20(context) * 1.1,
             alignment: context.read<LocalCubit>().isDirectionRight
                 ? Alignment.topRight

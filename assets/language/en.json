@@ -39,5 +39,21 @@
   "food_desc": "Food description",
   "food_cost": "EGP",
   "add": "Add",
-  "add_food": "Add food"
+  "add_food": "Add food",
+  "search": "Search",
+  "completed": "Completed",
+  "order_number": "Order number: ",
+  "order_details": "Order details",
+  "pm": "PM",
+  "am": "AM",
+  "address": "Address",
+  "your_order": "Your order",
+  "total": "Total",
+  "delivery": "Delivery",
+  "order_total": "Order total",
+  "payment": "Payment",
+  "account_information": "Account information",
+  "addresses": "Your addresses",
+  "language": "Language",
+  "logout": "Logout"
 }

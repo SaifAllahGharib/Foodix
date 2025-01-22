@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/custom_details_order_text.dart';
@@ -38,13 +39,13 @@ class CustomDetailsOrderNameImage extends StatelessWidget {
                 ? SizedBox(height: Dimensions.height10(context) * 0.2)
                 : SizedBox.shrink(),
             customTextDetails
-                ? CustomDetailsOrderText(text: "It was received")
+                ? CustomDetailsOrderText(text: "completed".tr(context))
                 : SizedBox.shrink(),
             SizedBox(height: Dimensions.height10(context) * 0.2),
             Row(
               children: [
                 CustomDetailsOrderText(
-                  text: "number of order: ",
+                  text: "order_number".tr(context),
                   color: Colors.grey,
                 ),
                 CustomDetailsOrderText(

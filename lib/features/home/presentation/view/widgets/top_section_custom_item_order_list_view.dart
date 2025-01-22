@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
@@ -49,7 +50,7 @@ class TopSectionCustomItemOrderListView extends StatelessWidget {
               borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
             ),
             child: Text(
-              "Tm el estlam",
+              "completed".tr(context),
               style: Styles.textStyle15(context).copyWith(
                 fontWeight: FontWeight.w500,
                 color: Colors.black54,

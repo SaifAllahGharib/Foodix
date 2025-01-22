@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_details_order_name_image.dart';
@@ -26,7 +27,7 @@ class BottomSectionCustomItemOrderListView extends StatelessWidget {
             splashColor: Colors.transparent,
             enableFeedback: false,
             child: Text(
-              "Details",
+              "order_details".tr(context),
               style: Styles.textStyle15(context).copyWith(
                 fontWeight: FontWeight.w400,
                 color: Colors.black,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
@@ -21,7 +22,7 @@ class MiddleSectionDetailsOrderViewBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(
-                  text: "Address",
+                  text: "address".tr(context),
                   textSize: Dimensions.fontSize20(context) * 1.1,
                   alignment: context.read<LocalCubit>().isDirectionRight
                       ? Alignment.topRight

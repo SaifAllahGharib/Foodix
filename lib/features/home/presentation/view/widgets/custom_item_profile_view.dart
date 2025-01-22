@@ -42,7 +42,7 @@ class CustomItemProfileView extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: Dimensions.height10(context)),
+          SizedBox(height: Dimensions.height15(context)),
           dividerIsShowing
               ? Padding(
                   padding: EdgeInsets.only(right: Dimensions.height20(context)),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
@@ -39,27 +40,27 @@ class ProfileView extends StatelessWidget {
           ),
           SizedBox(height: Dimensions.height45(context)),
           CustomItemProfileView(
-            title: "Personal information",
+            title: "account_information".tr(context),
             onClick: () {},
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height30(context)),
           CustomItemProfileView(
-            title: "Addresses",
+            title: "addresses".tr(context),
             onClick: () {},
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height30(context)),
           CustomItemProfileView(
-            title: "Change password",
+            title: "change_password".tr(context),
             onClick: () {},
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height30(context)),
           CustomItemProfileView(
-            title: "Language",
+            title: "language".tr(context),
             onClick: () {},
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height30(context)),
           CustomItemProfileView(
-            title: "Logout",
+            title: "logout".tr(context),
             dividerIsShowing: false,
             onClick: () {},
           ),
