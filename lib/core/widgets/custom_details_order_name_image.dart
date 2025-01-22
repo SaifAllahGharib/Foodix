@@ -6,7 +6,12 @@ import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/custom_details_order_text.dart';
 
 class CustomDetailsOrderNameImage extends StatelessWidget {
-  const CustomDetailsOrderNameImage({super.key});
+  final bool customTextDetails;
+
+  const CustomDetailsOrderNameImage({
+    super.key,
+    this.customTextDetails = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +34,12 @@ class CustomDetailsOrderNameImage extends StatelessWidget {
                   ? Alignment.topRight
                   : Alignment.topLeft,
             ),
-            SizedBox(height: Dimensions.height10(context) * 0.2),
-            CustomDetailsOrderText(text: "It was received"),
+            customTextDetails
+                ? SizedBox(height: Dimensions.height10(context) * 0.2)
+                : SizedBox.shrink(),
+            customTextDetails
+                ? CustomDetailsOrderText(text: "It was received")
+                : SizedBox.shrink(),
             SizedBox(height: Dimensions.height10(context) * 0.2),
             Row(
               children: [
