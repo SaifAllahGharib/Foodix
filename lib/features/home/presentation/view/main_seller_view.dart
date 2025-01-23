@@ -4,6 +4,7 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/add_food/presentation/view/add_food_view.dart';
+import 'package:yummy_home/features/food_details/presentation/view/food_details_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_float_button.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/grid_item_view.dart';
 
@@ -45,13 +46,19 @@ class _MainSellerViewState extends State<MainSellerView> {
                 GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
+                    crossAxisSpacing: Dimensions.height10(context),
+                    mainAxisSpacing: Dimensions.height10(context) * 0.6,
                   ),
                   padding: EdgeInsets.zero,
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    return GridItemView();
+                    return GridItemView(
+                      foodName: "Food",
+                      imageUrl: "assets/images/person.jpg",
+                      onClick: () {
+                        GoRouter.of(context).push(FoodDetailsView.id);
+                      },
+                    );
                   },
                 ),
                 CustomFloatButton(

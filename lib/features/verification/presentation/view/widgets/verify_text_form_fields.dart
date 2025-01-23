@@ -71,7 +71,9 @@ class _VerifyTextFormFieldsState extends State<VerifyTextFormFields> {
                   required currentLength,
                   required isFocused,
                   required maxLength,
-                }) {},
+                }) {
+                  return null;
+                },
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 decoration: InputDecoration(

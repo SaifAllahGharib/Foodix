@@ -5,8 +5,17 @@ import 'package:yummy_home/core/utils/styles.dart';
 
 class CustomRowCost extends StatelessWidget {
   final String egp;
+  final FontWeight fontWeight;
+  final Color color;
+  final double? fontSize;
 
-  const CustomRowCost({super.key, required this.egp});
+  const CustomRowCost({
+    super.key,
+    required this.egp,
+    this.fontWeight = FontWeight.w400,
+    this.color = Colors.black,
+    this.fontSize,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +24,9 @@ class CustomRowCost extends StatelessWidget {
         Text(
           egp,
           style: Styles.textStyle15(context).copyWith(
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
+            fontWeight: fontWeight,
+            color: color,
+            fontSize: fontSize,
           ),
         ),
         SizedBox(width: Dimensions.width10(context)),

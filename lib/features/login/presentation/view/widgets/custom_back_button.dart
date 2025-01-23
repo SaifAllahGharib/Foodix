@@ -5,7 +5,9 @@ import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 class CustomBackButton extends StatelessWidget {
-  const CustomBackButton({super.key});
+  final Color color;
+
+  const CustomBackButton({super.key, this.color = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class CustomBackButton extends StatelessWidget {
         icon: Icon(
           Icons.arrow_back_ios_new_outlined,
           size: Dimensions.iconSize24(context),
+          color: color,
         ),
       ),
     );

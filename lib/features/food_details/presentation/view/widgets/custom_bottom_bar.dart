@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/colors.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/widgets/custom_row_cost.dart';
+
+class CustomBottomBar extends StatelessWidget {
+  const CustomBottomBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(Dimensions.height20(context)),
+      padding: EdgeInsets.symmetric(
+        vertical: Dimensions.height10(context),
+        horizontal: Dimensions.height30(context),
+      ),
+      width: double.infinity,
+      height: Dimensions.height80(context) * 0.9,
+      decoration: BoxDecoration(
+        color: AppColors.whiteGray,
+        borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CustomRowCost(
+            egp: "250",
+            fontWeight: FontWeight.w500,
+            fontSize: Dimensions.height20(context) * 0.9,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.edit,
+              color: AppColors.primaryColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
