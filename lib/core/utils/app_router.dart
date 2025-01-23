@@ -11,6 +11,7 @@ import 'package:yummy_home/features/login/presentation/view/forget_password_view
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
+import 'package:yummy_home/features/your_addresses/view/your_addresses_view.dart';
 
 abstract class AppRouter {
   static final router = GoRouter(
@@ -73,6 +74,10 @@ abstract class AppRouter {
       GoRoute(
         path: FoodDetailsView.id,
         builder: (context, state) => FoodDetailsView(),
+      ),
+      GoRoute(
+        path: YourAddressesView.id,
+        builder: (context, state) => YourAddressesView(),
       ),
     ],
   );

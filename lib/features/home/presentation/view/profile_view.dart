@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_item_profile_view.dart';
+import 'package:yummy_home/features/home/presentation/view/widgets/name_and_email.dart';
+import 'package:yummy_home/features/your_addresses/view/your_addresses_view.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -28,10 +30,7 @@ class ProfileView extends StatelessWidget {
             ),
           ),
           SizedBox(height: Dimensions.height15(context)),
-          CustomText(
-            text: "Saif Gharib",
-            textSize: Dimensions.height20(context) * 1.2,
-          ),
+          NameAndEmail(),
           SizedBox(height: Dimensions.height20(context)),
           Divider(
             color: AppColors.whiteGray,
@@ -40,13 +39,8 @@ class ProfileView extends StatelessWidget {
           ),
           SizedBox(height: Dimensions.height45(context)),
           CustomItemProfileView(
-            title: "account_information".tr(context),
-            onClick: () {},
-          ),
-          SizedBox(height: Dimensions.height30(context)),
-          CustomItemProfileView(
             title: "addresses".tr(context),
-            onClick: () {},
+            onClick: () => GoRouter.of(context).push(YourAddressesView.id),
           ),
           SizedBox(height: Dimensions.height30(context)),
           CustomItemProfileView(
