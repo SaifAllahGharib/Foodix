@@ -55,5 +55,7 @@
   "account_information": "Account information",
   "addresses": "Your addresses",
   "language": "Language",
-  "logout": "Logout"
+  "logout": "Logout",
+  "edit": "Edit",
+  "edit_name": "Edit name"
 }

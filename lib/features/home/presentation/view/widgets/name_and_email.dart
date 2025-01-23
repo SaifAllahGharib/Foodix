@@ -5,6 +5,7 @@ import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
+import 'package:yummy_home/features/home/presentation/view/widgets/custom_edit_name_widget.dart';
 
 class NameAndEmail extends StatelessWidget {
   const NameAndEmail({super.key});
@@ -34,7 +35,20 @@ class NameAndEmail extends StatelessWidget {
             ],
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                barrierColor: Color(0x77909090),
+                backgroundColor: Colors.white,
+                sheetAnimationStyle: AnimationStyle(
+                  curve: Curves.fastOutSlowIn,
+                  reverseCurve: Curves.easeInBack,
+                ),
+                builder: (context) {
+                  return CustomEditNameWidget();
+                },
+              );
+            },
             icon: Icon(
               Icons.edit,
               color: AppColors.primaryColor,
