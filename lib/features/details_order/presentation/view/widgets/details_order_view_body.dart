@@ -4,11 +4,11 @@ import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/bottom_section_details_order_view_body.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/middle_section_details_order_view_body.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/top_section_details_order_view_body.dart';
-import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
 
 class DetailsOrderViewBody extends StatelessWidget {
   const DetailsOrderViewBody({super.key});

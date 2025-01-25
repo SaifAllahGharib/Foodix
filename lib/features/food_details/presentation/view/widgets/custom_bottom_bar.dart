@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_row_cost.dart';
+import 'package:yummy_home/features/food_details/presentation/view/widgets/edit_food_derails_widgets.dart';
 
 class CustomBottomBar extends StatelessWidget {
   const CustomBottomBar({super.key});
+
+  void _showBottomSheet(BuildContext context) {
+    showBottomSheet(
+      context: context,
+      builder: (context) {
+        return EditFoodDerailsWidgets();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +39,8 @@ class CustomBottomBar extends StatelessWidget {
             fontSize: Dimensions.height20(context) * 0.9,
           ),
           IconButton(
-            onPressed: () {},
+            enableFeedback: false,
+            onPressed: () => _showBottomSheet(context),
             icon: Icon(
               Icons.edit,
               color: AppColors.primaryColor,

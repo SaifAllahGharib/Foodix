@@ -1,0 +1,34 @@
+import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+
+class CustomItemPickImage extends StatelessWidget {
+  final void Function() pickImageFromCamera;
+  final void Function() pickImageFromGallery;
+
+  const CustomItemPickImage({
+    super.key,
+    required this.pickImageFromCamera,
+    required this.pickImageFromGallery,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(Dimensions.height20(context)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            icon: Icon(Icons.camera_alt_outlined),
+            onPressed: pickImageFromCamera,
+          ),
+          SizedBox(width: Dimensions.width10(context)),
+          IconButton(
+            icon: Icon(Icons.image_outlined),
+            onPressed: pickImageFromGallery,
+          ),
+        ],
+      ),
+    );
+  }
+}

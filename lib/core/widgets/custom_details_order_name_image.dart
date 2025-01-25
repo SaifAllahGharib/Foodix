@@ -21,16 +21,19 @@ class CustomDetailsOrderNameImage extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
           child: Image.asset(
-            "assets/images/choose_type.jpeg",
-            width: 100,
+            "assets/images/person.jpg",
+            width: Dimensions.height130(context) * 0.9,
+            height: Dimensions.height130(context) * 0.9,
+            fit: BoxFit.cover,
           ),
         ),
+        SizedBox(width: Dimensions.width20(context)),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomText(
               text: "Saif gharib",
-              textSize: Dimensions.fontSize20(context) * 1.1,
+              textSize: Dimensions.fontSize20(context) * 0.94,
               alignment: context.read<LocalCubit>().isDirectionRight
                   ? Alignment.topRight
                   : Alignment.topLeft,
@@ -49,7 +52,7 @@ class CustomDetailsOrderNameImage extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 CustomDetailsOrderText(
-                  text: "1921866646",
+                  text: "12345678911",
                   color: Colors.grey,
                 ),
               ],

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/image_picker_helper.dart';
+import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/add_food/presentation/view/widgets/custom_button_image_picker.dart';
-import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
 
 class AddFoodViewBody extends StatefulWidget {
   const AddFoodViewBody({super.key});
@@ -70,13 +70,13 @@ class _AddFoodViewBodyState extends State<AddFoodViewBody> {
             ),
             SizedBox(height: Dimensions.height10(context)),
             CustomTextField(
-              controller: _foodName,
+              controller: _foodDesc,
               hint: "food_desc".tr(context),
               onChanged: (val) {},
             ),
             SizedBox(height: Dimensions.height10(context)),
             CustomTextField(
-              controller: _foodName,
+              controller: _foodCost,
               hint: "food_cost".tr(context),
               textInputType: TextInputType.number,
               onChanged: (val) {},

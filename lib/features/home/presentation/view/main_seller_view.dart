@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sizer/sizer.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
@@ -22,6 +23,14 @@ class _MainSellerViewState extends State<MainSellerView> {
   void initState() {
     _search = TextEditingController();
     super.initState();
+  }
+
+  double _getChildAspectRatio(BuildContext context) {
+    if (Device.screenType == ScreenType.tablet) {
+      return Dimensions.getHeight(context) * 0.00065;
+    }
+
+    return Dimensions.getHeight(context) * 0.000785;
   }
 
   @override
@@ -47,13 +56,15 @@ class _MainSellerViewState extends State<MainSellerView> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: Dimensions.height10(context),
-                    mainAxisSpacing: Dimensions.height10(context) * 0.6,
+                    mainAxisSpacing: Dimensions.height10(context),
+                    childAspectRatio: _getChildAspectRatio(context),
                   ),
                   padding: EdgeInsets.zero,
-                  itemCount: 10,
+                  itemCount: 7,
                   itemBuilder: (context, index) {
                     return GridItemView(
                       foodName: "Food",
+                      foodCost: "280",
                       imageUrl: "assets/images/person.jpg",
                       onClick: () {
                         GoRouter.of(context).push(FoodDetailsView.id);

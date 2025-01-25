@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
+import 'package:yummy_home/core/widgets/custom_back_button.dart';
 
 class ImageAndBackButton extends StatelessWidget {
   const ImageAndBackButton({super.key});

@@ -17,8 +17,11 @@ class CustomItemProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onClick,
+      enableFeedback: false,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       child: Column(
         children: [
           Padding(

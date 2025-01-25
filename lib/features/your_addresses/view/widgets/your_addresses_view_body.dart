@@ -3,7 +3,7 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
-import 'package:yummy_home/features/login/presentation/view/widgets/custom_back_button.dart';
+import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/features/your_addresses/view/widgets/list_view_addresses.dart';
 
 class YourAddressesViewBody extends StatelessWidget {

@@ -13,12 +13,17 @@ class BottomSectionCustomItemOrderListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Dimensions.height20(context)),
+      padding: EdgeInsets.only(
+        top: Dimensions.height20(context),
+        right: Dimensions.height15(context),
+        bottom: Dimensions.height20(context),
+        left: Dimensions.height15(context),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomDetailsOrderNameImage(),
-          SizedBox(height: Dimensions.height10(context)),
+          SizedBox(height: Dimensions.height15(context)),
           CustomRowCost(egp: "280"),
           SizedBox(height: Dimensions.height10(context) * 0.3),
           InkWell(

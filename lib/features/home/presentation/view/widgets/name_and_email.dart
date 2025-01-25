@@ -10,6 +10,21 @@ import 'package:yummy_home/features/home/presentation/view/widgets/custom_edit_n
 class NameAndEmail extends StatelessWidget {
   const NameAndEmail({super.key});
 
+  void _showBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      barrierColor: Color(0x77909090),
+      backgroundColor: Colors.white,
+      sheetAnimationStyle: AnimationStyle(
+        curve: Curves.fastOutSlowIn,
+        reverseCurve: Curves.easeInBack,
+      ),
+      builder: (context) {
+        return CustomEditNameWidget();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -35,20 +50,7 @@ class NameAndEmail extends StatelessWidget {
             ],
           ),
           IconButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                barrierColor: Color(0x77909090),
-                backgroundColor: Colors.white,
-                sheetAnimationStyle: AnimationStyle(
-                  curve: Curves.fastOutSlowIn,
-                  reverseCurve: Curves.easeInBack,
-                ),
-                builder: (context) {
-                  return CustomEditNameWidget();
-                },
-              );
-            },
+            onPressed: () => _showBottomSheet(context),
             icon: Icon(
               Icons.edit,
               color: AppColors.primaryColor,

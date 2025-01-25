@@ -19,6 +19,9 @@ class CustomBackButton extends StatelessWidget {
         onPressed: () {
           GoRouter.of(context).pop();
         },
+        enableFeedback: false,
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
         icon: Icon(
           Icons.arrow_back_ios_new_outlined,
           size: Dimensions.iconSize24(context),

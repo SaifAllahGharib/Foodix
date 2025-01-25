@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:sizer/sizer.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/app_router.dart';
@@ -38,20 +39,24 @@ class MyApp extends StatelessWidget {
       create: (context) => LocalCubit()..loadSavedLanguage(),
       child: BlocBuilder<LocalCubit, Locale>(
         builder: (context, locale) {
-          return MaterialApp.router(
-            routerConfig: AppRouter.router,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('ar'),
-              Locale('en'),
-            ],
-            locale: locale,
-            theme: _buildAppTheme(locale),
+          return Sizer(
+            builder: (context, orientation, deviceType) {
+              return MaterialApp.router(
+                routerConfig: AppRouter.router,
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: const [
+                  Locale('ar'),
+                  Locale('en'),
+                ],
+                locale: locale,
+                theme: _buildAppTheme(locale),
+              );
+            },
           );
         },
       ),
