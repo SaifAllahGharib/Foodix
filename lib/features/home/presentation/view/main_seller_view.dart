@@ -30,7 +30,7 @@ class _MainSellerViewState extends State<MainSellerView> {
       return Dimensions.getHeight(context) * 0.00065;
     }
 
-    return Dimensions.getHeight(context) * 0.000785;
+    return Dimensions.getHeight(context) * 0.00084;
   }
 
   @override
