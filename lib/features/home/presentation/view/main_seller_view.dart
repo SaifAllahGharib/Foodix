@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sizer/sizer.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/add_food/presentation/view/add_food_view.dart';
-import 'package:yummy_home/features/food_details/presentation/view/food_details_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_float_button.dart';
-import 'package:yummy_home/features/home/presentation/view/widgets/grid_item_view.dart';
+import 'package:yummy_home/features/home/presentation/view/widgets/custom_grid_view_builder.dart';
+import 'package:yummy_home/features/home/presentation/view/widgets/custom_search_text_field.dart';
 
 class MainSellerView extends StatefulWidget {
   const MainSellerView({super.key});
@@ -25,14 +22,6 @@ class _MainSellerViewState extends State<MainSellerView> {
     super.initState();
   }
 
-  double _getChildAspectRatio(BuildContext context) {
-    if (Device.screenType == ScreenType.tablet) {
-      return Dimensions.getHeight(context) * 0.00065;
-    }
-
-    return Dimensions.getHeight(context) * 0.00084;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,34 +32,18 @@ class _MainSellerViewState extends State<MainSellerView> {
       ),
       child: Column(
         children: [
-          CustomTextField(
+          CustomSearchTextField(
             controller: _search,
-            hint: "search".tr(context),
-            onChanged: (val) {},
+            onChange: (value) {},
           ),
           SizedBox(height: Dimensions.height20(context)),
           Expanded(
             child: Stack(
               children: [
-                GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: Dimensions.height10(context),
-                    mainAxisSpacing: Dimensions.height10(context),
-                    childAspectRatio: _getChildAspectRatio(context),
-                  ),
-                  padding: EdgeInsets.zero,
-                  itemCount: 7,
-                  itemBuilder: (context, index) {
-                    return GridItemView(
-                      foodName: "Food",
-                      foodCost: "280",
-                      imageUrl: "assets/images/person.jpg",
-                      onClick: () {
-                        GoRouter.of(context).push(FoodDetailsView.id);
-                      },
-                    );
-                  },
+                CustomGridViewBuilder(
+                  name: "Food",
+                  cost: "280",
+                  imageUrl: "assets/images/person.jpg",
                 ),
                 CustomFloatButton(
                   onClick: () => GoRouter.of(context).push(AddFoodView.id),
