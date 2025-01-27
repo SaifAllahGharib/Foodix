@@ -57,5 +57,7 @@
   "language": "Language",
   "logout": "Logout",
   "edit": "Edit",
-  "edit_name": "Edit name"
+  "edit_name": "Edit name",
+  "minute": "m",
+  "hour": "h"
 }

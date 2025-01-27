@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/features/add_food/presentation/view/add_food_view.dart';
-import 'package:yummy_home/features/choose_food/presentation/view/choose_food_view.dart';
 import 'package:yummy_home/features/choose_language/presentation/view/choose_language_view.dart';
 import 'package:yummy_home/features/choose_type/presentation/view/choose_type_view.dart';
 import 'package:yummy_home/features/details_order/presentation/view/details_order_view.dart';
@@ -10,6 +9,7 @@ import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/presentation/view/change_password_view.dart';
 import 'package:yummy_home/features/login/presentation/view/forget_password_view.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
+import 'package:yummy_home/features/restaurant/presentation/view/restaurant_view.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 import 'package:yummy_home/features/your_addresses/view/your_addresses_view.dart';
@@ -81,8 +81,8 @@ abstract class AppRouter {
         builder: (context, state) => YourAddressesView(),
       ),
       GoRoute(
-        path: ChooseFoodView.id,
-        builder: (context, state) => ChooseFoodView(),
+        path: RestaurantView.id,
+        builder: (context, state) => RestaurantView(),
       ),
     ],
   );

@@ -55,5 +55,7 @@
   "account_information": "بيانات الحساب",
   "addresses": "عناوينك",
   "language": "اللغة",
-  "logout": "خروج"
+  "logout": "خروج",
+  "minute": "دقيقه",
+  "hour": "ساعه"
 }

@@ -34,7 +34,7 @@ class CustomRowCost extends StatelessWidget {
           "food_cost".tr(context),
           style: Styles.textStyle15(context).copyWith(
             fontWeight: FontWeight.w400,
-            color: Colors.black,
+            color: color,
           ),
         ),
       ],

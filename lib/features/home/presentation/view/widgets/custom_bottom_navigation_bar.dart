@@ -70,14 +70,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          height: Dimensions.width10(context) * 0.75,
+          height: Dimensions.width10(context) * 0.8,
           width: isSelected ? Dimensions.getWidth(context) * 0.055 : 0,
           decoration: BoxDecoration(
             color: isSelected ? AppColors.primaryColor : Colors.transparent,
             borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
           ),
         ),
-        SizedBox(height: Dimensions.height10(context) * 0.5),
+        SizedBox(height: Dimensions.height10(context) * 0.3),
         Icon(
           iconData[index],
           color: isSelected ? AppColors.primaryColor : AppColors.gray,
