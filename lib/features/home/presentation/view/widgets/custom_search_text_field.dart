@@ -26,7 +26,7 @@ class CustomSearchTextField extends StatelessWidget {
         contentPadding:
             EdgeInsets.symmetric(horizontal: Dimensions.height20(context)),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 2),
+          borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 4),
           borderSide: BorderSide(
             width: 0,
             color: Colors.white,
