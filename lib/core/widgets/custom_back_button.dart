@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
+import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 class CustomBackButton extends StatelessWidget {
@@ -15,17 +16,26 @@ class CustomBackButton extends StatelessWidget {
       alignment: context.read<LocalCubit>().isDirectionRight
           ? Alignment.topRight
           : Alignment.topLeft,
-      child: IconButton(
-        onPressed: () {
-          GoRouter.of(context).pop();
-        },
-        enableFeedback: false,
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        icon: Icon(
-          Icons.arrow_back_ios_new_outlined,
-          size: Dimensions.iconSize24(context),
-          color: color,
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5000),
+            border: Border.all(
+              color: AppColors.gray,
+              width: 1,
+            )),
+        child: IconButton(
+          onPressed: () {
+            GoRouter.of(context).pop();
+          },
+          enableFeedback: false,
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          icon: Icon(
+            Icons.arrow_back,
+            size: Dimensions.iconSize24(context),
+            color: color,
+          ),
         ),
       ),
     );
