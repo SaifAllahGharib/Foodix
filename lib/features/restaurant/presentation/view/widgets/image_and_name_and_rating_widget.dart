@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/core/widgets/custom_rating_widget.dart';
+
+class ImageAndNameAndRatingWidget extends StatelessWidget {
+  const ImageAndNameAndRatingWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: Dimensions.height80(context) * 0.9,
+          height: Dimensions.height80(context) * 0.9,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/person.jpg"),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
+          ),
+        ),
+        SizedBox(width: Dimensions.width20(context)),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Bazoka",
+              style: Styles.textStyle16(context),
+            ),
+            SizedBox(height: Dimensions.height10(context) * 0.2),
+            Text(
+              "Burger, Cheken, Beef",
+              style: Styles.textStyle12(context),
+            ),
+            SizedBox(height: Dimensions.height10(context) * 0.2),
+            CustomRatingWidget(
+              rating: 4.9,
+              ratingCount: 1925,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}

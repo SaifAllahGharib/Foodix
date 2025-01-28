@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/core/widgets/custom_cost_delivery.dart';
 import 'package:yummy_home/core/widgets/custom_delivery_time_widget.dart';
+import 'package:yummy_home/core/widgets/custom_dot_widget.dart';
 import 'package:yummy_home/core/widgets/custom_rating_widget.dart';
-import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_image_item_sliver_list_view_buyer_view.dart';
 
 class CustomItemSliverListViewBuyerView extends StatelessWidget {
@@ -50,22 +51,9 @@ class CustomItemSliverListViewBuyerView extends StatelessWidget {
                   children: [
                     CustomDeliveryTimeWidget(time: 24),
                     SizedBox(width: Dimensions.height10(context) * 0.5),
-                    Icon(
-                      Icons.circle,
-                      size: Dimensions.height10(context) * 0.7,
-                      color: Colors.black54,
-                    ),
+                    CustomDotWidget(),
                     SizedBox(width: Dimensions.height10(context) * 0.5),
-                    Icon(
-                      Icons.motorcycle_outlined,
-                      size: Dimensions.height15(context),
-                      color: Colors.black54,
-                    ),
-                    SizedBox(width: Dimensions.height10(context) * 0.5),
-                    CustomRowCost(
-                      egp: "15.99",
-                      color: Colors.grey,
-                    ),
+                    CustomCostDelivery(),
                   ],
                 ),
               ],

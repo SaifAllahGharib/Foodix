@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/widgets/custom_back_button.dart';
+import 'package:yummy_home/features/restaurant/presentation/view/widgets/top_section_restaurant_view.dart';
 
 class RestaurantViewBody extends StatelessWidget {
   const RestaurantViewBody({super.key});
@@ -8,7 +8,8 @@ class RestaurantViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomBackButton(),
+        TopSectionRestaurantView(),
+        Text("data"),
       ],
     );
   }

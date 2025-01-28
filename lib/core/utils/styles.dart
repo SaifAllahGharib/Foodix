@@ -2,9 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 abstract class Styles {
+  static TextStyle textStyle12(BuildContext context) {
+    return TextStyle(
+      fontSize: Dimensions.height10(context) * 1.2,
+      color: Colors.grey,
+    );
+  }
+
   static TextStyle textStyle15(BuildContext context) {
     return TextStyle(
       fontSize: Dimensions.fontSize15(context),
+    );
+  }
+
+  static TextStyle textStyle16(BuildContext context) {
+    return TextStyle(
+      fontSize: Dimensions.height15(context) * 1.015,
+      fontWeight: FontWeight.w500,
     );
   }
 
