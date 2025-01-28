@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_app_bar_restaurant_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/top_section_restaurant_view.dart';
 
@@ -50,26 +49,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
               )
             ],
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 50),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(_opacity),
-                border: _opacity >= 0.7
-                    ? Border(
-                        bottom: BorderSide(
-                          color: AppColors.gray,
-                          width: 1,
-                        ),
-                      )
-                    : null,
-              ),
-              child: CustomAppBarRestaurantView(),
-            ),
-          ),
+          CustomAppBarRestaurantView(opacity: _opacity),
         ],
       ),
     );
