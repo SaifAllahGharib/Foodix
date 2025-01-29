@@ -14,6 +14,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
   final ScrollController _scrollController = ScrollController();
   double _opacity = 0.0;
   int _selectedIndex = 0;
+  double _appBarHeight = 0.0;
   final List list = [
     "Choose any you",
     "Choose",
@@ -30,6 +31,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
     _scrollController.addListener(() {
       setState(() {
         _opacity = (_scrollController.offset / 200).clamp(0, 1);
+        _appBarHeight = _scrollController.offset;
       });
     });
   }
@@ -67,7 +69,15 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
               )
             ],
           ),
-          CustomAppBarRestaurantView(opacity: _opacity),
+          CustomAppBarRestaurantView(
+            opacity: _opacity,
+            selectedIndex: _selectedIndex,
+            list: list,
+            appBarHeight: _appBarHeight,
+            onClickInItem: (index) {
+              setState(() => _selectedIndex = index);
+            },
+          ),
         ],
       ),
     );
