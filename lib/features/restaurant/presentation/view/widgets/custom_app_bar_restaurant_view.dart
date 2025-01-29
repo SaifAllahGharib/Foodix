@@ -18,13 +18,15 @@ class CustomAppBarRestaurantView extends StatelessWidget {
         duration: Duration(milliseconds: 50),
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(opacity),
-          border: opacity >= 0.7
-              ? Border(
-                  bottom: BorderSide(
+          boxShadow: opacity >= 0.5
+              ? [
+                  BoxShadow(
                     color: AppColors.gray,
-                    width: 1,
+                    blurRadius: 10,
+                    spreadRadius: 0.8,
+                    offset: Offset(0, 1),
                   ),
-                )
+                ]
               : null,
         ),
         height: Dimensions.height45(context) * 1.85,

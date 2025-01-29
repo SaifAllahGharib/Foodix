@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_app_bar_restaurant_view.dart';
+import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_list_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/top_section_restaurant_view.dart';
 
 class RestaurantViewBody extends StatefulWidget {
@@ -12,6 +13,16 @@ class RestaurantViewBody extends StatefulWidget {
 class _RestaurantViewBodyState extends State<RestaurantViewBody> {
   final ScrollController _scrollController = ScrollController();
   double _opacity = 0.0;
+  int _selectedIndex = 0;
+  final List list = [
+    "Choose any you",
+    "Choose",
+    "Orod gamda",
+    "Chiken",
+    "Beef",
+    "Abatizers",
+    "Drinkes",
+  ];
 
   @override
   void initState() {
@@ -38,8 +49,15 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
           CustomScrollView(
             controller: _scrollController,
             slivers: [
+              SliverToBoxAdapter(child: TopSectionRestaurantView()),
               SliverToBoxAdapter(
-                child: TopSectionRestaurantView(),
+                child: CustomCategoryListView(
+                  selectedIndex: _selectedIndex,
+                  list: list,
+                  onClickInItem: (index) {
+                    setState(() => _selectedIndex = index);
+                  },
+                ),
               ),
               SliverList.builder(
                 itemCount: 50,
