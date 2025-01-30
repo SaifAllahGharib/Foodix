@@ -7,19 +7,30 @@ import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 
 class CustomItemFoodCategoryListView extends StatelessWidget {
-  const CustomItemFoodCategoryListView({super.key});
+  final int index;
+  final String foodName;
+  final String foodDesc;
+  final String foodCost;
+  final String foodImage;
+  final void Function() onClickInItem;
+
+  const CustomItemFoodCategoryListView({
+    super.key,
+    required this.index,
+    required this.foodName,
+    required this.foodDesc,
+    required this.foodCost,
+    required this.foodImage,
+    required this.onClickInItem,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        right: context.read<LocalCubit>().isDirectionRight
-            ? Dimensions.height15(context)
-            : 0,
-        left: context.read<LocalCubit>().isDirectionRight
-            ? 0
-            : Dimensions.height15(context),
-      ),
+    return InkWell(
+      onTap: onClickInItem,
+      enableFeedback: false,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
       child: Column(
         children: [
           Container(
@@ -27,8 +38,13 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
             width: double.infinity,
             height: Dimensions.height130(context),
             padding: EdgeInsets.only(
-              bottom: Dimensions.height10(context),
-              right: Dimensions.height20(context),
+              bottom: Dimensions.height15(context),
+              right: context.read<LocalCubit>().isDirectionRight
+                  ? 0
+                  : Dimensions.height20(context),
+              left: context.read<LocalCubit>().isDirectionRight
+                  ? Dimensions.height20(context)
+                  : 0,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,7 +57,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                         BorderRadius.circular(Dimensions.radius20(context)),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage("assets/images/person.jpg"),
+                      image: AssetImage(foodImage),
                     ),
                   ),
                 ),
@@ -49,17 +65,17 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      "Chekin",
+                      foodName,
                       style: Styles.textStyle16(context),
                     ),
                     SizedBox(height: Dimensions.height10(context)),
                     Text(
-                      "meet, salat, tehena",
+                      foodDesc,
                       style: Styles.textStyle12(context),
                     ),
                     Spacer(),
                     CustomRowCost(
-                      egp: "280",
+                      egp: foodCost,
                       fontWeight: FontWeight.w600,
                     ),
                   ],
@@ -67,11 +83,12 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
-            height: 1,
-            color: AppColors.gray,
-          ),
-          SizedBox(height: Dimensions.height20(context)),
+          if (index != 11)
+            Divider(
+              height: 1,
+              color: AppColors.gray,
+            ),
+          if (index != 11) SizedBox(height: Dimensions.height20(context)),
         ],
       ),
     );

@@ -4,8 +4,8 @@ import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 import 'package:yummy_home/features/food_details/presentation/view/widgets/edit_food_derails_widgets.dart';
 
-class CustomBottomBar extends StatelessWidget {
-  const CustomBottomBar({super.key});
+class CustomBottomBarFoodDetailsSeller extends StatelessWidget {
+  const CustomBottomBarFoodDetailsSeller({super.key});
 
   void _showBottomSheet(BuildContext context) {
     showBottomSheet(

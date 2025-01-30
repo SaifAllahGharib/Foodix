@@ -21,7 +21,7 @@ class ImageAndBackButton extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.all(Dimensions.height20(context)),
-          child: CustomBackButton(color: Colors.white),
+          child: CustomBackButton(),
         ),
       ],
     );
