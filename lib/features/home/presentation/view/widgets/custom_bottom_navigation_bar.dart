@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/features/home/presentation/manager/cubits/home/home_cubit.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final Function(int index) onIndexChanged;
@@ -39,16 +41,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           3,
           (index) {
             return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
-
-                widget.onIndexChanged(index);
-              },
+              onTap: () => widget.onIndexChanged(index),
               child: _buildIconWithLine(
                 index: index,
-                isSelected: index == selectedIndex,
+                isSelected: index == context.watch<HomeCubit>().selectedIndex,
               ),
             );
           },

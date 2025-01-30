@@ -10,4 +10,6 @@ class HomeCubit extends Cubit<HomeState> {
     _selectedIndex = index;
     emit(HomeChangeViewState(_selectedIndex));
   }
+
+  int get selectedIndex => _selectedIndex;
 }
