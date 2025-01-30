@@ -22,6 +22,7 @@ class YourAddressesViewBody extends StatelessWidget {
               Row(
                 children: [
                   CustomBackButton(),
+                  SizedBox(width: Dimensions.width30(context)),
                   Text(
                     "addresses".tr(context),
                     style: Styles.textStyle18(context)

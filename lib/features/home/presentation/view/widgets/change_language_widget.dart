@@ -32,6 +32,7 @@ class ChangeLanguageWidget extends StatelessWidget {
             Row(
               children: [
                 CustomBackButton(),
+                SizedBox(width: Dimensions.width30(context)),
                 Text(
                   "language".tr(context),
                   style: Styles.textStyle18(context)
