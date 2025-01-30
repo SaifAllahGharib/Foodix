@@ -47,69 +47,66 @@ class _AddFoodViewBodyState extends State<AddFoodViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AddFoodCubit(),
-      child: BlocConsumer<AddFoodCubit, AddFoodState>(
-        listener: (context, state) {
-          if (state is AddFoodPickImage) {
-            _selectedImage = state.image;
-          }
-        },
-        builder: (context, state) {
-          return Padding(
-            padding: EdgeInsets.all(Dimensions.height20(context)),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: Dimensions.height20(context)),
-                  CustomBackButton(),
-                  SizedBox(height: Dimensions.height45(context)),
-                  CustomText(text: "add_food".tr(context)),
-                  SizedBox(height: Dimensions.height45(context)),
-                  CustomButtonImagePicker(
-                    pickImageFromCamera: () {
-                      context
-                          .read<AddFoodCubit>()
-                          .pickImageFromCamera(_imagePickerHelper);
-                    },
-                    pickImageFromGallery: () {
-                      context
-                          .read<AddFoodCubit>()
-                          .pickImageFromGallery(_imagePickerHelper);
-                    },
-                    selectedImage: _selectedImage,
-                  ),
-                  SizedBox(height: Dimensions.height10(context)),
-                  CustomTextField(
-                    controller: _foodName,
-                    hint: "food_name".tr(context),
-                    onChanged: (val) => validate(context),
-                  ),
-                  SizedBox(height: Dimensions.height10(context)),
-                  CustomTextField(
-                    controller: _foodDesc,
-                    hint: "food_desc".tr(context),
-                    onChanged: (val) => validate(context),
-                  ),
-                  SizedBox(height: Dimensions.height10(context)),
-                  CustomTextField(
-                    controller: _foodPrice,
-                    hint: "food_cost".tr(context),
-                    textInputType: TextInputType.number,
-                    onChanged: (val) => validate(context),
-                  ),
-                  SizedBox(height: Dimensions.height30(context)),
-                  CustomButton(
-                    text: "add".tr(context),
-                    isEnabled: context.watch<AddFoodCubit>().isValid,
-                    onClick: () {},
-                  ),
-                ],
-              ),
+    return BlocConsumer<AddFoodCubit, AddFoodState>(
+      listener: (context, state) {
+        if (state is AddFoodPickImage) {
+          _selectedImage = state.image;
+        }
+      },
+      builder: (context, state) {
+        return Padding(
+          padding: EdgeInsets.all(Dimensions.height20(context)),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: Dimensions.height20(context)),
+                CustomBackButton(),
+                SizedBox(height: Dimensions.height45(context)),
+                CustomText(text: "add_food".tr(context)),
+                SizedBox(height: Dimensions.height45(context)),
+                CustomButtonImagePicker(
+                  pickImageFromCamera: () {
+                    context
+                        .read<AddFoodCubit>()
+                        .pickImageFromCamera(_imagePickerHelper);
+                  },
+                  pickImageFromGallery: () {
+                    context
+                        .read<AddFoodCubit>()
+                        .pickImageFromGallery(_imagePickerHelper);
+                  },
+                  selectedImage: _selectedImage,
+                ),
+                SizedBox(height: Dimensions.height10(context)),
+                CustomTextField(
+                  controller: _foodName,
+                  hint: "food_name".tr(context),
+                  onChanged: (val) => validate(context),
+                ),
+                SizedBox(height: Dimensions.height10(context)),
+                CustomTextField(
+                  controller: _foodDesc,
+                  hint: "food_desc".tr(context),
+                  onChanged: (val) => validate(context),
+                ),
+                SizedBox(height: Dimensions.height10(context)),
+                CustomTextField(
+                  controller: _foodPrice,
+                  hint: "food_cost".tr(context),
+                  textInputType: TextInputType.number,
+                  onChanged: (val) => validate(context),
+                ),
+                SizedBox(height: Dimensions.height30(context)),
+                CustomButton(
+                  text: "add".tr(context),
+                  isEnabled: context.watch<AddFoodCubit>().isValid,
+                  onClick: () {},
+                ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

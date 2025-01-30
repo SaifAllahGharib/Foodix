@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/features/restaurant/manager/cubits/restaurant/restaurant_cubit.dart';
+import 'package:yummy_home/features/restaurant/manager/cubits/restaurant/restaurant_state.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_app_bar_restaurant_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_list_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_food_category_list_view.dart';
@@ -245,10 +248,12 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
   void initState() {
     super.initState();
     _scrollController.addListener(() {
-      setState(() {
-        _opacity = (_scrollController.offset / 200).clamp(0, 1);
-        _appBarHeight = _scrollController.offset;
-      });
+      context
+          .read<RestaurantCubit>()
+          .showCategoryListView(_scrollController.offset);
+      context
+          .read<RestaurantCubit>()
+          .updateOpacity((_scrollController.offset / 200).clamp(0, 1));
     });
   }
 
@@ -258,41 +263,59 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
     super.dispose();
   }
 
+  void _onClickCategory(BuildContext context, int category) {
+    context.read<RestaurantCubit>().onClickCategory(category);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: double.infinity,
-      child: Stack(
-        children: [
-          CustomScrollView(
-            controller: _scrollController,
-            slivers: [
-              SliverToBoxAdapter(child: TopSectionRestaurantView()),
-              SliverToBoxAdapter(
-                child: CustomCategoryListView(
-                  selectedIndex: _selectedIndex,
-                  list: listOfFoodCategories,
-                  onClickInItem: (index) {
-                    setState(() => _selectedIndex = index);
-                  },
-                ),
+    return BlocConsumer<RestaurantCubit, RestaurantState>(
+      listener: (context, state) {
+        if (state is RestaurantShowCategoryListView) {
+          _appBarHeight = state.appBarHeight;
+        }
+
+        if (state is RestaurantUpdateOpacity) {
+          _opacity = state.opacity;
+        }
+
+        if (state is RestaurantOnClickCategory) {
+          _selectedIndex = state.selectedIndex;
+        }
+      },
+      builder: (context, state) {
+        return SizedBox(
+          height: double.infinity,
+          child: Stack(
+            children: [
+              CustomScrollView(
+                controller: _scrollController,
+                slivers: [
+                  SliverToBoxAdapter(child: TopSectionRestaurantView()),
+                  SliverToBoxAdapter(
+                    child: CustomCategoryListView(
+                      selectedIndex: _selectedIndex,
+                      list: listOfFoodCategories,
+                      onClickInItem: (index) =>
+                          _onClickCategory(context, index),
+                    ),
+                  ),
+                  CustomFoodCategoryListView(
+                    listOfFoodCategories: listOfFoodCategories,
+                  ),
+                ],
               ),
-              CustomFoodCategoryListView(
-                listOfFoodCategories: listOfFoodCategories,
+              CustomAppBarRestaurantView(
+                opacity: _opacity,
+                selectedIndex: _selectedIndex,
+                list: listOfFoodCategories,
+                appBarHeight: _appBarHeight,
+                onClickInItem: (index) => _onClickCategory(context, index),
               ),
             ],
           ),
-          CustomAppBarRestaurantView(
-            opacity: _opacity,
-            selectedIndex: _selectedIndex,
-            list: listOfFoodCategories,
-            appBarHeight: _appBarHeight,
-            onClickInItem: (index) {
-              setState(() => _selectedIndex = index);
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
