@@ -267,22 +267,24 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
     context.read<RestaurantCubit>().onClickCategory(category);
   }
 
+  void _handleStates(state) {
+    if (state is RestaurantShowCategoryListView) {
+      _appBarHeight = state.appBarHeight;
+    }
+
+    if (state is RestaurantUpdateOpacity) {
+      _opacity = state.opacity;
+    }
+
+    if (state is RestaurantOnClickCategory) {
+      _selectedIndex = state.selectedIndex;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RestaurantCubit, RestaurantState>(
-      listener: (context, state) {
-        if (state is RestaurantShowCategoryListView) {
-          _appBarHeight = state.appBarHeight;
-        }
-
-        if (state is RestaurantUpdateOpacity) {
-          _opacity = state.opacity;
-        }
-
-        if (state is RestaurantOnClickCategory) {
-          _selectedIndex = state.selectedIndex;
-        }
-      },
+      listener: (context, state) => _handleStates(state),
       builder: (context, state) {
         return SizedBox(
           height: double.infinity,
