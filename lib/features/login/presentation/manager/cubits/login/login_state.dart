@@ -1,6 +1,6 @@
 import 'package:yummy_home/core/models/response.dart';
 
-abstract class LoginState {}
+sealed class LoginState {}
 
 class LoginInit extends LoginState {}
 
