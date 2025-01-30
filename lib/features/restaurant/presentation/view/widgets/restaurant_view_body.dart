@@ -16,14 +16,229 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
   double _opacity = 0.0;
   int _selectedIndex = 0;
   double _appBarHeight = 0.0;
-  final List list = [
-    "Choose any you",
-    "Choose",
-    "Orod gamda",
-    "Chiken",
-    "Beef",
-    "Abatizers",
-    "Drinkes",
+  final List<Map<String, dynamic>> listOfFoodCategories = [
+    {
+      "category": "Chicken",
+      "foods": [
+        {
+          "name": "Ch",
+          "desc": "Delicious grilled chicken",
+          "price": "170",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch2",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch3",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch4",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch5",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch6",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch7",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+      ]
+    },
+    {
+      "category": "Beef",
+      "foods": [
+        {
+          "name": "Beef1",
+          "desc": "Juicy steak",
+          "price": "200",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Beef2",
+          "desc": "Tasty beef burger",
+          "price": "180",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Beef3",
+          "desc": "Tasty beef burger",
+          "price": "180",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Beef4",
+          "desc": "Tasty beef burger",
+          "price": "180",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Beef5",
+          "desc": "Tasty beef burger",
+          "price": "180",
+          "image": "assets/images/person.jpg"
+        },
+      ]
+    },
+    {
+      "category": "Drinks",
+      "foods": [
+        {
+          "name": "Coca Cola",
+          "desc": "Refreshing cola",
+          "price": "50",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Orange Juice",
+          "desc": "Freshly squeezed",
+          "price": "60",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Orange Juice",
+          "desc": "Freshly squeezed",
+          "price": "60",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Orange Juice",
+          "desc": "Freshly squeezed",
+          "price": "60",
+          "image": "assets/images/person.jpg"
+        },
+      ]
+    },
+    {
+      "category": "Chicken2",
+      "foods": [
+        {
+          "name": "Ch",
+          "desc": "Delicious grilled chicken",
+          "price": "170",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch2",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch3",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch4",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch5",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch6",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Ch7",
+          "desc": "Spicy fried chicken",
+          "price": "140",
+          "image": "assets/images/person.jpg"
+        },
+      ]
+    },
+    {
+      "category": "Beef2",
+      "foods": [
+        {
+          "name": "Beef1",
+          "desc": "Juicy steak",
+          "price": "200",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Beef2",
+          "desc": "Tasty beef burger",
+          "price": "180",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Beef3",
+          "desc": "Tasty beef burger",
+          "price": "180",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Beef4",
+          "desc": "Tasty beef burger",
+          "price": "180",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Beef5",
+          "desc": "Tasty beef burger",
+          "price": "180",
+          "image": "assets/images/person.jpg"
+        },
+      ]
+    },
+    {
+      "category": "Drinks2",
+      "foods": [
+        {
+          "name": "Coca Cola",
+          "desc": "Refreshing cola",
+          "price": "50",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Orange Juice",
+          "desc": "Freshly squeezed",
+          "price": "60",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Orange Juice",
+          "desc": "Freshly squeezed",
+          "price": "60",
+          "image": "assets/images/person.jpg"
+        },
+        {
+          "name": "Orange Juice",
+          "desc": "Freshly squeezed",
+          "price": "60",
+          "image": "assets/images/person.jpg"
+        },
+      ]
+    }
   ];
 
   @override
@@ -56,19 +271,21 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
               SliverToBoxAdapter(
                 child: CustomCategoryListView(
                   selectedIndex: _selectedIndex,
-                  list: list,
+                  list: listOfFoodCategories,
                   onClickInItem: (index) {
                     setState(() => _selectedIndex = index);
                   },
                 ),
               ),
-              CustomFoodCategoryListView(),
+              CustomFoodCategoryListView(
+                listOfFoodCategories: listOfFoodCategories,
+              ),
             ],
           ),
           CustomAppBarRestaurantView(
             opacity: _opacity,
             selectedIndex: _selectedIndex,
-            list: list,
+            list: listOfFoodCategories,
             appBarHeight: _appBarHeight,
             onClickInItem: (index) {
               setState(() => _selectedIndex = index);

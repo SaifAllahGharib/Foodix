@@ -6,7 +6,7 @@ class CustomItemCategoriesListView extends StatelessWidget {
   final int index;
   final int selectedIndex;
   final int sizeOfList;
-  final String text;
+  final String categoryName;
   final void Function() onClick;
 
   const CustomItemCategoriesListView({
@@ -14,7 +14,7 @@ class CustomItemCategoriesListView extends StatelessWidget {
     required this.index,
     required this.selectedIndex,
     required this.sizeOfList,
-    required this.text,
+    required this.categoryName,
     required this.onClick,
   });
 
@@ -28,7 +28,7 @@ class CustomItemCategoriesListView extends StatelessWidget {
       child: Row(
         children: [
           CategoryItem(
-            text: text,
+            text: categoryName,
             selected: selectedIndex == index,
           ),
           SizedBox(

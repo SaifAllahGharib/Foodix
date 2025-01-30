@@ -24,31 +24,36 @@ class _CustomCategoryListViewState extends State<CustomCategoryListView> {
 
   @override
   void initState() {
-    _scrollController = ScrollController();
     super.initState();
+    _scrollController = ScrollController();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToSelectedIndex(widget.selectedIndex);
+    });
   }
 
-  bool _canScrollTo(int index) {
-    double targetOffset = index * Dimensions.width120(context) * 0.6;
+  void _scrollToSelectedIndex(int index) {
+    if (!mounted || !_scrollController.hasClients) return;
 
-    if (targetOffset <= _scrollController.position.maxScrollExtent &&
-        targetOffset >= 0) {
-      return true;
-    }
+    double itemWidth = Dimensions.width120(context) * 0.75;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double targetOffset = index * itemWidth;
 
-    return false;
+    double maxScrollExtent = _scrollController.position.maxScrollExtent;
+
+    double adjustedOffset = (targetOffset - (screenWidth / 2) + (itemWidth / 2))
+        .clamp(0, maxScrollExtent);
+
+    _scrollController.animateTo(
+      adjustedOffset,
+      duration: const Duration(milliseconds: 240),
+      curve: Curves.easeInOut,
+    );
   }
 
   void _onClickInItem(int index) {
     widget.onClickInItem(index);
-
-    if (_canScrollTo(index)) {
-      _scrollController.animateTo(
-        index * Dimensions.width120(context) * 0.6,
-        duration: Duration(milliseconds: 240),
-        curve: Curves.easeInOut,
-      );
-    }
+    _scrollToSelectedIndex(index);
   }
 
   @override
@@ -81,7 +86,7 @@ class _CustomCategoryListViewState extends State<CustomCategoryListView> {
         itemBuilder: (context, index) {
           return CustomItemCategoriesListView(
             onClick: () => _onClickInItem(index),
-            text: widget.list[index],
+            categoryName: widget.list[index]["category"],
             sizeOfList: widget.list.length,
             index: index,
             selectedIndex: widget.selectedIndex,

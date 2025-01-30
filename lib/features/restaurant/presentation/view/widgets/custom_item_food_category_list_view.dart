@@ -12,6 +12,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
   final String foodDesc;
   final String foodCost;
   final String foodImage;
+  final List listOfFood;
   final void Function() onClickInItem;
 
   const CustomItemFoodCategoryListView({
@@ -21,6 +22,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
     required this.foodDesc,
     required this.foodCost,
     required this.foodImage,
+    required this.listOfFood,
     required this.onClickInItem,
   });
 
@@ -83,12 +85,13 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
               ],
             ),
           ),
-          if (index != 11)
+          if (index != listOfFood.length - 1)
             Divider(
               height: 1,
               color: AppColors.gray,
             ),
-          if (index != 11) SizedBox(height: Dimensions.height20(context)),
+          if (index != listOfFood.length - 1)
+            SizedBox(height: Dimensions.height20(context)),
         ],
       ),
     );
