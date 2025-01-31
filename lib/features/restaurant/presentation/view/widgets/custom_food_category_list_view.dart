@@ -9,8 +9,10 @@ import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_
 class CustomFoodCategoryListView extends StatelessWidget {
   final List<Map<String, dynamic>> listOfFoodCategories;
 
-  const CustomFoodCategoryListView(
-      {super.key, required this.listOfFoodCategories});
+  const CustomFoodCategoryListView({
+    super.key,
+    required this.listOfFoodCategories,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,51 +26,49 @@ class CustomFoodCategoryListView extends StatelessWidget {
             ? 0
             : Dimensions.height15(context),
       ),
-      sliver: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, categoryIndex) {
-            final category = listOfFoodCategories[categoryIndex];
-            final String categoryName = category["category"];
-            final List foods = category["foods"];
+      sliver: SliverList.builder(
+        itemCount: listOfFoodCategories.length,
+        itemBuilder: (context, index) {
+          final category = listOfFoodCategories[index];
+          final categoryName = category["category"];
+          final foods = category["foods"];
 
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: Dimensions.height15(context),
-                  ),
-                  child: Text(
-                    categoryName,
-                    style: Styles.textStyle18(context),
-                  ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: Dimensions.height15(context),
                 ),
-                ...foods.map(
-                  (food) {
-                    return CustomItemFoodCategoryListView(
-                      index: foods.indexOf(food),
-                      listOfFood: foods,
-                      foodImage: food["image"],
-                      foodName: food["name"],
-                      foodDesc: food["desc"],
-                      foodCost: food["price"],
-                      onClickInItem: () {
-                        showBottomSheet(
-                          context: context,
-                          backgroundColor: Colors.white,
-                          builder: (context) {
-                            return CustomBottomSheetWidget();
-                          },
-                        );
-                      },
-                    );
-                  },
+                child: Text(
+                  categoryName,
+                  style: Styles.textStyle18(context),
                 ),
-              ],
-            );
-          },
-          childCount: listOfFoodCategories.length,
-        ),
+              ),
+              ...foods.map(
+                (food) {
+                  return CustomItemFoodCategoryListView(
+                    index: foods.indexOf(food),
+                    listOfFood: foods,
+                    foodImage: food["image"],
+                    foodName: food["name"],
+                    foodDesc: food["desc"],
+                    foodCost: food["price"],
+                    onClickInItem: () {
+                      showBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.white,
+                        builder: (context) {
+                          return CustomBottomSheetWidget();
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
+          );
+        },
       ),
     );
   }

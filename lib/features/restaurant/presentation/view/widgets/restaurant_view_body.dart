@@ -247,6 +247,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
   @override
   void initState() {
     super.initState();
+
     _scrollController.addListener(() {
       context
           .read<RestaurantCubit>()
@@ -263,8 +264,8 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
     super.dispose();
   }
 
-  void _onClickCategory(BuildContext context, int category) {
-    context.read<RestaurantCubit>().onClickCategory(category);
+  void _onClickCategory(BuildContext context, int categoryIndex) {
+    context.read<RestaurantCubit>().onClickCategory(categoryIndex);
   }
 
   void _handleStates(state) {
