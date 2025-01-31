@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_bottom_sheet_widget.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_item_food_category_list_view.dart';
 
@@ -16,7 +15,7 @@ class CustomFoodCategoryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
+    return Padding(
       padding: EdgeInsets.only(
         bottom: Dimensions.height20(context),
         right: context.read<LocalCubit>().isDirectionRight
@@ -26,49 +25,31 @@ class CustomFoodCategoryListView extends StatelessWidget {
             ? 0
             : Dimensions.height15(context),
       ),
-      sliver: SliverList.builder(
-        itemCount: listOfFoodCategories.length,
-        itemBuilder: (context, index) {
-          final category = listOfFoodCategories[index];
-          final categoryName = category["category"];
-          final foods = category["foods"];
-
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: Dimensions.height15(context),
-                ),
-                child: Text(
-                  categoryName,
-                  style: Styles.textStyle18(context),
-                ),
-              ),
-              ...foods.map(
-                (food) {
-                  return CustomItemFoodCategoryListView(
-                    index: foods.indexOf(food),
-                    listOfFood: foods,
-                    foodImage: food["image"],
-                    foodName: food["name"],
-                    foodDesc: food["desc"],
-                    foodCost: food["price"],
-                    onClickInItem: () {
-                      showBottomSheet(
-                        context: context,
-                        backgroundColor: Colors.white,
-                        builder: (context) {
-                          return CustomBottomSheetWidget();
-                        },
-                      );
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ...listOfFoodCategories.map(
+            (food) {
+              return CustomItemFoodCategoryListView(
+                index: listOfFoodCategories.indexOf(food),
+                listOfFood: listOfFoodCategories,
+                foodImage: food["image"],
+                foodName: food["name"],
+                foodDesc: food["desc"],
+                foodCost: food["price"],
+                onClickInItem: () {
+                  showBottomSheet(
+                    context: context,
+                    backgroundColor: Colors.white,
+                    builder: (context) {
+                      return CustomBottomSheetWidget();
                     },
                   );
                 },
-              ),
-            ],
-          );
-        },
+              );
+            },
+          ),
+        ],
       ),
     );
   }

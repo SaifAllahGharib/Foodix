@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/features/restaurant/manager/cubits/restaurant/restaurant_cubit.dart';
 import 'package:yummy_home/features/restaurant/manager/cubits/restaurant/restaurant_state.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_app_bar_restaurant_view.dart';
@@ -15,7 +17,7 @@ class RestaurantViewBody extends StatefulWidget {
 }
 
 class _RestaurantViewBodyState extends State<RestaurantViewBody> {
-  final ScrollController _scrollController = ScrollController();
+  late final ScrollController _scrollController;
   double _opacity = 0.0;
   int _selectedIndex = 0;
   double _appBarHeight = 0.0;
@@ -243,10 +245,12 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
       ]
     }
   ];
+  List<GlobalKey> categoryKeys = [];
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
 
     _scrollController.addListener(() {
       context
@@ -266,6 +270,20 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
 
   void _onClickCategory(BuildContext context, int categoryIndex) {
     context.read<RestaurantCubit>().onClickCategory(categoryIndex);
+
+    double offset = 0.0;
+
+    for (int i = 0;
+        i < listOfFoodCategories[categoryIndex]["foods"].length;
+        i++) {
+      offset += Dimensions.height130(context) * categoryIndex;
+    }
+
+    _scrollController.animateTo(
+      offset,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   void _handleStates(state) {
@@ -303,8 +321,29 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
                           _onClickCategory(context, index),
                     ),
                   ),
-                  CustomFoodCategoryListView(
-                    listOfFoodCategories: listOfFoodCategories,
+                  SliverList.builder(
+                    itemCount: listOfFoodCategories.length,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: Dimensions.height15(context),
+                              horizontal: Dimensions.height20(context),
+                            ),
+                            child: Text(
+                              listOfFoodCategories[index]["category"],
+                              style: Styles.textStyle18(context),
+                            ),
+                          ),
+                          CustomFoodCategoryListView(
+                            listOfFoodCategories: listOfFoodCategories[index]
+                                ["foods"],
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ],
               ),
