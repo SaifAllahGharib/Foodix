@@ -59,5 +59,7 @@
   "edit": "Edit",
   "edit_name": "Edit name",
   "minute": "m",
-  "hour": "h"
+  "hour": "h",
+  "cart": "Cart",
+  "total_basket": "Total Cart"
 }

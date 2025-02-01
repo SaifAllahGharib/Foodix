@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
-import 'package:yummy_home/features/restaurant/manager/cubits/restaurant/restaurant_cubit.dart';
-import 'package:yummy_home/features/restaurant/manager/cubits/restaurant/restaurant_state.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_app_bar_restaurant_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_list_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_food_category_list_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/top_section_restaurant_view.dart';
+import 'package:yummy_home/features/restaurant/viewmodel/cubits/restaurant/restaurant_cubit.dart';
+import 'package:yummy_home/features/restaurant/viewmodel/cubits/restaurant/restaurant_state.dart';
 
 class RestaurantViewBody extends StatefulWidget {
   const RestaurantViewBody({super.key});
@@ -245,7 +245,6 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
       ]
     }
   ];
-  List<GlobalKey> categoryKeys = [];
 
   @override
   void initState() {
@@ -271,31 +270,23 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
   void _onClickCategory(BuildContext context, int categoryIndex) {
     context.read<RestaurantCubit>().onClickCategory(categoryIndex);
 
-    double offset = 0.0;
-
-    for (int i = 0;
-        i < listOfFoodCategories[categoryIndex]["foods"].length;
-        i++) {
-      offset += Dimensions.height130(context) * categoryIndex;
-    }
-
     _scrollController.animateTo(
-      offset,
+      categoryIndex.toDouble(),
       duration: Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
   }
 
   void _handleStates(state) {
-    if (state is RestaurantShowCategoryListView) {
+    if (state is RestaurantShowCategoryListViewState) {
       _appBarHeight = state.appBarHeight;
     }
 
-    if (state is RestaurantUpdateOpacity) {
+    if (state is RestaurantUpdateOpacityState) {
       _opacity = state.opacity;
     }
 
-    if (state is RestaurantOnClickCategory) {
+    if (state is RestaurantOnClickCategoryState) {
       _selectedIndex = state.selectedIndex;
     }
   }

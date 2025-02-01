@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/colors.dart';
+import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/styles.dart';
+
+class CounterProductWidget extends StatelessWidget {
+  final void Function() increment;
+  final void Function() decrement;
+  final int count;
+
+  const CounterProductWidget({
+    super.key,
+    required this.increment,
+    required this.decrement,
+    required this.count,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: Dimensions.height10(context) * 0.5,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 5),
+        border: Border.all(
+          color: AppColors.gray,
+          width: 1,
+        ),
+      ),
+      child: Row(
+        children: [
+          IconButton(
+            onPressed: increment,
+            icon: Icon(
+              Icons.add,
+              color: AppColors.primaryColor,
+            ),
+          ),
+          SizedBox(width: Dimensions.width20(context)),
+          Text(
+            "$count",
+            style: Styles.textStyle15(context)
+                .copyWith(fontWeight: FontWeight.w600),
+          ),
+          SizedBox(width: Dimensions.width20(context)),
+          IconButton(
+            onPressed: decrement,
+            icon: Icon(
+              Icons.remove,
+              color: count == 0 ? Colors.grey : AppColors.primaryColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

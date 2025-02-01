@@ -3,12 +3,12 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 
-class CustomItemDetailsOrderSection extends StatelessWidget {
+class CustomItemDetailsOrder extends StatelessWidget {
   final String startText;
   final String endText;
   final bool cashEnabled;
 
-  const CustomItemDetailsOrderSection({
+  const CustomItemDetailsOrder({
     super.key,
     required this.startText,
     required this.endText,

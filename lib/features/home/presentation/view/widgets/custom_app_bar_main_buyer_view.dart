@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/features/cart/presentation/view/cart_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_search_text_field.dart';
 
 class CustomAppBarMainBuyerView extends StatefulWidget {
@@ -60,7 +62,9 @@ class _CustomAppBarMainBuyerViewState extends State<CustomAppBarMainBuyerView> {
                         BorderRadius.circular(Dimensions.height20(context) * 5),
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      GoRouter.of(context).push(CartView.id);
+                    },
                     enableFeedback: false,
                     icon: Icon(
                       Icons.shopping_bag_outlined,

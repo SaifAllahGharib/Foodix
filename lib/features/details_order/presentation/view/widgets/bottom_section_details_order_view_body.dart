@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
-import 'package:yummy_home/features/details_order/presentation/view/widgets/custom_item_details_order_section.dart';
+import 'package:yummy_home/core/widgets/custom_item_details_order.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/custom_item_list_view_details_order_section.dart';
 
 class BottomSectionDetailsOrderViewBody extends StatelessWidget {
@@ -20,19 +20,19 @@ class BottomSectionDetailsOrderViewBody extends StatelessWidget {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                CustomItemDetailsOrderSection(
+                CustomItemDetailsOrder(
                   startText: "total".tr(context),
                   endText: "280",
                 ),
-                CustomItemDetailsOrderSection(
+                CustomItemDetailsOrder(
                   startText: "delivery".tr(context),
                   endText: "20",
                 ),
-                CustomItemDetailsOrderSection(
+                CustomItemDetailsOrder(
                   startText: "order_total".tr(context),
                   endText: "300",
                 ),
-                CustomItemDetailsOrderSection(
+                CustomItemDetailsOrder(
                   startText: "payment".tr(context),
                   endText: "cash",
                   cashEnabled: false,

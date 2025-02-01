@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_bottom_sheet_widget.dart';
+import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_bottom_sheet_restaurant_product_widget.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_item_food_category_list_view.dart';
 
 class CustomFoodCategoryListView extends StatelessWidget {
@@ -42,7 +42,9 @@ class CustomFoodCategoryListView extends StatelessWidget {
                     context: context,
                     backgroundColor: Colors.white,
                     builder: (context) {
-                      return CustomBottomSheetWidget();
+                      return CustomBottomSheetRestaurantProductWidget(
+                        index: listOfFoodCategories.indexOf(food),
+                      );
                     },
                   );
                 },

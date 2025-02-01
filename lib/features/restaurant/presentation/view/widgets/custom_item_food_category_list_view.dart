@@ -4,6 +4,7 @@ import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/core/widgets/custom_food_image.dart';
 import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 
 class CustomItemFoodCategoryListView extends StatelessWidget {
@@ -51,17 +52,10 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                CustomFoodImage(
+                  image: foodImage,
                   width: Dimensions.height130(context) * 0.9,
                   height: Dimensions.height130(context) * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(Dimensions.radius20(context)),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(foodImage),
-                    ),
-                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,

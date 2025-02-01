@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -9,12 +10,18 @@ import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/functions/set_portrait_orientation.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/utils/service_locator.dart';
+import 'package:yummy_home/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setup();
   setPortraitOrientation();
   await MySharedPreferences().init();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await Supabase.initialize(
+  //   url: Constants.supabaseUrl,
+  //   anonKey: Constants.supabaseKey,
+  // );
 
   runApp(
     DevicePreview(
