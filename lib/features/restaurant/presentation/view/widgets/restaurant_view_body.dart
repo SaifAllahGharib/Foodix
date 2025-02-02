@@ -331,6 +331,10 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
     _scrollController.addListener(() {
       context
           .read<RestaurantCubit>()
+          .showCategoryListView(_scrollController.offset);
+
+      context
+          .read<RestaurantCubit>()
           .updateOpacity((_scrollController.offset / 200).clamp(0, 1));
     });
   }

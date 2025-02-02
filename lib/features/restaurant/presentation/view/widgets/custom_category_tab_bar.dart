@@ -18,33 +18,36 @@ class CustomCategoryTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TabBar(
-      controller: tabController,
-      onTap: onClickCategory,
-      enableFeedback: false,
-      isScrollable: true,
-      padding: EdgeInsets.zero,
-      indicatorColor: Colors.black,
-      dividerColor: AppColors.gray,
-      labelColor: Colors.black,
-      labelStyle: Styles.textStyle15(context).copyWith(
-        fontWeight: FontWeight.w500,
-      ),
-      labelPadding: EdgeInsets.symmetric(
-        vertical: Dimensions.height10(context),
-        horizontal: Dimensions.width30(context),
-      ),
-      tabAlignment: TabAlignment.start,
-      indicatorSize: TabBarIndicatorSize.tab,
-      unselectedLabelColor: Colors.grey,
-      indicatorPadding: EdgeInsets.only(
-        right: Dimensions.width20(context),
-        left: Dimensions.width20(context),
-      ),
-      overlayColor: WidgetStateProperty.all(Colors.transparent),
-      tabs: List.generate(
-        list.length,
-        (index) => Text("${list[index].category}"),
+    return Container(
+      color: Colors.white,
+      child: TabBar(
+        controller: tabController,
+        onTap: onClickCategory,
+        enableFeedback: false,
+        isScrollable: true,
+        padding: EdgeInsets.zero,
+        indicatorColor: Colors.black,
+        dividerColor: AppColors.gray,
+        labelColor: Colors.black,
+        labelStyle: Styles.textStyle15(context).copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        labelPadding: EdgeInsets.symmetric(
+          vertical: Dimensions.height10(context),
+          horizontal: Dimensions.width30(context),
+        ),
+        tabAlignment: TabAlignment.start,
+        indicatorSize: TabBarIndicatorSize.tab,
+        unselectedLabelColor: Colors.grey,
+        indicatorPadding: EdgeInsets.only(
+          right: Dimensions.width20(context),
+          left: Dimensions.width20(context),
+        ),
+        overlayColor: WidgetStateProperty.all(Colors.transparent),
+        tabs: List.generate(
+          list.length,
+          (index) => Text("${list[index].category}"),
+        ),
       ),
     );
   }
