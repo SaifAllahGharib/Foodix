@@ -3,22 +3,22 @@ import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
-import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_list_view.dart';
+import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_tab_bar.dart';
 
 class CustomAppBarRestaurantView extends StatelessWidget {
   final double opacity;
   final List<ProductModel> list;
-  final int selectedIndex;
   final double appBarHeight;
-  final void Function(int index) onClickInItem;
+  final TabController tabController;
+  final void Function(int index) onClickCategory;
 
   const CustomAppBarRestaurantView({
     super.key,
     required this.opacity,
     required this.list,
-    required this.selectedIndex,
     required this.appBarHeight,
-    required this.onClickInItem,
+    required this.onClickCategory,
+    required this.tabController,
   });
 
   @override
@@ -82,10 +82,10 @@ class CustomAppBarRestaurantView extends StatelessWidget {
             color: AppColors.gray,
           ),
         if (appBarHeight >= Dimensions.height45(context) * 4)
-          CustomCategoryListView(
-            selectedIndex: selectedIndex,
+          CustomCategoryTabBar(
+            tabController: tabController,
+            onClickCategory: onClickCategory,
             list: list,
-            onClickInItem: onClickInItem,
           ),
       ],
     );

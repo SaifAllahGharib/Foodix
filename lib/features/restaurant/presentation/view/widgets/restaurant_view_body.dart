@@ -5,7 +5,7 @@ import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/features/restaurant/data/models/Foods.dart';
 import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_app_bar_restaurant_view.dart';
-import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_list_view.dart';
+import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_tab_bar.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_food_category_list_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/top_section_restaurant_view.dart';
 import 'package:yummy_home/features/restaurant/viewmodel/cubits/restaurant/restaurant_cubit.dart';
@@ -18,12 +18,159 @@ class RestaurantViewBody extends StatefulWidget {
   State<RestaurantViewBody> createState() => _RestaurantViewBodyState();
 }
 
-class _RestaurantViewBodyState extends State<RestaurantViewBody> {
+class _RestaurantViewBodyState extends State<RestaurantViewBody>
+    with SingleTickerProviderStateMixin {
   late final ScrollController _scrollController;
+  late final TabController _tabController;
   double _opacity = 0.0;
-  int _selectedIndex = 0;
   double _appBarHeight = 0.0;
   final List<ProductModel> listOfFoodCategories = [
+    ProductModel(
+      category: "Chicken",
+      foods: [
+        Foods(
+          name: "Chicken 1",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 170,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Chicken 2",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 190,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Chicken 3",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 210,
+          image: "assets/images/person.jpg",
+        ),
+      ],
+    ),
+    ProductModel(
+      category: "Beef",
+      foods: [
+        Foods(
+          name: "Beef 1",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 200,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 2",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 250,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 3",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 300,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 4",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 340,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 5",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 600,
+          image: "assets/images/person.jpg",
+        ),
+      ],
+    ),
+    ProductModel(
+      category: "Chicken 2",
+      foods: [
+        Foods(
+          name: "Beef 1",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 200,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 2",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 250,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 3",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 300,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 4",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 340,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 5",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 600,
+          image: "assets/images/person.jpg",
+        ),
+      ],
+    ),
+    ProductModel(
+      category: "Beef2",
+      foods: [
+        Foods(
+          name: "Beef 1",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 200,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 2",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 250,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 3",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 300,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 4",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 340,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 5",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 600,
+          image: "assets/images/person.jpg",
+        ),
+      ],
+    ),
     ProductModel(
       category: "Chicken",
       foods: [
@@ -176,11 +323,12 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
   void initState() {
     super.initState();
     _scrollController = ScrollController();
+    _tabController = TabController(
+      length: listOfFoodCategories.length,
+      vsync: this,
+    );
 
     _scrollController.addListener(() {
-      context
-          .read<RestaurantCubit>()
-          .showCategoryListView(_scrollController.offset);
       context
           .read<RestaurantCubit>()
           .updateOpacity((_scrollController.offset / 200).clamp(0, 1));
@@ -193,10 +341,6 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
     super.dispose();
   }
 
-  void _onClickCategory(BuildContext context, int categoryIndex) {
-    context.read<RestaurantCubit>().onClickCategory(categoryIndex);
-  }
-
   void _handleStates(state) {
     if (state is RestaurantShowCategoryListViewState) {
       _appBarHeight = state.appBarHeight;
@@ -204,10 +348,6 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
 
     if (state is RestaurantUpdateOpacityState) {
       _opacity = state.opacity;
-    }
-
-    if (state is RestaurantOnClickCategoryState) {
-      _selectedIndex = state.selectedIndex;
     }
   }
 
@@ -225,11 +365,10 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
                 slivers: [
                   SliverToBoxAdapter(child: TopSectionRestaurantView()),
                   SliverToBoxAdapter(
-                    child: CustomCategoryListView(
-                      selectedIndex: _selectedIndex,
+                    child: CustomCategoryTabBar(
+                      tabController: _tabController,
                       list: listOfFoodCategories,
-                      onClickInItem: (index) =>
-                          _onClickCategory(context, index),
+                      onClickCategory: (index) {},
                     ),
                   ),
                   SliverList(
@@ -261,11 +400,11 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
                 ],
               ),
               CustomAppBarRestaurantView(
+                tabController: _tabController,
                 opacity: _opacity,
-                selectedIndex: _selectedIndex,
                 list: listOfFoodCategories,
                 appBarHeight: _appBarHeight,
-                onClickInItem: (index) => _onClickCategory(context, index),
+                onClickCategory: (index) {},
               ),
             ],
           ),

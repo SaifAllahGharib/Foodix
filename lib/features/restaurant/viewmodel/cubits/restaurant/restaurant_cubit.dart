@@ -4,7 +4,6 @@ import 'package:yummy_home/features/restaurant/viewmodel/cubits/restaurant/resta
 class RestaurantCubit extends Cubit<RestaurantState> {
   double _appBarHeight = 0.0;
   double _opacity = 0.0;
-  int _selectedIndex = 0;
   final Map<int, int> _countOfProducts = {};
 
   RestaurantCubit() : super(RestaurantInitState());
@@ -17,11 +16,6 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   void updateOpacity(double value) {
     _opacity = value;
     emit(RestaurantUpdateOpacityState(_opacity));
-  }
-
-  void onClickCategory(int index) {
-    _selectedIndex = index;
-    emit(RestaurantOnClickCategoryState(_selectedIndex));
   }
 
   void incrementCountOfProduct(int index) {

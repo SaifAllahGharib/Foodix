@@ -18,10 +18,4 @@ class RestaurantUpdateOpacityState extends RestaurantState {
   RestaurantUpdateOpacityState(this.opacity);
 }
 
-class RestaurantOnClickCategoryState extends RestaurantState {
-  final int selectedIndex;
-
-  RestaurantOnClickCategoryState(this.selectedIndex);
-}
-
 class RestaurantCounterState extends RestaurantState {}
