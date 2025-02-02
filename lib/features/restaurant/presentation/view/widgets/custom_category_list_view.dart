@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_item_categories_list_view.dart';
 
 class CustomCategoryListView extends StatefulWidget {
-  final List list;
+  final List<ProductModel> list;
   final int selectedIndex;
   final void Function(int index) onClickInItem;
 
@@ -86,7 +87,7 @@ class _CustomCategoryListViewState extends State<CustomCategoryListView> {
         itemBuilder: (context, index) {
           return CustomItemCategoriesListView(
             onClick: () => _onClickInItem(index),
-            categoryName: widget.list[index]["category"],
+            categoryName: widget.list[index].category ?? "",
             sizeOfList: widget.list.length,
             index: index,
             selectedIndex: widget.selectedIndex,

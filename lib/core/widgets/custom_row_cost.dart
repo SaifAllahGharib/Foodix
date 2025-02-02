@@ -8,6 +8,7 @@ class CustomRowCost extends StatelessWidget {
   final FontWeight fontWeight;
   final Color color;
   final double? fontSize;
+  final MainAxisAlignment mainAxisAlignment;
 
   const CustomRowCost({
     super.key,
@@ -15,11 +16,13 @@ class CustomRowCost extends StatelessWidget {
     this.fontWeight = FontWeight.w400,
     this.color = Colors.black,
     this.fontSize,
+    this.mainAxisAlignment = MainAxisAlignment.start,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: mainAxisAlignment,
       children: [
         Text(
           egp,
@@ -33,9 +36,7 @@ class CustomRowCost extends StatelessWidget {
         Text(
           "food_cost".tr(context),
           style: Styles.textStyle15(context).copyWith(
-            fontWeight: FontWeight.w400,
-            color: color,
-          ),
+              fontWeight: FontWeight.w400, color: color, fontSize: fontSize),
         ),
       ],
     );

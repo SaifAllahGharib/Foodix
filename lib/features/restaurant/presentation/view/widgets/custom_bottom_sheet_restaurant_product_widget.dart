@@ -4,10 +4,12 @@ import 'package:yummy_home/features/restaurant/presentation/view/widgets/top_sec
 
 class CustomBottomSheetRestaurantProductWidget extends StatelessWidget {
   final int index;
+  final double price;
 
   const CustomBottomSheetRestaurantProductWidget({
     super.key,
     required this.index,
+    required this.price,
   });
 
   @override
@@ -19,7 +21,10 @@ class CustomBottomSheetRestaurantProductWidget extends StatelessWidget {
         children: [
           TopSectionBottomSheetProduct(),
           Spacer(),
-          BottomSectionBottomSheetProduct(index: index),
+          BottomSectionBottomSheetProduct(
+            index: index,
+            price: price,
+          ),
         ],
       ),
     );

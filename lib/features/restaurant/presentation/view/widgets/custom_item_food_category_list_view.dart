@@ -11,7 +11,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
   final int index;
   final String foodName;
   final String foodDesc;
-  final String foodCost;
+  final double foodPrice;
   final String foodImage;
   final List listOfFood;
   final void Function() onClickInItem;
@@ -21,7 +21,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
     required this.index,
     required this.foodName,
     required this.foodDesc,
-    required this.foodCost,
+    required this.foodPrice,
     required this.foodImage,
     required this.listOfFood,
     required this.onClickInItem,
@@ -57,24 +57,38 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                   width: Dimensions.height130(context) * 0.9,
                   height: Dimensions.height130(context) * 0.9,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      foodName,
-                      style: Styles.textStyle16(context),
-                    ),
-                    SizedBox(height: Dimensions.height10(context)),
-                    Text(
-                      foodDesc,
-                      style: Styles.textStyle12(context),
-                    ),
-                    Spacer(),
-                    CustomRowCost(
-                      egp: foodCost,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ],
+                SizedBox(width: Dimensions.width30(context) * 2),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          foodName,
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                          style: Styles.textStyle16(context),
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.height10(context)),
+                      Expanded(
+                        child: Text(
+                          foodDesc,
+                          softWrap: true,
+                          textAlign: TextAlign.end,
+                          overflow: TextOverflow.ellipsis,
+                          style: Styles.textStyle12(context),
+                        ),
+                      ),
+                      Spacer(),
+                      CustomRowCost(
+                        egp: "$foodPrice",
+                        fontWeight: FontWeight.w600,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

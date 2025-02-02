@@ -8,10 +8,12 @@ import 'package:yummy_home/features/restaurant/viewmodel/cubits/restaurant/resta
 
 class BottomSectionBottomSheetProduct extends StatelessWidget {
   final int index;
+  final double price;
 
   const BottomSectionBottomSheetProduct({
     super.key,
     required this.index,
+    required this.price,
   });
 
   void _incrementCountOfProduct(BuildContext context, int index) {
@@ -48,8 +50,12 @@ class BottomSectionBottomSheetProduct extends StatelessWidget {
             decrement: () => _decrementCountOfProduct(context, index),
             count: getCountOfProduct(context, index),
           ),
-          SizedBox(width: Dimensions.width30(context) * 2),
-          CustomButtonAddToCart(),
+          SizedBox(width: Dimensions.width30(context)),
+          CustomButtonAddToCart(
+            price: getCountOfProduct(context, index) == 0
+                ? price
+                : price * getCountOfProduct(context, index),
+          ),
         ],
       ),
     );

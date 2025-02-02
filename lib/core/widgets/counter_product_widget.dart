@@ -37,13 +37,13 @@ class CounterProductWidget extends StatelessWidget {
               color: AppColors.primaryColor,
             ),
           ),
-          SizedBox(width: Dimensions.width20(context)),
+          SizedBox(width: Dimensions.width15(context)),
           Text(
             "$count",
             style: Styles.textStyle15(context)
                 .copyWith(fontWeight: FontWeight.w600),
           ),
-          SizedBox(width: Dimensions.width20(context)),
+          SizedBox(width: Dimensions.width15(context)),
           IconButton(
             onPressed: decrement,
             icon: Icon(

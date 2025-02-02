@@ -61,5 +61,6 @@
   "minute": "m",
   "hour": "h",
   "cart": "Cart",
-  "total_basket": "Total Cart"
+  "total_basket": "Total Cart",
+  "add_to_cart": "Add to cart"
 }

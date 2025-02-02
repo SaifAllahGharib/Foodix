@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 
 class CustomButtonAddToCart extends StatelessWidget {
-  const CustomButtonAddToCart({super.key});
+  final double price;
+
+  const CustomButtonAddToCart({
+    super.key,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +28,20 @@ class CustomButtonAddToCart extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "Add to cart",
-              style: Styles.textStyle15(context).copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
+            Expanded(
+              child: Text(
+                "add_to_cart".tr(context),
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+                style: Styles.textStyle15(context).copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
+            SizedBox(width: Dimensions.width20(context)),
             CustomRowCost(
-              egp: "250",
+              egp: "$price",
               color: Colors.white,
               fontWeight: FontWeight.w500,
             ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/features/restaurant/data/models/Foods.dart';
+import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_app_bar_restaurant_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_list_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_food_category_list_view.dart';
@@ -21,229 +23,153 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
   double _opacity = 0.0;
   int _selectedIndex = 0;
   double _appBarHeight = 0.0;
-  final List<Map<String, dynamic>> listOfFoodCategories = [
-    {
-      "category": "Chicken",
-      "foods": [
-        {
-          "name": "Ch",
-          "desc": "Delicious grilled chicken",
-          "price": "170",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch2",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch3",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch4",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch5",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch6",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch7",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-      ]
-    },
-    {
-      "category": "Beef",
-      "foods": [
-        {
-          "name": "Beef1",
-          "desc": "Juicy steak",
-          "price": "200",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Beef2",
-          "desc": "Tasty beef burger",
-          "price": "180",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Beef3",
-          "desc": "Tasty beef burger",
-          "price": "180",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Beef4",
-          "desc": "Tasty beef burger",
-          "price": "180",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Beef5",
-          "desc": "Tasty beef burger",
-          "price": "180",
-          "image": "assets/images/person.jpg"
-        },
-      ]
-    },
-    {
-      "category": "Drinks",
-      "foods": [
-        {
-          "name": "Coca Cola",
-          "desc": "Refreshing cola",
-          "price": "50",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Orange Juice",
-          "desc": "Freshly squeezed",
-          "price": "60",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Orange Juice",
-          "desc": "Freshly squeezed",
-          "price": "60",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Orange Juice",
-          "desc": "Freshly squeezed",
-          "price": "60",
-          "image": "assets/images/person.jpg"
-        },
-      ]
-    },
-    {
-      "category": "Chicken2",
-      "foods": [
-        {
-          "name": "Ch",
-          "desc": "Delicious grilled chicken",
-          "price": "170",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch2",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch3",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch4",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch5",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch6",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Ch7",
-          "desc": "Spicy fried chicken",
-          "price": "140",
-          "image": "assets/images/person.jpg"
-        },
-      ]
-    },
-    {
-      "category": "Beef2",
-      "foods": [
-        {
-          "name": "Beef1",
-          "desc": "Juicy steak",
-          "price": "200",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Beef2",
-          "desc": "Tasty beef burger",
-          "price": "180",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Beef3",
-          "desc": "Tasty beef burger",
-          "price": "180",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Beef4",
-          "desc": "Tasty beef burger",
-          "price": "180",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Beef5",
-          "desc": "Tasty beef burger",
-          "price": "180",
-          "image": "assets/images/person.jpg"
-        },
-      ]
-    },
-    {
-      "category": "Drinks2",
-      "foods": [
-        {
-          "name": "Coca Cola",
-          "desc": "Refreshing cola",
-          "price": "50",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Orange Juice",
-          "desc": "Freshly squeezed",
-          "price": "60",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Orange Juice",
-          "desc": "Freshly squeezed",
-          "price": "60",
-          "image": "assets/images/person.jpg"
-        },
-        {
-          "name": "Orange Juice",
-          "desc": "Freshly squeezed",
-          "price": "60",
-          "image": "assets/images/person.jpg"
-        },
-      ]
-    }
+  final List<ProductModel> listOfFoodCategories = [
+    ProductModel(
+      category: "Chicken",
+      foods: [
+        Foods(
+          name: "Chicken 1",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 170,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Chicken 2",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 190,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Chicken 3",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 210,
+          image: "assets/images/person.jpg",
+        ),
+      ],
+    ),
+    ProductModel(
+      category: "Beef",
+      foods: [
+        Foods(
+          name: "Beef 1",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 200,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 2",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 250,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 3",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 300,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 4",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 340,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 5",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 600,
+          image: "assets/images/person.jpg",
+        ),
+      ],
+    ),
+    ProductModel(
+      category: "Chicken 2",
+      foods: [
+        Foods(
+          name: "Beef 1",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 200,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 2",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 250,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 3",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 300,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 4",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 340,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 5",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 600,
+          image: "assets/images/person.jpg",
+        ),
+      ],
+    ),
+    ProductModel(
+      category: "Beef2",
+      foods: [
+        Foods(
+          name: "Beef 1",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 200,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 2",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 250,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 3",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 300,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 4",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 340,
+          image: "assets/images/person.jpg",
+        ),
+        Foods(
+          name: "Beef 5",
+          desc:
+              "josy, mashweya, jamda, mot, salte,josy, mashweya, jamda, mot, salte",
+          price: 600,
+          image: "assets/images/person.jpg",
+        ),
+      ],
+    ),
   ];
 
   @override
@@ -269,12 +195,6 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
 
   void _onClickCategory(BuildContext context, int categoryIndex) {
     context.read<RestaurantCubit>().onClickCategory(categoryIndex);
-
-    _scrollController.animateTo(
-      categoryIndex.toDouble(),
-      duration: Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
   }
 
   void _handleStates(state) {
@@ -312,29 +232,31 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody> {
                           _onClickCategory(context, index),
                     ),
                   ),
-                  SliverList.builder(
-                    itemCount: listOfFoodCategories.length,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: Dimensions.height15(context),
-                              horizontal: Dimensions.height20(context),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      childCount: listOfFoodCategories.length,
+                      (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                vertical: Dimensions.height15(context),
+                                horizontal: Dimensions.height20(context),
+                              ),
+                              child: Text(
+                                listOfFoodCategories[index].category!,
+                                style: Styles.textStyle18(context),
+                              ),
                             ),
-                            child: Text(
-                              listOfFoodCategories[index]["category"],
-                              style: Styles.textStyle18(context),
+                            CustomFoodCategoryListView(
+                              listOfFoodCategories:
+                                  listOfFoodCategories[index].foods ?? [],
                             ),
-                          ),
-                          CustomFoodCategoryListView(
-                            listOfFoodCategories: listOfFoodCategories[index]
-                                ["foods"],
-                          ),
-                        ],
-                      );
-                    },
+                          ],
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
