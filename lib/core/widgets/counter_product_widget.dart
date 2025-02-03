@@ -7,12 +7,14 @@ class CounterProductWidget extends StatelessWidget {
   final void Function() increment;
   final void Function() decrement;
   final int count;
+  final bool isCart;
 
   const CounterProductWidget({
     super.key,
     required this.increment,
     required this.decrement,
     required this.count,
+    this.isCart = false,
   });
 
   @override
@@ -48,7 +50,11 @@ class CounterProductWidget extends StatelessWidget {
             onPressed: decrement,
             icon: Icon(
               Icons.remove,
-              color: count == 0 ? Colors.grey : AppColors.primaryColor,
+              color: count == 1
+                  ? isCart
+                      ? AppColors.primaryColor
+                      : Colors.grey
+                  : AppColors.primaryColor,
             ),
           ),
         ],

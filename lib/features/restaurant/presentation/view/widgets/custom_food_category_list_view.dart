@@ -34,10 +34,10 @@ class CustomFoodCategoryListView extends StatelessWidget {
               return CustomItemFoodCategoryListView(
                 index: listOfFoodCategories.indexOf(food),
                 listOfFood: listOfFoodCategories,
-                foodImage: food.image ?? "",
-                foodName: food.name ?? "",
-                foodDesc: food.desc ?? "",
-                foodPrice: food.price ?? 0,
+                foodImage: food.image!,
+                foodName: food.name!,
+                foodDesc: food.desc!,
+                foodPrice: food.price!,
                 onClickInItem: () {
                   showBottomSheet(
                     context: context,
@@ -45,7 +45,7 @@ class CustomFoodCategoryListView extends StatelessWidget {
                     builder: (context) {
                       return CustomBottomSheetRestaurantProductWidget(
                         index: listOfFoodCategories.indexOf(food),
-                        price: food.price ?? 0,
+                        price: food.price!,
                       );
                     },
                   );

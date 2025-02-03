@@ -52,9 +52,7 @@ class BottomSectionBottomSheetProduct extends StatelessWidget {
           ),
           SizedBox(width: Dimensions.width30(context)),
           CustomButtonAddToCart(
-            price: getCountOfProduct(context, index) == 0
-                ? price
-                : price * getCountOfProduct(context, index),
+            price: price * getCountOfProduct(context, index),
           ),
         ],
       ),

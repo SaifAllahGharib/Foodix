@@ -5,6 +5,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   double _appBarHeight = 0.0;
   double _opacity = 0.0;
   final Map<int, int> _countOfProducts = {};
+  final int initCount = 1;
 
   RestaurantCubit() : super(RestaurantInitState());
 
@@ -19,16 +20,16 @@ class RestaurantCubit extends Cubit<RestaurantState> {
   }
 
   void incrementCountOfProduct(int index) {
-    _countOfProducts[index] = ((_countOfProducts[index] ?? 0) + 1);
+    _countOfProducts[index] = ((_countOfProducts[index] ?? initCount) + 1);
     emit(RestaurantCounterState());
   }
 
   void decrementCountOfProduct(int index) {
-    if ((_countOfProducts[index] ?? 0) > 0) {
-      _countOfProducts[index] = ((_countOfProducts[index] ?? 0) - 1);
+    if ((_countOfProducts[index] ?? initCount) > initCount) {
+      _countOfProducts[index] = ((_countOfProducts[index] ?? initCount) - 1);
       emit(RestaurantCounterState());
     }
   }
 
-  int countOfProducts(int index) => _countOfProducts[index] ?? 0;
+  int countOfProducts(int index) => _countOfProducts[index] ?? initCount;
 }

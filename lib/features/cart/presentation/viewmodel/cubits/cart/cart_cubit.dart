@@ -3,20 +3,21 @@ import 'package:yummy_home/features/cart/presentation/viewmodel/cubits/cart/cart
 
 class CartCubit extends Cubit<CartState> {
   final Map<int, int> _countOfProducts = {};
+  final int initCount = 1;
 
   CartCubit() : super(CartInitState());
 
   void incrementCountOfProducts(int index) {
-    _countOfProducts[index] = (_countOfProducts[index] ?? 0) + 1;
+    _countOfProducts[index] = (_countOfProducts[index] ?? initCount) + 1;
     emit(CartCounterState());
   }
 
   void decrementCountOfProducts(int index) {
-    if ((_countOfProducts[index] ?? 0) > 0) {
+    if ((_countOfProducts[index] ?? initCount) > initCount) {
       _countOfProducts[index] = _countOfProducts[index]! - 1;
       emit(CartCounterState());
     }
   }
 
-  int countOfProducts(int index) => _countOfProducts[index] ?? 0;
+  int countOfProducts(int index) => _countOfProducts[index] ?? initCount;
 }

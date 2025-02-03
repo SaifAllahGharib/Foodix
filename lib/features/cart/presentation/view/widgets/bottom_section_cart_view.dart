@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/features/cart/presentation/view/widgets/custom_button_cart_view.dart';
+import 'package:yummy_home/features/restaurant/presentation/view/restaurant_view.dart';
 
 class BottomSectionCartView extends StatelessWidget {
   const BottomSectionCartView({super.key});
+
+  void _goToRestaurantView(BuildContext context) {
+    GoRouter.of(context).pushReplacement(RestaurantView.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,7 @@ class BottomSectionCartView extends StatelessWidget {
             textColor: Colors.black,
             color: Colors.white,
             enableBorder: true,
-            onClick: () {},
+            onClick: () => _goToRestaurantView(context),
           ),
         ],
       ),

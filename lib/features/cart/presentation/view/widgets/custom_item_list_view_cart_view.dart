@@ -64,6 +64,7 @@ class CustomItemListViewCartView extends StatelessWidget {
                 increment: () => _incrementCountOfProducts(context, index),
                 decrement: () => _decrementCountOfProducts(context, index),
                 count: _getCountOfProducts(context, index),
+                isCart: true,
               ),
             ],
           ),
