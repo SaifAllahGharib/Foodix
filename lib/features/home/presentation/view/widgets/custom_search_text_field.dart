@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 class CustomSearchTextField extends StatelessWidget {
   final TextEditingController controller;
   final void Function(String value) onChange;
+  final bool isSeller;
 
   const CustomSearchTextField({
     super.key,
     required this.onChange,
     required this.controller,
+    this.isSeller = false,
   });
 
   @override
@@ -28,15 +31,15 @@ class CustomSearchTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 4),
           borderSide: BorderSide(
-            width: 0,
-            color: Colors.white,
+            width: isSeller ? 1 : 0,
+            color: isSeller ? AppColors.gray : Colors.white,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 2),
           borderSide: BorderSide(
-            width: 0,
-            color: Colors.white,
+            width: isSeller ? 1 : 0,
+            color: isSeller ? AppColors.primaryColor : Colors.white,
           ),
         ),
       ),
