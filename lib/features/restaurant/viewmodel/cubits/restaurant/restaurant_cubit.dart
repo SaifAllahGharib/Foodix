@@ -8,7 +8,7 @@ class RestaurantCubit extends Cubit<RestaurantState> {
 
   RestaurantCubit() : super(RestaurantInitState());
 
-  void showCategoryListView(double offSet) {
+  void showCategoryTabBar(double offSet) {
     _appBarHeight = offSet;
     emit(RestaurantShowCategoryListViewState(_appBarHeight));
   }
