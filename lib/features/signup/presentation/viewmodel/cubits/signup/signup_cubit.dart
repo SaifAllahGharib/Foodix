@@ -4,7 +4,7 @@ import 'package:yummy_home/core/utils/functions/is_valid_email.dart';
 import 'package:yummy_home/core/utils/functions/is_valid_phone.dart';
 import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
-import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
+import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> {
   final SignupRepository _signupRepository;

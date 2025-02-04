@@ -10,8 +10,8 @@ import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_cubit.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_state.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/forget_password/forget_password_cubit.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/forget_password/forget_password_state.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class ForgetPasswordViewBody extends StatefulWidget {

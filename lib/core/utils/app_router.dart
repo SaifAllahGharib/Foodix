@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/features/add_food/presentation/view/add_food_view.dart';
 import 'package:yummy_home/features/cart/presentation/view/cart_view.dart';
 import 'package:yummy_home/features/choose_language/presentation/view/choose_language_view.dart';
@@ -17,7 +16,7 @@ import 'package:yummy_home/features/your_addresses/view/your_addresses_view.dart
 
 abstract class AppRouter {
   static final router = GoRouter(
-    initialLocation: MySharedPreferences().getInitRoute(),
+    // initialLocation: MySharedPreferences().getInitRoute(),
     routes: [
       GoRoute(
         path: "/",

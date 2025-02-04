@@ -21,6 +21,7 @@ class CustomButton extends StatelessWidget {
     return MaterialButton(
       onPressed: isEnabled ? onClick : () {},
       height: Dimensions.height45(context),
+      elevation: 0,
       enableFeedback: isEnabled ? true : false,
       padding: EdgeInsets.symmetric(
         horizontal: Dimensions.width120(context),
@@ -31,7 +32,7 @@ class CustomButton extends StatelessWidget {
         ),
       ),
       textColor: Colors.white,
-      color: isEnabled ? AppColors.primaryColor : AppColors.secColor,
+      color: isEnabled ? AppColors.primaryColor : AppColors.disabledColor,
       child: Text(
         text,
         style: TextStyle(

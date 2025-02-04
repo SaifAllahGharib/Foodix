@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/functions/is_valid_email.dart';
 import 'package:yummy_home/features/login/data/models/login_model.dart';
 import 'package:yummy_home/features/login/data/repos/login_repo.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/login/login_state.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/login/login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepository _loginRepository;

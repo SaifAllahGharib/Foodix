@@ -14,10 +14,9 @@ import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/data/models/login_model.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/login/login_cubit.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/login/login_state.dart';
 import 'package:yummy_home/features/login/presentation/view/forget_password_view.dart';
-import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/login/login_cubit.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/login/login_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
@@ -104,7 +103,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           text: "error_request".tr(context),
         );
       }
-    } else if (state is SignupFailure) {
+    } else if (state is LoginFailure) {
       snackBar(
         context: context,
         text: "Error: ${state.errorMsg}",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/features/home/presentation/manager/cubits/home/home_cubit.dart';
-import 'package:yummy_home/features/home/presentation/manager/cubits/home/home_state.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/home/home_cubit.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/home/home_state.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_bottom_navigation_bar.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/home_view_body.dart';
 

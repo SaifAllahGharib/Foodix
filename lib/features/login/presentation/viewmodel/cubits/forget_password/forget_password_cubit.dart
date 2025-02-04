@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/functions/is_valid_email.dart';
 import 'package:yummy_home/features/login/data/repos/forget_password_repo.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/forget_password/forget_password_state.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/forget_password/forget_password_state.dart';
 
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   final ForgetPasswordRepository _forgetPasswordRepository;

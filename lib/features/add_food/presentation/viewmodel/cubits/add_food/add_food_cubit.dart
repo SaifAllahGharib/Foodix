@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/image_picker_helper.dart';
-import 'package:yummy_home/features/add_food/presentation/manager/cubits/add_food/add_food_state.dart';
+import 'package:yummy_home/features/add_food/presentation/viewmodel/cubits/add_food/add_food_state.dart';
 
 class AddFoodCubit extends Cubit<AddFoodState> {
   bool _isValid = false;

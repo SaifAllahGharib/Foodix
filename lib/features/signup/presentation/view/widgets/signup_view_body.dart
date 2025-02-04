@@ -11,8 +11,8 @@ import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 import 'package:yummy_home/features/signup/data/models/signup_model.dart';
-import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_cubit.dart';
-import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_state.dart';
+import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_cubit.dart';
+import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 

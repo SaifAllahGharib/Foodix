@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/features/login/data/repos/change_password_repo_imp.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/change_password/change_password_cubit.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/change_password/change_password_cubit.dart';
 import 'package:yummy_home/features/login/presentation/view/widgets/change_password_view_body.dart';
 
 class ChangePasswordView extends StatelessWidget {

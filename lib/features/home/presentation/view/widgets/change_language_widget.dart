@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';

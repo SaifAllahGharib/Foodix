@@ -13,8 +13,8 @@ import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/presentation/view/change_password_view.dart';
 import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
-import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_cubit.dart';
-import 'package:yummy_home/features/verification/presentation/manager/cubits/verification/verification_state.dart';
+import 'package:yummy_home/features/verification/presentation/viewmodel/cubits/verification/verification_cubit.dart';
+import 'package:yummy_home/features/verification/presentation/viewmodel/cubits/verification/verification_state.dart';
 import 'package:yummy_home/features/verification/presentation/view/widgets/verify_text_form_fields.dart';
 
 class VerificationViewBody extends StatefulWidget {

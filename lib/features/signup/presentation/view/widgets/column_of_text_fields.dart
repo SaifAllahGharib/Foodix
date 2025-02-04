@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
-import 'package:yummy_home/features/signup/presentation/manager/cubits/signup/signup_cubit.dart';
+import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_cubit.dart';
 
 class ColumnOfTextFields extends StatefulWidget {
   final BuildContext context;

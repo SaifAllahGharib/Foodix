@@ -12,8 +12,8 @@ import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/data/models/change_password_model.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/change_password/change_password_cubit.dart';
-import 'package:yummy_home/features/login/presentation/manager/cubits/change_password/change_password_state.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/change_password/change_password_cubit.dart';
+import 'package:yummy_home/features/login/presentation/viewmodel/cubits/change_password/change_password_state.dart';
 
 class ChangePasswordViewBody extends StatefulWidget {
   final String verifyCode;

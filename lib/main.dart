@@ -3,13 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:yummy_home/core/manager/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/app_router.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/functions/set_portrait_orientation.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/utils/service_locator.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/firebase_options.dart';
 
 void main() async {
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
       textSelectionTheme: TextSelectionThemeData(
         selectionHandleColor: AppColors.primaryColor,
         cursorColor: AppColors.primaryColor,
-        selectionColor: AppColors.secColor,
+        selectionColor: AppColors.primaryColor,
       ),
     );
   }
