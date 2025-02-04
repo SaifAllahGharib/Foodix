@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
-import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
-import 'package:yummy_home/core/widgets/custom_back_button.dart';
-import 'package:yummy_home/core/widgets/custom_button.dart';
-import 'package:yummy_home/core/widgets/custom_text_field.dart';
-import 'package:yummy_home/features/add_food/presentation/view/add_food_view.dart';
+import 'package:yummy_home/features/home/presentation/view/widgets/category_seller_list_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_float_button.dart';
-import 'package:yummy_home/features/home/presentation/view/widgets/custom_grid_view_builder.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_search_text_field.dart';
+import 'package:yummy_home/features/home/presentation/view/widgets/custom_widget_float_button_add_category.dart';
 import 'package:yummy_home/features/restaurant/data/models/Foods.dart';
 import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 
@@ -156,6 +151,25 @@ class _MainSellerViewState extends State<MainSellerView> {
   }
 
   @override
+  void dispose() {
+    _searchCategoryController.dispose();
+    _searchFoodController.dispose();
+    _categoryController.dispose();
+    super.dispose();
+  }
+
+  void _addCategoryBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return CustomWidgetFloatButtonAddCategory(
+          categoryController: _categoryController,
+        );
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
@@ -179,121 +193,13 @@ class _MainSellerViewState extends State<MainSellerView> {
                 style: Styles.textStyle30(context),
               ),
               SizedBox(height: Dimensions.height20(context)),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: listOfFoodCategories.length,
-                  padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      onTap: () {
-                        showBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return Container(
-                              width: double.infinity,
-                              color: Colors.white,
-                              padding:
-                                  EdgeInsets.all(Dimensions.height20(context)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CustomBackButton(),
-                                  SizedBox(
-                                      height: Dimensions.height20(context)),
-                                  CustomSearchTextField(
-                                    controller: _searchFoodController,
-                                    isSeller: true,
-                                    onChange: (value) {},
-                                  ),
-                                  SizedBox(
-                                      height: Dimensions.height20(context)),
-                                  Text(
-                                    "Pizza",
-                                    style: Styles.textStyle20(context),
-                                  ),
-                                  SizedBox(
-                                      height: Dimensions.height20(context)),
-                                  Expanded(
-                                    child: Stack(
-                                      children: [
-                                        CustomGridViewBuilder(
-                                          name: "Food",
-                                          cost: "280",
-                                          imageUrl: "assets/images/person.jpg",
-                                        ),
-                                        CustomFloatButton(
-                                          onClick: () => GoRouter.of(context)
-                                              .push(AddFoodView.id),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                      contentPadding: EdgeInsets.zero,
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${listOfFoodCategories[index].category}",
-                            style: Styles.textStyle18(context),
-                          ),
-                          if (index != listOfFoodCategories.length - 1)
-                            SizedBox(height: Dimensions.height20(context)),
-                          if (index != listOfFoodCategories.length - 1)
-                            Divider(
-                              height: 1,
-                              color: AppColors.gray,
-                            ),
-                          if (index != listOfFoodCategories.length - 1)
-                            SizedBox(height: Dimensions.height20(context)),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+              CategorySellerListView(
+                list: listOfFoodCategories,
+                searchFoodController: _searchFoodController,
               ),
             ],
           ),
-          CustomFloatButton(
-            onClick: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(Dimensions.radius20(context)),
-                        topRight: Radius.circular(Dimensions.radius20(context)),
-                      ),
-                    ),
-                    padding: EdgeInsets.all(Dimensions.height20(context)),
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          controller: _categoryController,
-                          hint: "category".tr(context),
-                          onChanged: (val) {},
-                        ),
-                        SizedBox(height: Dimensions.height20(context)),
-                        CustomButton(
-                          text: "add".tr(context),
-                          onClick: () {},
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-          ),
+          CustomFloatButton(onClick: () => _addCategoryBottomSheet()),
         ],
       ),
     );
