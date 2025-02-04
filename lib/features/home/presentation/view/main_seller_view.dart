@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
+import 'package:yummy_home/core/widgets/custom_button.dart';
+import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/add_food/presentation/view/add_food_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_float_button.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_grid_view_builder.dart';
@@ -21,6 +24,7 @@ class MainSellerView extends StatefulWidget {
 class _MainSellerViewState extends State<MainSellerView> {
   late final TextEditingController _searchCategoryController;
   late final TextEditingController _searchFoodController;
+  late final TextEditingController _categoryController;
   final List<ProductModel> listOfFoodCategories = [
     ProductModel(
       category: "Pizza",
@@ -146,6 +150,7 @@ class _MainSellerViewState extends State<MainSellerView> {
   void initState() {
     _searchCategoryController = TextEditingController();
     _searchFoodController = TextEditingController();
+    _categoryController = TextEditingController();
 
     super.initState();
   }
@@ -158,93 +163,136 @@ class _MainSellerViewState extends State<MainSellerView> {
         right: Dimensions.height20(context),
         left: Dimensions.height20(context),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          CustomSearchTextField(
-            isSeller: true,
-            controller: _searchCategoryController,
-            onChange: (value) {},
-          ),
-          SizedBox(height: Dimensions.height20(context)),
-          Text(
-            "Categories",
-            style: Styles.textStyle20(context),
-          ),
-          SizedBox(height: Dimensions.height20(context)),
-          Expanded(
-            child: ListView.builder(
-              itemCount: listOfFoodCategories.length,
-              padding: EdgeInsets.zero,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () {
-                    showBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return Container(
-                          width: double.infinity,
-                          color: Colors.white,
-                          padding: EdgeInsets.all(Dimensions.height20(context)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomBackButton(),
-                              SizedBox(height: Dimensions.height20(context)),
-                              CustomSearchTextField(
-                                controller: _searchFoodController,
-                                isSeller: true,
-                                onChange: (value) {},
-                              ),
-                              SizedBox(height: Dimensions.height20(context)),
-                              Text(
-                                "Pizza",
-                                style: Styles.textStyle20(context),
-                              ),
-                              SizedBox(height: Dimensions.height20(context)),
-                              Expanded(
-                                child: Stack(
-                                  children: [
-                                    CustomGridViewBuilder(
-                                      name: "Food",
-                                      cost: "280",
-                                      imageUrl: "assets/images/person.jpg",
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomSearchTextField(
+                isSeller: true,
+                controller: _searchCategoryController,
+                onChange: (value) {},
+              ),
+              SizedBox(height: Dimensions.height20(context)),
+              Text(
+                "categories".tr(context),
+                style: Styles.textStyle30(context),
+              ),
+              SizedBox(height: Dimensions.height20(context)),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: listOfFoodCategories.length,
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      onTap: () {
+                        showBottomSheet(
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              width: double.infinity,
+                              color: Colors.white,
+                              padding:
+                                  EdgeInsets.all(Dimensions.height20(context)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomBackButton(),
+                                  SizedBox(
+                                      height: Dimensions.height20(context)),
+                                  CustomSearchTextField(
+                                    controller: _searchFoodController,
+                                    isSeller: true,
+                                    onChange: (value) {},
+                                  ),
+                                  SizedBox(
+                                      height: Dimensions.height20(context)),
+                                  Text(
+                                    "Pizza",
+                                    style: Styles.textStyle20(context),
+                                  ),
+                                  SizedBox(
+                                      height: Dimensions.height20(context)),
+                                  Expanded(
+                                    child: Stack(
+                                      children: [
+                                        CustomGridViewBuilder(
+                                          name: "Food",
+                                          cost: "280",
+                                          imageUrl: "assets/images/person.jpg",
+                                        ),
+                                        CustomFloatButton(
+                                          onClick: () => GoRouter.of(context)
+                                              .push(AddFoodView.id),
+                                        ),
+                                      ],
                                     ),
-                                    CustomFloatButton(
-                                      onClick: () => GoRouter.of(context)
-                                          .push(AddFoodView.id),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            );
+                          },
                         );
                       },
+                      contentPadding: EdgeInsets.zero,
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${listOfFoodCategories[index].category}",
+                            style: Styles.textStyle18(context),
+                          ),
+                          if (index != listOfFoodCategories.length - 1)
+                            SizedBox(height: Dimensions.height20(context)),
+                          if (index != listOfFoodCategories.length - 1)
+                            Divider(
+                              height: 1,
+                              color: AppColors.gray,
+                            ),
+                          if (index != listOfFoodCategories.length - 1)
+                            SizedBox(height: Dimensions.height20(context)),
+                        ],
+                      ),
                     );
                   },
-                  contentPadding: EdgeInsets.zero,
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${listOfFoodCategories[index].category}",
-                        style: Styles.textStyle18(context),
+                ),
+              ),
+            ],
+          ),
+          CustomFloatButton(
+            onClick: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (context) {
+                  return Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Dimensions.radius20(context)),
+                        topRight: Radius.circular(Dimensions.radius20(context)),
                       ),
-                      if (index != listOfFoodCategories.length - 1)
-                        SizedBox(height: Dimensions.height20(context)),
-                      if (index != listOfFoodCategories.length - 1)
-                        Divider(
-                          height: 1,
-                          color: AppColors.gray,
+                    ),
+                    padding: EdgeInsets.all(Dimensions.height20(context)),
+                    child: Column(
+                      children: [
+                        CustomTextField(
+                          controller: _categoryController,
+                          hint: "category".tr(context),
+                          onChanged: (val) {},
                         ),
-                      if (index != listOfFoodCategories.length - 1)
                         SizedBox(height: Dimensions.height20(context)),
-                    ],
-                  ),
-                );
-              },
-            ),
+                        CustomButton(
+                          text: "add".tr(context),
+                          onClick: () {},
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
           ),
         ],
       ),

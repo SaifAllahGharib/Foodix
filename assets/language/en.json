@@ -62,5 +62,7 @@
   "hour": "h",
   "cart": "Cart",
   "total_basket": "Total Cart",
-  "add_to_cart": "Add to cart"
+  "add_to_cart": "Add to cart",
+  "category": "Category",
+  "categories": "Categories"
 }
