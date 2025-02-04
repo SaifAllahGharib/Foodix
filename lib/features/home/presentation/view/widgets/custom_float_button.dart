@@ -23,6 +23,7 @@ class CustomFloatButton extends StatelessWidget {
         padding: EdgeInsets.all(Dimensions.width10(context)),
         child: IconButton(
           onPressed: onClick,
+          enableFeedback: false,
           icon: Icon(
             Icons.add,
             size: Dimensions.getWidth(context) * 0.070,

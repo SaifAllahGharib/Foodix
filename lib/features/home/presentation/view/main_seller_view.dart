@@ -158,7 +158,7 @@ class _MainSellerViewState extends State<MainSellerView> {
     super.dispose();
   }
 
-  void _addCategoryBottomSheet() {
+  void _addCategoryBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -199,7 +199,7 @@ class _MainSellerViewState extends State<MainSellerView> {
               ),
             ],
           ),
-          CustomFloatButton(onClick: () => _addCategoryBottomSheet()),
+          CustomFloatButton(onClick: () => _addCategoryBottomSheet(context)),
         ],
       ),
     );
