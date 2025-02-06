@@ -26,6 +26,14 @@ class _EditFoodDerailsWidgetsState extends State<EditFoodDerailsWidgets> {
   }
 
   @override
+  void dispose() {
+    _nameFood.dispose();
+    _descFood.dispose();
+    _costFood.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: Dimensions.height130(context) * 5,

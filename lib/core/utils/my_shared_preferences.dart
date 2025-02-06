@@ -1,7 +1,7 @@
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yummy_home/features/choose_type/presentation/view/choose_type_view.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
+import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 
 class MySharedPreferences {
   static final MySharedPreferences _instance = MySharedPreferences._internal();
@@ -52,7 +52,7 @@ class MySharedPreferences {
     final lang = getString('lang');
     final id = getIdUser();
     if (lang != null) {
-      return id == null ? ChooseTypeView.id : HomeView.id;
+      return id == null ? LoginView.id : HomeView.id;
     }
     return '/';
   }

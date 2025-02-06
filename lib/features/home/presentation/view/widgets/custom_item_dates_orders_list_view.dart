@@ -45,7 +45,9 @@ class CustomItemDatesOrdersListView extends StatelessWidget {
           child: Text(
             list[index],
             style: Styles.textStyle16(context).copyWith(
-              color: selectedIndex == index ? Colors.white : Colors.black,
+              color: selectedIndex == index
+                  ? Colors.white
+                  : AppColors.primaryColor,
             ),
           ),
         ),

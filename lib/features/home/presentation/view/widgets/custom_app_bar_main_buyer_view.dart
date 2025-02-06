@@ -24,6 +24,12 @@ class _CustomAppBarMainBuyerViewState extends State<CustomAppBarMainBuyerView> {
   }
 
   @override
+  void dispose() {
+    _search.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.primaryColor,

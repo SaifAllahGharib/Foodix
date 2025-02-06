@@ -5,7 +5,7 @@ import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
-import 'package:yummy_home/features/home/presentation/view/home_view.dart';
+import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 
 class ChooseLanguageViewBody extends StatelessWidget {
   const ChooseLanguageViewBody({super.key});
@@ -46,7 +46,6 @@ class ChooseLanguageViewBody extends StatelessWidget {
 
   void _storeLanguageAndNavigate(BuildContext context, String lang) async {
     await context.read<LocalCubit>().changeLanguage(lang);
-    // GoRouter.of(context).go(ChooseTypeView.id);
-    GoRouter.of(context).go(HomeView.id);
+    GoRouter.of(context).go(LoginView.id);
   }
 }

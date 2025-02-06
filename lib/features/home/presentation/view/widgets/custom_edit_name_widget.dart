@@ -21,6 +21,12 @@ class _CustomEditNameWidgetState extends State<CustomEditNameWidget> {
   }
 
   @override
+  void dispose() {
+    _editName.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(Dimensions.height15(context)),

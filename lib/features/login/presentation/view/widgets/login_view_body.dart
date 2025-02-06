@@ -2,22 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
-import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/core/utils/functions/snack_bar.dart';
-import 'package:yummy_home/core/utils/my_shared_preferences.dart';
-import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
-import 'package:yummy_home/features/home/presentation/view/home_view.dart';
+import 'package:yummy_home/features/choose_type/presentation/view/choose_type_view.dart';
 import 'package:yummy_home/features/login/data/models/login_model.dart';
 import 'package:yummy_home/features/login/presentation/view/forget_password_view.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/login/login_cubit.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/login/login_state.dart';
-import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class LoginViewBody extends StatefulWidget {
@@ -43,7 +38,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   void dispose() {
     _email.dispose();
     _password.dispose();
-
     super.dispose();
   }
 
@@ -57,59 +51,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     );
   }
 
-  void _handelState(state) async {
-    if (state is LoginSuccess) {
-      String msg = state.response.message;
-      Map<String, dynamic>? user = state.response.user;
-
-      if (msg == "Login successful") {
-        snackBar(
-          context: context,
-          text: "login_successful".tr(context),
-          color: AppColors.primaryColor,
-        );
-
-        await MySharedPreferences().storeUser(user!);
-
-        GoRouter.of(context).go(HomeView.id);
-      } else if (msg == "is not verified") {
-        snackBar(
-          context: context,
-          text: "code_send_successfully".tr(context),
-          color: AppColors.primaryColor,
-        );
-
-        _onSuccess(user);
-      } else if (msg == "code not send successfully") {
-        snackBar(
-          context: context,
-          text: "code_not_send_success".tr(context),
-        );
-
-        _onSuccess(user);
-      } else if (msg == "Incorrect password") {
-        snackBar(
-          context: context,
-          text: "password_incorrect".tr(context),
-        );
-      } else if (msg == "User not found") {
-        snackBar(
-          context: context,
-          text: "this_user_does_not_exist".tr(context),
-        );
-      } else if (msg == "There was an error processing your request") {
-        snackBar(
-          context: context,
-          text: "error_request".tr(context),
-        );
-      }
-    } else if (state is LoginFailure) {
-      snackBar(
-        context: context,
-        text: "Error: ${state.errorMsg}",
-      );
-    }
-  }
+  void _handelState(state) async {}
 
   void _validation(BuildContext context) {
     context.read<LoginCubit>().validationFields(
@@ -141,10 +83,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: Dimensions.height20(context)),
-                CustomBackButton(),
                 SizedBox(height: Dimensions.height30(context)),
-                CustomText(text: "login".tr(context)),
+                CustomText(text: "welcome_back".tr(context)),
                 SizedBox(height: Dimensions.height45(context) * 2),
                 CustomTextField(
                   controller: _email,
@@ -182,7 +122,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   text: "not_have_account".tr(context),
                   color: Colors.black,
                   onClick: () {
-                    GoRouter.of(context).go(SignupView.id);
+                    GoRouter.of(context).push(ChooseTypeView.id);
                   },
                 ),
               ],

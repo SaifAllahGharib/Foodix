@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
-import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/core/utils/functions/snack_bar.dart';
+import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
-import 'package:yummy_home/features/signup/data/models/signup_model.dart';
+import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_cubit.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_state.dart';
-import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
 
 class SignupViewBody extends StatefulWidget {
@@ -47,7 +45,6 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     _email.dispose();
     _phone.dispose();
     _password.dispose();
-
     super.dispose();
   }
 
@@ -61,61 +58,18 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     );
   }
 
-  void _handelState(state) {
-    if (state is SignupSuccess) {
-      String msg = state.response.message;
-      Map<String, dynamic>? user = state.response.user;
-
-      if (msg == "User added successfully and send code to your email") {
-        snackBar(
-          context: context,
-          text: "code_send_successfully".tr(context),
-          color: AppColors.primaryColor,
-        );
-
-        _onSuccess(user);
-      } else if (msg ==
-          "User added successfully, but not send code successfully") {
-        snackBar(
-          context: context,
-          text: "code_not_send_success".tr(context),
-        );
-
-        _onSuccess(user);
-      } else if (msg == "User already exists with this email") {
-        snackBar(
-          context: context,
-          text: "user_already_exists".tr(context),
-        );
-      } else if (msg == "Failed to add user") {
-        snackBar(
-          context: context,
-          text: "failed_to_create_account".tr(context),
-        );
-      } else if (msg == "There was an error processing your request") {
-        snackBar(
-          context: context,
-          text: "error_request".tr(context),
-        );
-      }
-    } else if (state is SignupFailure) {
-      snackBar(
-        context: context,
-        text: "Error: ${state.errorMsg}",
-      );
-    }
-  }
+  void _handelState(state) {}
 
   void _signup(BuildContext context) {
-    context.read<SignupCubit>().signup(
-          SignupModel(
-            name: _name.text,
-            email: _email.text,
-            phone_number: _phone.text,
-            password: _password.text,
-            type: widget.type,
-          ),
-        );
+    // context.read<SignupCubit>().signup(
+    //       SignupModel(
+    //         name: _name.text,
+    //         email: _email.text,
+    //         phone_number: _phone.text,
+    //         password: _password.text,
+    //         type: widget.type,
+    //       ),
+    //     );
   }
 
   void _validation(BuildContext context) {
@@ -142,6 +96,8 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(height: Dimensions.height20(context)),
+                CustomBackButton(),
                 SizedBox(height: Dimensions.height30(context)),
                 CustomText(text: "create_account".tr(context)),
                 SizedBox(height: Dimensions.height45(context) * 1.3),

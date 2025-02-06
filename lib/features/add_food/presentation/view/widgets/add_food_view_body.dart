@@ -9,9 +9,9 @@ import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
+import 'package:yummy_home/features/add_food/presentation/view/widgets/custom_button_image_picker.dart';
 import 'package:yummy_home/features/add_food/presentation/viewmodel/cubits/add_food/add_food_cubit.dart';
 import 'package:yummy_home/features/add_food/presentation/viewmodel/cubits/add_food/add_food_state.dart';
-import 'package:yummy_home/features/add_food/presentation/view/widgets/custom_button_image_picker.dart';
 
 class AddFoodViewBody extends StatefulWidget {
   const AddFoodViewBody({super.key});
@@ -34,6 +34,14 @@ class _AddFoodViewBodyState extends State<AddFoodViewBody> {
     _foodPrice = TextEditingController();
     _imagePickerHelper = ImagePickerHelper();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _foodName.dispose();
+    _foodDesc.dispose();
+    _foodPrice.dispose();
+    super.dispose();
   }
 
   void validate(BuildContext context) {

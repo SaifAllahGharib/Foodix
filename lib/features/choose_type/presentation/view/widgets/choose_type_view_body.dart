@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
@@ -15,7 +16,9 @@ class ChooseTypeViewBody extends StatelessWidget {
       padding: EdgeInsets.all(Dimensions.height20(context)),
       child: Column(
         children: [
-          SizedBox(height: Dimensions.height45(context)),
+          SizedBox(height: Dimensions.height20(context)),
+          CustomBackButton(),
+          SizedBox(height: Dimensions.height30(context)),
           Image.asset(
             "assets/images/choose_type.jpeg",
             width: Dimensions.width380(context),
@@ -48,6 +51,6 @@ class ChooseTypeViewBody extends StatelessWidget {
   }
 
   void _goToSignup(BuildContext context, String type) {
-    GoRouter.of(context).go(SignupView.id, extra: type);
+    GoRouter.of(context).pushReplacement(SignupView.id, extra: type);
   }
 }
