@@ -50,18 +50,9 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     super.dispose();
   }
 
-  void _onSuccess(user) async {
-    GoRouter.of(context).push(
-      VerificationView.id,
-      extra: {
-        "user": user,
-        "purpose": "signup",
-      },
-    );
-  }
-
   void _handelState(state) {
     if (state is SignupSuccess) {
+      GoRouter.of(context).push(VerificationView.id);
       snackBar(context: context, text: state.msg, color: Colors.blue);
     } else if (state is SignupFailure) {
       snackBar(context: context, text: state.failure.errorMsg);
@@ -77,6 +68,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             password: _password.text,
             type: widget.type,
           ),
+          context,
         );
   }
 

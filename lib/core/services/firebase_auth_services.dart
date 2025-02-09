@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:yummy_home/core/models/user_model.dart';
-import 'package:yummy_home/core/services/auth_service.dart';
+import 'package:yummy_home/core/services/auth_services.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
 
-class FirebaseAuthServices extends AuthService {
-  final FirebaseService _clintService;
+class FirebaseAuthServices extends AuthServices {
+  final FirebaseService _firebaseService;
 
-  FirebaseAuthServices(this._clintService);
+  FirebaseAuthServices(this._firebaseService);
 
   @override
   Future<UserCredential> signUp(UserModel user) async {
-    final response = await _clintService.auth.createUserWithEmailAndPassword(
+    final response = await _firebaseService.auth.createUserWithEmailAndPassword(
       email: user.email!,
       password: user.password!,
     );
@@ -25,20 +25,23 @@ class FirebaseAuthServices extends AuthService {
   }
 
   @override
-  Future<UserModel?> getCurrentUser() {
-    // TODO: implement getCurrentUser
-    throw UnimplementedError();
+  Future<void> resetPassword({required String email}) async {}
+
+  @override
+  Future<void> signOut() async {}
+
+  @override
+  Future<void> sendEmailVerification() async {
+    var user = _firebaseService.auth.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
+    }
   }
 
   @override
-  Future<void> resetPassword({required String email}) {
-    // TODO: implement resetPassword
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<bool> isEmailVerified() async {
+    var user = _firebaseService.auth.currentUser;
+    await user?.reload();
+    return user?.emailVerified ?? false;
   }
 }

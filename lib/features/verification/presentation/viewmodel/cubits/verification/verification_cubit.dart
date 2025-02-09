@@ -1,40 +1,33 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
+import 'package:yummy_home/features/verification/data/repos/verificarion_repo.dart';
 import 'package:yummy_home/features/verification/presentation/viewmodel/cubits/verification/verification_state.dart';
 
 class VerificationCubit extends Cubit<VerificationState> {
-  // final VerificationRepository _verificationRepository;
+  final VerificationRepository _verificationRepository;
   bool _canSend = false;
   int _time = 60;
   Timer? _timer;
 
-  VerificationCubit() : super(VerificationInit());
+  VerificationCubit(this._verificationRepository) : super(VerificationInit());
 
-  Future<void> verifyCode(VerifyCodeModel code) async {
-    // emit(VerificationLoading());
-    //
-    // var result = await _verificationRepository.verifyCode(code);
-    //
-    // result.fold(
-    //   (e) => emit(VerificationFailure(e.errorMsg)),
-    //   (code) => emit(VerificationSuccess(code)),
-    // );
+  Future<void> sendEmailVerification() async {
+    _startTimer();
+    _verificationRepository.sendEmailVerification();
+    emit(VerificationIsEmailVerificationSend());
   }
 
-  Future<void> reSendCode(String email) async {
-    // startTimer();
-    //
-    // var result = await _verificationRepository.reSendCode(email);
-    //
-    // result.fold(
-    //   (e) => emit(VerificationFailure(e.errorMsg)),
-    //   (code) => emit(VerificationReSendCode(code)),
-    // );
+  Future<void> isEmailVerified() async {
+    final res = await _verificationRepository.isEmailVerified();
+
+    res.fold(
+      (e) => emit(VerificationFailure(e.errorMsg)),
+      (success) => emit(VerificationSuccess(success)),
+    );
   }
 
-  void startTimer() {
+  void _startTimer() {
     if (_timer != null) {
       _timer!.cancel();
     }

@@ -41,14 +41,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: VerificationView.id,
-        builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>;
-
-          return VerificationView(
-            user: extra["user"] ?? {},
-            purpose: extra["purpose"] ?? "",
-          );
-        },
+        builder: (context, state) => VerificationView(),
       ),
       GoRoute(
         path: ForgetPasswordView.id,
