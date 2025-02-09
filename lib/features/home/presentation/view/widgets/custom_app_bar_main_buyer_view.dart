@@ -55,7 +55,7 @@ class _CustomAppBarMainBuyerViewState extends State<CustomAppBarMainBuyerView> {
                       ),
                     ),
                     SizedBox(width: Dimensions.height10(context) * 0.5),
-                    Icon(
+                    const Icon(
                       Icons.keyboard_arrow_down_outlined,
                       color: Colors.white,
                     ),
@@ -72,7 +72,7 @@ class _CustomAppBarMainBuyerViewState extends State<CustomAppBarMainBuyerView> {
                       GoRouter.of(context).push(CartView.id);
                     },
                     enableFeedback: false,
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.shopping_bag_outlined,
                       color: Colors.black87,
                     ),

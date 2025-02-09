@@ -11,7 +11,7 @@ class TopSectionBottomSheetProduct extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ImageAndBackButton(),
+        const ImageAndBackButton(),
         Padding(
           padding: EdgeInsets.symmetric(
             horizontal: Dimensions.height15(context),

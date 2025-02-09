@@ -25,7 +25,7 @@ class CustomWidgetBottomSheetFloatButtonAddCategory extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomBackButton(),
+          const CustomBackButton(),
           SizedBox(height: Dimensions.height20(context)),
           CustomSearchTextField(
             controller: searchFoodController,
@@ -41,7 +41,7 @@ class CustomWidgetBottomSheetFloatButtonAddCategory extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                CustomGridViewBuilder(
+                const CustomGridViewBuilder(
                   name: "Food",
                   cost: "280",
                   imageUrl: "assets/images/person.jpg",

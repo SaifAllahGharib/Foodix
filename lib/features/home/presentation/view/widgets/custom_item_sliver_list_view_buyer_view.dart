@@ -31,7 +31,7 @@ class CustomItemSliverListViewBuyerView extends StatelessWidget {
         ),
         child: Row(
           children: [
-            CustomImageItemSliverListViewBuyerView(),
+            const CustomImageItemSliverListViewBuyerView(),
             SizedBox(width: Dimensions.height15(context)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +41,7 @@ class CustomItemSliverListViewBuyerView extends StatelessWidget {
                   style: Styles.textStyle18(context),
                 ),
                 SizedBox(height: Dimensions.height15(context)),
-                CustomRatingWidget(
+                const CustomRatingWidget(
                   rating: 4.8,
                   ratingCount: 265,
                 ),
@@ -49,11 +49,11 @@ class CustomItemSliverListViewBuyerView extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CustomDeliveryTimeWidget(time: 24),
+                    const CustomDeliveryTimeWidget(time: 24),
                     SizedBox(width: Dimensions.height10(context) * 0.5),
-                    CustomDotWidget(),
+                    const CustomDotWidget(),
                     SizedBox(width: Dimensions.height10(context) * 0.5),
-                    CustomCostDelivery(),
+                    const CustomCostDelivery(),
                   ],
                 ),
               ],

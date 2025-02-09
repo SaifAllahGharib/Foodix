@@ -35,14 +35,14 @@ class _ProfileViewState extends State<ProfileView> {
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      barrierColor: Color(0x77909090),
+      barrierColor: const Color(0x77909090),
       backgroundColor: Colors.white,
       sheetAnimationStyle: AnimationStyle(
         curve: Curves.fastOutSlowIn,
         reverseCurve: Curves.easeInBack,
       ),
       builder: (context) {
-        return ChangeLanguageWidget();
+        return const ChangeLanguageWidget();
       },
     );
   }
@@ -72,7 +72,7 @@ class _ProfileViewState extends State<ProfileView> {
                     .pickImageFromGallery(_imagePickerHelper),
               ),
               SizedBox(height: Dimensions.height15(context)),
-              NameAndEmail(),
+              const NameAndEmail(),
               SizedBox(height: Dimensions.height20(context)),
               Divider(
                 color: AppColors.whiteGray,

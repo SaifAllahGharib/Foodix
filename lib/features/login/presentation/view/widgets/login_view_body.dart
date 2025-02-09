@@ -75,7 +75,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       listener: (context, state) => _handelState(state),
       builder: (context, state) {
         if (state is LoginLoading) {
-          return Loading();
+          return const Loading();
         }
 
         return Padding(

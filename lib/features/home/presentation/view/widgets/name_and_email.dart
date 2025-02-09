@@ -13,14 +13,14 @@ class NameAndEmail extends StatelessWidget {
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      barrierColor: Color(0x77909090),
+      barrierColor: const Color(0x77909090),
       backgroundColor: Colors.white,
       sheetAnimationStyle: AnimationStyle(
         curve: Curves.fastOutSlowIn,
         reverseCurve: Curves.easeInBack,
       ),
       builder: (context) {
-        return CustomEditNameWidget();
+        return const CustomEditNameWidget();
       },
     );
   }
@@ -51,7 +51,7 @@ class NameAndEmail extends StatelessWidget {
           ),
           IconButton(
             onPressed: () => _showBottomSheet(context),
-            icon: Icon(
+            icon: const Icon(
               Icons.edit,
               color: AppColors.primaryColor,
             ),

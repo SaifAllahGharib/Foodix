@@ -123,7 +123,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
       listener: (context, state) => _handelState(context, state),
       builder: (context, state) {
         if (state is VerificationLoading) {
-          return Loading();
+          return const Loading();
         }
 
         return SingleChildScrollView(
@@ -191,7 +191,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                                   fontWeight: FontWeight.w500,
                                 ),
                               )
-                        : SizedBox.shrink(),
+                        : const SizedBox.shrink(),
                   ],
                 ),
                 SizedBox(height: Dimensions.height45(context)),

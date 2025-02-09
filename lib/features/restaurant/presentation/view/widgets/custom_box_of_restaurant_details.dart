@@ -27,7 +27,7 @@ class CustomBoxOfRestaurantDetails extends StatelessWidget {
             EdgeInsets.symmetric(horizontal: Dimensions.width30(context) * 1.2),
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: AppColors.gray,
               blurRadius: 5,
@@ -40,15 +40,15 @@ class CustomBoxOfRestaurantDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ImageAndNameAndRatingWidget(),
+            const ImageAndNameAndRatingWidget(),
             SizedBox(height: Dimensions.height15(context)),
             Row(
               children: [
-                CustomDeliveryTimeWidget(time: 24),
+                const CustomDeliveryTimeWidget(time: 24),
                 SizedBox(width: Dimensions.width15(context)),
-                CustomDotWidget(),
+                const CustomDotWidget(),
                 SizedBox(width: Dimensions.width15(context)),
-                CustomCostDelivery(),
+                const CustomCostDelivery(),
               ],
             ),
           ],

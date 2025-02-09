@@ -33,7 +33,7 @@ class CustomButtonCartView extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 5),
           side: enableBorder
-              ? BorderSide(
+              ? const BorderSide(
                   color: Colors.black54,
                   width: 1,
                 )

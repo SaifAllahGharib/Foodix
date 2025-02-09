@@ -81,7 +81,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                           style: Styles.textStyle12(context),
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       CustomRowCost(
                         egp: "$foodPrice",
                         fontWeight: FontWeight.w600,
@@ -94,7 +94,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
             ),
           ),
           if (index != listOfFood.length - 1)
-            Divider(
+            const Divider(
               height: 1,
               color: AppColors.gray,
             ),

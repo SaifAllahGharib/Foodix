@@ -16,7 +16,7 @@ class MiddleSectionDetailsOrderViewBody extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(Icons.location_on_outlined),
+            const Icon(Icons.location_on_outlined),
             SizedBox(width: Dimensions.width30(context)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

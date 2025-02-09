@@ -203,7 +203,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
 
     Scrollable.ensureVisible(
       context!,
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 250),
       curve: Curves.easeInOut,
       alignment: Dimensions.height10(context) * 0.04,
     );
@@ -218,7 +218,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
       if (_scrollController.offset >= position.dy) {
         _tabController.animateTo(
           i,
-          duration: Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 250),
           curve: Curves.easeInOut,
         );
       }
@@ -247,7 +247,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
               CustomScrollView(
                 controller: _scrollController,
                 slivers: [
-                  SliverToBoxAdapter(child: TopSectionRestaurantView()),
+                  const SliverToBoxAdapter(child: TopSectionRestaurantView()),
                   SliverToBoxAdapter(
                     child: CustomCategoryTabBar(
                       tabController: _tabController,

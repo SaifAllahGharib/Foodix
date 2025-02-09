@@ -88,7 +88,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
       listener: (context, state) => _handleState(state),
       builder: (context, state) {
         if (state is ForgetPasswordLoading) {
-          return Loading();
+          return const Loading();
         }
 
         return Padding(
@@ -97,7 +97,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
             child: Column(
               children: [
                 SizedBox(height: Dimensions.height20(context)),
-                CustomBackButton(),
+                const CustomBackButton(),
                 SizedBox(height: Dimensions.height30(context)),
                 CustomText(text: "re_password".tr(context)),
                 SizedBox(height: Dimensions.height45(context) * 2),

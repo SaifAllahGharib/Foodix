@@ -28,7 +28,7 @@ class CustomImageItemSliverListViewBuyerView extends StatelessWidget {
                   ? Dimensions.radius20(context)
                   : 0),
         ),
-        image: DecorationImage(
+        image: const DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage("assets/images/person.jpg"),
         ),

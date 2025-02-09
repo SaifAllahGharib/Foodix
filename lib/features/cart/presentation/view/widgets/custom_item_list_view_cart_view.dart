@@ -52,14 +52,14 @@ class CustomItemListViewCartView extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.w600),
                   ),
                   SizedBox(height: Dimensions.height30(context)),
-                  CustomRowCost(
+                  const CustomRowCost(
                     egp: "250",
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               CounterProductWidget(
                 increment: () => _incrementCountOfProducts(context, index),
                 decrement: () => _decrementCountOfProducts(context, index),
@@ -70,7 +70,7 @@ class CustomItemListViewCartView extends StatelessWidget {
           ),
           if (index != 4) SizedBox(height: Dimensions.height15(context)),
           if (index != 4)
-            Divider(
+            const Divider(
               height: 1,
               color: AppColors.gray,
             ),

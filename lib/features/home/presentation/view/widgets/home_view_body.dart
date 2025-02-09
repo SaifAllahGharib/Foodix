@@ -19,15 +19,15 @@ class HomeViewBody extends StatelessWidget {
     return IndexedStack(
       index: selectedIndex,
       children: [
-        MainSellerView(),
+        const MainSellerView(),
         // MainBuyerView(),
         BlocProvider(
           create: (context) => OrdersCubit(),
-          child: OrdersView(),
+          child: const OrdersView(),
         ),
         BlocProvider(
           create: (context) => ProfileCubit(),
-          child: ProfileView(),
+          child: const ProfileView(),
         ),
       ],
     );

@@ -10,9 +10,9 @@ class TopSectionDetailsOrderViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomDetailsOrderNameImage(customTextDetails: true),
+        const CustomDetailsOrderNameImage(customTextDetails: true),
         SizedBox(height: Dimensions.height10(context)),
-        CustomTimeWidget(day: "Today", time: "12:30 PM"),
+        const CustomTimeWidget(day: "Today", time: "12:30 PM"),
       ],
     );
   }

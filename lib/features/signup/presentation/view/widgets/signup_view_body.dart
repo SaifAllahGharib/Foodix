@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
@@ -58,18 +60,24 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     );
   }
 
-  void _handelState(state) {}
+  void _handelState(state) {
+    if (state is SignupSuccess) {
+      snackBar(context: context, text: state.msg, color: Colors.blue);
+    } else if (state is SignupFailure) {
+      snackBar(context: context, text: state.failure.errorMsg);
+    }
+  }
 
-  void _signup(BuildContext context) {
-    // context.read<SignupCubit>().signup(
-    //       SignupModel(
-    //         name: _name.text,
-    //         email: _email.text,
-    //         phone_number: _phone.text,
-    //         password: _password.text,
-    //         type: widget.type,
-    //       ),
-    //     );
+  void _signup(BuildContext context) async {
+    context.read<SignupCubit>().signup(
+          UserModel(
+            name: _name.text,
+            email: _email.text,
+            phone: _phone.text,
+            password: _password.text,
+            type: widget.type,
+          ),
+        );
   }
 
   void _validation(BuildContext context) {
@@ -88,7 +96,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
       listener: (context, state) => _handelState(state),
       builder: (context, state) {
         if (state is SignupLoading) {
-          return Loading();
+          return const Loading();
         }
 
         return Padding(
@@ -97,7 +105,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             child: Column(
               children: [
                 SizedBox(height: Dimensions.height20(context)),
-                CustomBackButton(),
+                const CustomBackButton(),
                 SizedBox(height: Dimensions.height30(context)),
                 CustomText(text: "create_account".tr(context)),
                 SizedBox(height: Dimensions.height45(context) * 1.3),
@@ -113,8 +121,12 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 CustomButton(
                   text: "signup".tr(context),
                   isEnabled: context.watch<SignupCubit>().buttonEnabled,
-                  onClick: () {
+                  onClick: () async {
                     _signup(context);
+                    // await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    //   email: _email.text,
+                    //   password: _password.text,
+                    // );
                   },
                 ),
                 SizedBox(height: Dimensions.height45(context)),

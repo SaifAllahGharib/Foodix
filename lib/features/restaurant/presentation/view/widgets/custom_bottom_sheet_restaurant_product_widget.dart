@@ -19,8 +19,8 @@ class CustomBottomSheetRestaurantProductWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TopSectionBottomSheetProduct(),
-          Spacer(),
+          const TopSectionBottomSheetProduct(),
+          const Spacer(),
           BottomSectionBottomSheetProduct(
             index: index,
             price: price,

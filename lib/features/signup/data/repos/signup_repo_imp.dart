@@ -1,30 +1,36 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:yummy_home/core/errors/failure.dart';
-import 'package:yummy_home/core/models/response.dart';
-import 'package:yummy_home/core/utils/api.dart';
-import 'package:yummy_home/features/signup/data/models/signup_model.dart';
+import 'package:yummy_home/core/models/user_model.dart';
+import 'package:yummy_home/core/services/auth_service.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
 
 class SignupRepositoryImp extends SignupRepository {
-  final Api _api;
+  final FirebaseDatabase _reference = FirebaseDatabase.instance;
+  final AuthService _authService;
 
-  SignupRepositoryImp(this._api);
+  SignupRepositoryImp(this._authService);
 
   @override
-  Future<Either<Failure, ResponseModel>> signup(SignupModel user) async {
+  Future<Either<Failure, String>> signup(UserModel user) async {
     try {
-      var response = await _api.post(
-        endPoint: "auth/register.php",
-        data: user.toJson(),
-      );
+      final response = await _authService.signUp(user);
 
-      return right(ResponseModel.fromJson(response));
-    } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
+      if (response.user != null) {
+        String uid = response.user!.uid;
+        DatabaseReference dbRef = _reference.ref().child("users").child(uid);
+
+        await dbRef.set(user.toJson());
+
+        return right("Signup successfully");
+      } else {
+        return right("Signup field");
       }
-      return left(ServerFailure(e.toString()));
+    } on FirebaseAuthException catch (e) {
+      return left(FirebaseAuthFailure(e.code));
+    } catch (e) {
+      return left(FirebaseFailure(e.toString()));
     }
   }
 }

@@ -40,10 +40,10 @@ class CustomDetailsOrderNameImage extends StatelessWidget {
             ),
             customTextDetails
                 ? SizedBox(height: Dimensions.height10(context) * 0.2)
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
             customTextDetails
                 ? CustomDetailsOrderText(text: "completed".tr(context))
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
             SizedBox(height: Dimensions.height10(context) * 0.2),
             Row(
               children: [
@@ -51,7 +51,7 @@ class CustomDetailsOrderNameImage extends StatelessWidget {
                   text: "order_number".tr(context),
                   color: Colors.grey,
                 ),
-                CustomDetailsOrderText(
+                const CustomDetailsOrderText(
                   text: "12345678911",
                   color: Colors.grey,
                 ),

@@ -8,6 +8,6 @@ class FoodDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: FoodDetailsViewBody());
+    return const Scaffold(body: FoodDetailsViewBody());
   }
 }

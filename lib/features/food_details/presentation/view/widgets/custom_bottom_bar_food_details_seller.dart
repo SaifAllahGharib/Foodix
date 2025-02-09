@@ -11,7 +11,7 @@ class CustomBottomBarFoodDetailsSeller extends StatelessWidget {
     showBottomSheet(
       context: context,
       builder: (context) {
-        return EditFoodDerailsWidgets();
+        return const EditFoodDerailsWidgets();
       },
     );
   }
@@ -41,7 +41,7 @@ class CustomBottomBarFoodDetailsSeller extends StatelessWidget {
           IconButton(
             enableFeedback: false,
             onPressed: () => _showBottomSheet(context),
-            icon: Icon(
+            icon: const Icon(
               Icons.edit,
               color: AppColors.primaryColor,
             ),

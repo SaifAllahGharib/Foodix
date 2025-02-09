@@ -1,4 +1,4 @@
-import 'package:yummy_home/core/models/response.dart';
+import 'package:yummy_home/core/errors/failure.dart';
 
 abstract class SignupState {}
 
@@ -7,15 +7,15 @@ class SignupInit extends SignupState {}
 class SignupLoading extends SignupState {}
 
 class SignupSuccess extends SignupState {
-  final ResponseModel response;
+  final String msg;
 
-  SignupSuccess(this.response);
+  SignupSuccess(this.msg);
 }
 
 class SignupFailure extends SignupState {
-  final String errorMsg;
+  final Failure failure;
 
-  SignupFailure(this.errorMsg);
+  SignupFailure(this.failure);
 }
 
 class SignupShowPassword extends SignupState {

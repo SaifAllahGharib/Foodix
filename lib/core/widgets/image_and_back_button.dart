@@ -12,7 +12,7 @@ class ImageAndBackButton extends StatelessWidget {
         Container(
           width: double.infinity,
           height: Dimensions.height130(context) * 2.4,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/person.jpg"),
               fit: BoxFit.cover,
@@ -21,7 +21,7 @@ class ImageAndBackButton extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.all(Dimensions.height20(context)),
-          child: CustomBackButton(),
+          child: const CustomBackButton(),
         ),
       ],
     );

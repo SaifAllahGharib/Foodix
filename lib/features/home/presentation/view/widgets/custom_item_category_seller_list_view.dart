@@ -43,7 +43,7 @@ class CustomItemCategorySellerListView extends StatelessWidget {
           if (index != list.length - 1)
             SizedBox(height: Dimensions.height20(context)),
           if (index != list.length - 1)
-            Divider(
+            const Divider(
               height: 1,
               color: AppColors.gray,
             ),

@@ -31,7 +31,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             color: Colors.black.withOpacity(0.1),
             spreadRadius: 3,
             blurRadius: 15,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -64,7 +64,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           height: Dimensions.width10(context) * 0.8,
           width: isSelected ? Dimensions.getWidth(context) * 0.055 : 0,

@@ -6,7 +6,7 @@ import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 class LocalCubit extends Cubit<Locale> {
   bool isDirectionRight = false;
 
-  LocalCubit() : super(Locale("ar")) {
+  LocalCubit() : super(const Locale("ar")) {
     _setDirection("ar");
   }
 

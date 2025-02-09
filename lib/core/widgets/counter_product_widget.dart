@@ -34,7 +34,7 @@ class CounterProductWidget extends StatelessWidget {
         children: [
           IconButton(
             onPressed: increment,
-            icon: Icon(
+            icon: const Icon(
               Icons.add,
               color: AppColors.primaryColor,
             ),

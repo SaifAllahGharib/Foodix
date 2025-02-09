@@ -15,7 +15,7 @@ class CustomCostDelivery extends StatelessWidget {
           color: Colors.black54,
         ),
         SizedBox(width: Dimensions.height10(context) * 0.5),
-        CustomRowCost(
+        const CustomRowCost(
           egp: "15.99",
           color: Colors.grey,
         ),

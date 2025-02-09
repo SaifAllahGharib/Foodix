@@ -17,13 +17,13 @@ class ChooseTypeViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: Dimensions.height20(context)),
-          CustomBackButton(),
+          const CustomBackButton(),
           SizedBox(height: Dimensions.height30(context)),
           Image.asset(
             "assets/images/choose_type.jpeg",
             width: Dimensions.width380(context),
           ),
-          Spacer(),
+          const Spacer(),
           CustomText(
             text: "choose_type".tr(context),
             textSize: Dimensions.fontSize30(context) * 0.8,
@@ -44,7 +44,7 @@ class ChooseTypeViewBody extends StatelessWidget {
               _goToSignup(context, "buyer");
             },
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

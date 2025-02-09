@@ -9,10 +9,10 @@ class Or extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
+        const Expanded(
           child: Divider(thickness: 2),
         ),
-        SizedBox(width: 7),
+        const SizedBox(width: 7),
         Text(
           "or".tr(context),
           style: TextStyle(
@@ -20,8 +20,8 @@ class Or extends StatelessWidget {
             fontSize: Dimensions.fontSize15(context),
           ),
         ),
-        SizedBox(width: 7),
-        Expanded(
+        const SizedBox(width: 7),
+        const Expanded(
           child: Divider(thickness: 2),
         ),
       ],

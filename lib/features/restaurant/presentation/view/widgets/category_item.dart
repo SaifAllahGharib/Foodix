@@ -62,9 +62,9 @@ class _CategoryItemState extends State<CategoryItem> {
             ),
           ),
         ),
-        Spacer(),
+        const Spacer(),
         AnimatedContainer(
-          duration: Duration(milliseconds: 240),
+          duration: const Duration(milliseconds: 240),
           curve: Curves.easeInOut,
           width: widget.selected
               ? _textPainter.width + Dimensions.width20(context) * 1.65

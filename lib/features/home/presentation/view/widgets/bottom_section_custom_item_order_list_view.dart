@@ -22,9 +22,9 @@ class BottomSectionCustomItemOrderListView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomDetailsOrderNameImage(),
+          const CustomDetailsOrderNameImage(),
           SizedBox(height: Dimensions.height15(context)),
-          CustomRowCost(egp: "280"),
+          const CustomRowCost(egp: "280"),
           SizedBox(height: Dimensions.height10(context) * 0.3),
           InkWell(
             onTap: () => GoRouter.of(context).push(DetailsOrderView.id),

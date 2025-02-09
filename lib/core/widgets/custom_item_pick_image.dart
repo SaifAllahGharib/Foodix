@@ -19,12 +19,12 @@ class CustomItemPickImage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            icon: Icon(Icons.camera_alt_outlined),
+            icon: const Icon(Icons.camera_alt_outlined),
             onPressed: pickImageFromCamera,
           ),
           SizedBox(width: Dimensions.width10(context)),
           IconButton(
-            icon: Icon(Icons.image_outlined),
+            icon: const Icon(Icons.image_outlined),
             onPressed: pickImageFromGallery,
           ),
         ],

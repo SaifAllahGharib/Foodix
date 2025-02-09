@@ -98,7 +98,7 @@ class _ChangePasswordViewBodyState extends State<ChangePasswordViewBody> {
       listener: (context, state) => _handleState(state),
       builder: (context, state) {
         if (state is ChangePasswordLoading) {
-          return Loading();
+          return const Loading();
         }
 
         return Padding(

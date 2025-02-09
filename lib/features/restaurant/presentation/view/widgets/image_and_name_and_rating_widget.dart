@@ -14,7 +14,7 @@ class ImageAndNameAndRatingWidget extends StatelessWidget {
           width: Dimensions.height80(context) * 0.9,
           height: Dimensions.height80(context) * 0.9,
           decoration: BoxDecoration(
-            image: DecorationImage(
+            image: const DecorationImage(
               image: AssetImage("assets/images/person.jpg"),
               fit: BoxFit.cover,
             ),
@@ -35,7 +35,7 @@ class ImageAndNameAndRatingWidget extends StatelessWidget {
               style: Styles.textStyle12(context),
             ),
             SizedBox(height: Dimensions.height10(context) * 0.2),
-            CustomRatingWidget(
+            const CustomRatingWidget(
               rating: 4.9,
               ratingCount: 1925,
             ),

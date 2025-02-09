@@ -61,7 +61,7 @@ class _OrdersViewState extends State<OrdersView> {
                   itemCount: 4,
                   padding: EdgeInsets.zero,
                   itemBuilder: (context, index) {
-                    return CustomItemOrderListView();
+                    return const CustomItemOrderListView();
                   },
                 ),
               ),

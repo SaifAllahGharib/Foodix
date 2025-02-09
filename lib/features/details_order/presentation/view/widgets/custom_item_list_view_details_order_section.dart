@@ -40,7 +40,7 @@ class CustomItemListViewDetailsOrderSection extends StatelessWidget {
               ),
             ],
           ),
-          CustomRowCost(egp: "280"),
+          const CustomRowCost(egp: "280"),
         ],
       ),
     );

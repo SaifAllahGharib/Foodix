@@ -14,14 +14,10 @@ import 'package:yummy_home/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setup();
-  setPortraitOrientation();
   await MySharedPreferences().init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // await Supabase.initialize(
-  //   url: Constants.supabaseUrl,
-  //   anonKey: Constants.supabaseKey,
-  // );
+  setup();
+  setPortraitOrientation();
 
   runApp(
     DevicePreview(
@@ -29,7 +25,7 @@ void main() async {
       tools: const [
         ...DevicePreview.defaultTools,
       ],
-      builder: (context) => MyApp(),
+      builder: (context) => const MyApp(),
     ),
   );
 
@@ -72,7 +68,7 @@ class MyApp extends StatelessWidget {
     return ThemeData(
       scaffoldBackgroundColor: Colors.white,
       fontFamily: fontFamily,
-      textSelectionTheme: TextSelectionThemeData(
+      textSelectionTheme: const TextSelectionThemeData(
         selectionHandleColor: AppColors.primaryColor,
         cursorColor: AppColors.primaryColor,
         selectionColor: AppColors.primaryColor,

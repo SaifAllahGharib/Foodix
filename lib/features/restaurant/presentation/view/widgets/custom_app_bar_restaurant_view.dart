@@ -26,12 +26,12 @@ class CustomAppBarRestaurantView extends StatelessWidget {
     return Column(
       children: [
         AnimatedContainer(
-          duration: Duration(milliseconds: 50),
+          duration: const Duration(milliseconds: 50),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(opacity),
             boxShadow: opacity >= 0.5
                 ? [
-                    BoxShadow(
+                    const BoxShadow(
                       color: AppColors.gray,
                       blurRadius: 10,
                       spreadRadius: 0.8,
@@ -50,7 +50,7 @@ class CustomAppBarRestaurantView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomBackButton(),
+              const CustomBackButton(),
               Container(
                 width: Dimensions.height45(context),
                 height: Dimensions.height45(context),
@@ -77,7 +77,7 @@ class CustomAppBarRestaurantView extends StatelessWidget {
           ),
         ),
         if (appBarHeight >= Dimensions.height45(context) * 4)
-          Divider(
+          const Divider(
             height: 1,
             color: AppColors.gray,
           ),

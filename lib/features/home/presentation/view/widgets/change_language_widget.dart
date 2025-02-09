@@ -27,11 +27,11 @@ class ChangeLanguageWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomDivider(),
+            const CustomDivider(),
             SizedBox(height: Dimensions.height10(context)),
             Row(
               children: [
-                CustomBackButton(),
+                const CustomBackButton(),
                 SizedBox(width: Dimensions.width30(context)),
                 Text(
                   "language".tr(context),

@@ -12,7 +12,7 @@ class AddFoodView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddFoodCubit(),
-      child: Scaffold(
+      child: const Scaffold(
         body: AddFoodViewBody(),
       ),
     );

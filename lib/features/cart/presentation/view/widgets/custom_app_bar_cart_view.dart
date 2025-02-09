@@ -17,7 +17,7 @@ class CustomAppBarCartView extends StatelessWidget {
         left: Dimensions.height10(context),
         bottom: Dimensions.height10(context),
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(
           bottom: BorderSide(
@@ -28,7 +28,7 @@ class CustomAppBarCartView extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CustomBackButton(),
+          const CustomBackButton(),
           SizedBox(width: Dimensions.width30(context) * 1.5),
           Column(
             children: [

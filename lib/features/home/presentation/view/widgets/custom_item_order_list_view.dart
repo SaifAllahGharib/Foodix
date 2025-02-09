@@ -18,7 +18,7 @@ class CustomItemOrderListView extends StatelessWidget {
           width: 1,
         ),
       ),
-      child: Column(
+      child: const Column(
         children: [
           TopSectionCustomItemOrderListView(),
           Divider(color: AppColors.gray, height: 1),

@@ -47,7 +47,7 @@ class _EditFoodDerailsWidgetsState extends State<EditFoodDerailsWidgets> {
         ),
         child: Column(
           children: [
-            CustomDivider(),
+            const CustomDivider(),
             SizedBox(height: Dimensions.height45(context)),
             CustomTextField(
               controller: _nameFood,

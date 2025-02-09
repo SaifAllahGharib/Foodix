@@ -40,7 +40,7 @@ class CustomItemDetailsOrder extends StatelessWidget {
               ),
               cashEnabled
                   ? SizedBox(width: Dimensions.width10(context))
-                  : SizedBox.shrink(),
+                  : const SizedBox.shrink(),
               cashEnabled
                   ? Text(
                       "food_cost".tr(context),
@@ -49,7 +49,7 @@ class CustomItemDetailsOrder extends StatelessWidget {
                         color: Colors.black,
                       ),
                     )
-                  : SizedBox.shrink(),
+                  : const SizedBox.shrink(),
             ],
           ),
         ],

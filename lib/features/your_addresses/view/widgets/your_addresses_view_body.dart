@@ -21,7 +21,7 @@ class YourAddressesViewBody extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CustomBackButton(),
+                  const CustomBackButton(),
                   SizedBox(width: Dimensions.width30(context)),
                   Text(
                     "addresses".tr(context),
@@ -47,7 +47,7 @@ class YourAddressesViewBody extends StatelessWidget {
               ),
             ],
           ),
-          ListViewAddresses(),
+          const ListViewAddresses(),
         ],
       ),
     );

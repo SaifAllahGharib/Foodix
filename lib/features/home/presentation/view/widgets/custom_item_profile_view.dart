@@ -37,7 +37,7 @@ class CustomItemProfileView extends StatelessWidget {
                     color: Colors.black87,
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.keyboard_arrow_right_outlined,
                   size: 28,
                   color: Colors.grey,
@@ -49,12 +49,12 @@ class CustomItemProfileView extends StatelessWidget {
           dividerIsShowing
               ? Padding(
                   padding: EdgeInsets.only(right: Dimensions.height20(context)),
-                  child: Divider(
+                  child: const Divider(
                     height: 1,
                     color: AppColors.gray,
                   ),
                 )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
         ],
       ),
     );

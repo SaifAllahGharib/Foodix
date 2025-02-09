@@ -68,7 +68,7 @@ class _AddFoodViewBodyState extends State<AddFoodViewBody> {
             child: Column(
               children: [
                 SizedBox(height: Dimensions.height20(context)),
-                CustomBackButton(),
+                const CustomBackButton(),
                 SizedBox(height: Dimensions.height45(context)),
                 CustomText(text: "add_food".tr(context)),
                 SizedBox(height: Dimensions.height45(context)),

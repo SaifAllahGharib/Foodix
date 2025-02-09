@@ -19,7 +19,7 @@ class BottomSectionCartView extends StatelessWidget {
         horizontal: Dimensions.height20(context),
         vertical: Dimensions.height15(context),
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(
           top: BorderSide(

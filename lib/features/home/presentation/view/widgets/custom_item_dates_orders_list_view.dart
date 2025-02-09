@@ -29,7 +29,7 @@ class CustomItemDatesOrdersListView extends StatelessWidget {
       highlightColor: Colors.transparent,
       onTap: () => _setSelectedIndex(context, index),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         padding:
             EdgeInsets.symmetric(horizontal: Dimensions.width30(context) * 2),
         margin: EdgeInsets.only(right: Dimensions.width30(context)),

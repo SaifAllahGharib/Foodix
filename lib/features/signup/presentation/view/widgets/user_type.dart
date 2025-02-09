@@ -26,20 +26,20 @@ class _UserTypeState extends State<UserType> {
       decoration: InputDecoration(
         label: Text(
           "type".tr(context),
-          style: TextStyle(color: Colors.grey),
+          style: const TextStyle(color: Colors.grey),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
             Dimensions.radius10(context),
           ),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: AppColors.gray,
             width: 1.3,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: AppColors.primaryColor,
             width: 2,
           ),

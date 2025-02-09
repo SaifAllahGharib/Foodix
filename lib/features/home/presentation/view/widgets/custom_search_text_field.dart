@@ -23,7 +23,7 @@ class CustomSearchTextField extends StatelessWidget {
         filled: true,
         fillColor: Colors.white,
         hintText: "search".tr(context),
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           color: Colors.black45,
         ),
         contentPadding:

@@ -14,7 +14,7 @@ class BottomSectionDetailsOrderViewBody extends StatelessWidget {
           SliverList.builder(
             itemCount: 7,
             itemBuilder: (context, index) {
-              return CustomItemListViewDetailsOrderSection();
+              return const CustomItemListViewDetailsOrderSection();
             },
           ),
           SliverToBoxAdapter(

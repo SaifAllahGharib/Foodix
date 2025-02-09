@@ -21,11 +21,11 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: "/",
-        builder: (context, state) => ChooseLanguageView(),
+        builder: (context, state) => const ChooseLanguageView(),
       ),
       GoRoute(
         path: ChooseTypeView.id,
-        builder: (context, state) => ChooseTypeView(),
+        builder: (context, state) => const ChooseTypeView(),
       ),
       GoRoute(
         path: SignupView.id,
@@ -52,7 +52,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: ForgetPasswordView.id,
-        builder: (context, state) => ForgetPasswordView(),
+        builder: (context, state) => const ForgetPasswordView(),
       ),
       GoRoute(
         path: ChangePasswordView.id,
@@ -67,27 +67,27 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AddFoodView.id,
-        builder: (context, state) => AddFoodView(),
+        builder: (context, state) => const AddFoodView(),
       ),
       GoRoute(
         path: DetailsOrderView.id,
-        builder: (context, state) => DetailsOrderView(),
+        builder: (context, state) => const DetailsOrderView(),
       ),
       GoRoute(
         path: FoodDetailsView.id,
-        builder: (context, state) => FoodDetailsView(),
+        builder: (context, state) => const FoodDetailsView(),
       ),
       GoRoute(
         path: YourAddressesView.id,
-        builder: (context, state) => YourAddressesView(),
+        builder: (context, state) => const YourAddressesView(),
       ),
       GoRoute(
         path: RestaurantView.id,
-        builder: (context, state) => RestaurantView(),
+        builder: (context, state) => const RestaurantView(),
       ),
       GoRoute(
         path: CartView.id,
-        builder: (context, state) => CartView(),
+        builder: (context, state) => const CartView(),
       ),
     ],
   );
