@@ -4,6 +4,7 @@ import 'package:yummy_home/core/services/db_services.dart';
 import 'package:yummy_home/core/services/firebase_auth_services.dart';
 import 'package:yummy_home/core/services/firebase_db_services.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
+import 'package:yummy_home/features/login/data/repos/login_repo_imp.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo_imp.dart';
 import 'package:yummy_home/features/verification/data/repos/verificatoin_repo_imp.dart';
 
@@ -31,10 +32,9 @@ void setup() {
     VerificationRepositoryImp(getIt.get<AuthServices>()),
   );
 
-  // getIt.registerSingleton<LoginRepositoryImp>(
-  //   LoginRepositoryImp(getIt.get<Api>()),
-  // );
-  //
+  getIt.registerSingleton<LoginRepositoryImp>(
+    LoginRepositoryImp(getIt.get<AuthServices>()),
+  );
 
   //
   // getIt.registerSingleton<ForgetPasswordRepositoryImp>(

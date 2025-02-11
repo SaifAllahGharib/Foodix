@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/models/user_model.dart';
+import 'package:yummy_home/core/errors/failure.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
@@ -11,6 +11,7 @@ import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
+import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_cubit.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_state.dart';
@@ -50,18 +51,44 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     super.dispose();
   }
 
+  void _pushToVerificationView() {
+    GoRouter.of(context).push(
+      VerificationView.id,
+      extra: _email.text,
+    );
+  }
+
+  void _onSuccess(state) {
+    if (state.msg == "success".tr(context)) {
+      _pushToVerificationView();
+    }
+    snackBar(context: context, text: state.msg, color: Colors.blue);
+  }
+
+  void _onFailure(state) {
+    if (state.failure is FirebaseAuthFailure) {
+      final String msg = state.failure.errorMsg;
+      if (msg == "weak-password") {
+        snackBar(context: context, text: "weak_password".tr(context));
+      } else if (msg == "email-already-in-use") {
+        snackBar(context: context, text: "user_already_exists".tr(context));
+      }
+    } else {
+      snackBar(context: context, text: state.failure.errorMsg);
+    }
+  }
+
   void _handelState(state) {
     if (state is SignupSuccess) {
-      GoRouter.of(context).push(VerificationView.id);
-      snackBar(context: context, text: state.msg, color: Colors.blue);
+      _onSuccess(state);
     } else if (state is SignupFailure) {
-      snackBar(context: context, text: state.failure.errorMsg);
+      _onFailure(state);
     }
   }
 
   void _signup(BuildContext context) async {
     context.read<SignupCubit>().signup(
-          UserModel(
+          SignupModel(
             name: _name.text,
             email: _email.text,
             phone: _phone.text,
@@ -113,13 +140,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 CustomButton(
                   text: "signup".tr(context),
                   isEnabled: context.watch<SignupCubit>().buttonEnabled,
-                  onClick: () async {
-                    _signup(context);
-                    // await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    //   email: _email.text,
-                    //   password: _password.text,
-                    // );
-                  },
+                  onClick: () => _signup(context),
                 ),
                 SizedBox(height: Dimensions.height45(context)),
                 CustomTextButton(

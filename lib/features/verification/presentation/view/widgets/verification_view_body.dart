@@ -4,16 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
+import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/features/home/presentation/view/home_view.dart';
+import 'package:yummy_home/features/verification/presentation/view/widgets/success_verification_widget.dart';
 import 'package:yummy_home/features/verification/presentation/viewmodel/cubits/verification/verification_cubit.dart';
 import 'package:yummy_home/features/verification/presentation/viewmodel/cubits/verification/verification_state.dart';
 
 class VerificationViewBody extends StatefulWidget {
-  const VerificationViewBody({super.key});
+  final String email;
+
+  const VerificationViewBody({
+    super.key,
+    required this.email,
+  });
 
   @override
   State<VerificationViewBody> createState() => _VerificationViewBodyState();
@@ -27,24 +36,28 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
   void initState() {
     _verificationController = StreamController.broadcast();
     _sendEmailVerification(context);
-    _startVerificationListener();
+    _startVerificationListener(context);
     super.initState();
+  }
+
+  void _pushToHomeView() async {
+    await Future.delayed(const Duration(seconds: 4));
+    GoRouter.of(context).go(HomeView.id);
   }
 
   void _handelState(BuildContext context, state) async {
     if (state is VerificationIsEmailVerificationSend) {
       snackBar(
         context: context,
-        text: "Send to email success",
+        text: "send_to_email_success".tr(context),
         color: AppColors.primaryColor,
       );
     } else if (state is VerificationSuccess) {
-      Future.delayed(const Duration(seconds: 8));
-      GoRouter.of(context).go(HomeView.id);
+      _pushToHomeView();
     } else if (state is VerificationFailure) {
       snackBar(
         context: context,
-        text: "Error: ",
+        text: "Error: ${state.errorMsg}",
       );
     }
   }
@@ -53,16 +66,20 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
     context.read<VerificationCubit>().sendEmailVerification();
   }
 
-  void _startVerificationListener() {
+  void _startVerificationListener(BuildContext context) {
     Timer.periodic(const Duration(seconds: 5), (timer) async {
       final user = _firebaseService.auth.currentUser;
       await user?.reload();
       if (user != null && user.emailVerified) {
-        context.read<VerificationCubit>().isEmailVerified();
+        _isEmailVerified(context);
         _verificationController.add(true);
         timer.cancel();
       }
     });
+  }
+
+  void _isEmailVerified(BuildContext context) {
+    context.read<VerificationCubit>().isEmailVerified();
   }
 
   @override
@@ -74,23 +91,38 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
           stream: _verificationController.stream,
           builder: (context, snapshot) {
             if (snapshot.hasData && snapshot.data == true) {
-              return Center(
-                child: Icon(
-                  Icons.check,
-                  size: Dimensions.height130(context),
-                  color: Colors.green,
-                ),
-              );
+              return const SuccessVerificationWidget();
             }
 
-            return SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.all(Dimensions.height20(context)),
+            return Padding(
+              padding: EdgeInsets.all(Dimensions.height20(context)),
+              child: SizedBox(
+                width: double.infinity,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: Dimensions.height45(context) * 1.5),
-                    // Image.asset(Assets.verify),
-                    // const Spacer(),
+                    SizedBox(height: Dimensions.height30(context)),
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.center,
+                      runAlignment: WrapAlignment.center,
+                      spacing: Dimensions.width20(context),
+                      runSpacing: Dimensions.height10(context) * 0.3,
+                      children: [
+                        Text(
+                          "send_link_verification_your_email_to".tr(context),
+                          style: Styles.textStyle16(context),
+                        ),
+                        Text(
+                          widget.email,
+                          style: Styles.textStyle12(context)
+                              .copyWith(color: AppColors.primaryColor),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: Dimensions.height20(context)),
+                    Image.asset(Assets.verify),
+                    const Spacer(),
                     CustomButton(
                       text: context.read<VerificationCubit>().time != 0
                           ? "${context.read<VerificationCubit>().time}s"
@@ -98,6 +130,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                       isEnabled: context.read<VerificationCubit>().canSend,
                       onClick: () => _sendEmailVerification(context),
                     ),
+                    SizedBox(height: Dimensions.height30(context)),
                   ],
                 ),
               ),

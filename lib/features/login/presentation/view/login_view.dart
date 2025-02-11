@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/utils/service_locator.dart';
+import 'package:yummy_home/features/login/data/repos/login_repo_imp.dart';
 import 'package:yummy_home/features/login/presentation/view/widgets/login_view_body.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/login/login_cubit.dart';
 
@@ -11,7 +13,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginCubit(),
+      create: (context) => LoginCubit(getIt.get<LoginRepositoryImp>()),
       child: const Scaffold(
         body: LoginViewBody(),
       ),

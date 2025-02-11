@@ -11,5 +11,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeChangeViewState(_selectedIndex));
   }
 
+  Future<void> getUser() async {}
+
   int get selectedIndex => _selectedIndex;
 }

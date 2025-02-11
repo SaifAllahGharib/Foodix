@@ -41,7 +41,8 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: VerificationView.id,
-        builder: (context, state) => VerificationView(),
+        builder: (context, state) =>
+            VerificationView(email: state.extra as String),
       ),
       GoRoute(
         path: ForgetPasswordView.id,

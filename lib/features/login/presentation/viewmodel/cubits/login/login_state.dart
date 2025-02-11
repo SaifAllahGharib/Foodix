@@ -1,4 +1,4 @@
-import 'package:yummy_home/core/models/response.dart';
+import 'package:yummy_home/core/errors/failure.dart';
 
 sealed class LoginState {}
 
@@ -7,15 +7,15 @@ class LoginInit extends LoginState {}
 class LoginLoading extends LoginState {}
 
 class LoginSuccess extends LoginState {
-  final ResponseModel response;
+  final String msg;
 
-  LoginSuccess(this.response);
+  LoginSuccess(this.msg);
 }
 
 class LoginFailure extends LoginState {
-  final String errorMsg;
+  final Failure failure;
 
-  LoginFailure(this.errorMsg);
+  LoginFailure(this.failure);
 }
 
 class LoginShowPassword extends LoginState {

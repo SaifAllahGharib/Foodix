@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/utils/functions/is_valid_email.dart';
 import 'package:yummy_home/core/utils/functions/is_valid_phone.dart';
+import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_state.dart';
 
@@ -13,7 +13,7 @@ class SignupCubit extends Cubit<SignupState> {
 
   SignupCubit(this._signupRepository) : super(SignupInit());
 
-  Future<void> signup(UserModel user, BuildContext context) async {
+  Future<void> signup(SignupModel user, BuildContext context) async {
     emit(SignupLoading());
     final result = await _signupRepository.signup(user, context);
     result.fold(

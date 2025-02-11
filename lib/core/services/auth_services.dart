@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:yummy_home/core/models/user_model.dart';
+import 'package:yummy_home/features/login/data/models/login_model.dart';
+import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 
 abstract class AuthServices {
-  Future<UserCredential> signUp(UserModel user);
+  Future<UserCredential> signUp(SignupModel user);
 
-  Future<UserModel?> login(UserModel user);
+  Future<UserCredential> login(LoginModel user);
 
   Future<void> signOut();
 

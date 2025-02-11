@@ -2,10 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yummy_home/core/errors/failure.dart';
-import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/services/auth_services.dart';
 import 'package:yummy_home/core/services/db_services.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
 
 class SignupRepositoryImp extends SignupRepository {
@@ -16,7 +16,7 @@ class SignupRepositoryImp extends SignupRepository {
 
   @override
   Future<Either<Failure, String>> signup(
-    UserModel user,
+    SignupModel user,
     BuildContext context,
   ) async {
     try {
@@ -26,7 +26,7 @@ class SignupRepositoryImp extends SignupRepository {
         _dbServices.setUser(user, response.user!.uid);
         return right("success".tr(context));
       } else {
-        return right("Signup field");
+        return right("field".tr(context));
       }
     } on FirebaseAuthException catch (e) {
       return left(FirebaseAuthFailure(e.code));

@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/services/auth_services.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
+import 'package:yummy_home/features/login/data/models/login_model.dart';
+import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 
 class FirebaseAuthServices extends AuthServices {
   final FirebaseService _firebaseService;
@@ -9,26 +10,32 @@ class FirebaseAuthServices extends AuthServices {
   FirebaseAuthServices(this._firebaseService);
 
   @override
-  Future<UserCredential> signUp(UserModel user) async {
+  Future<UserCredential> signUp(SignupModel user) async {
     final response = await _firebaseService.auth.createUserWithEmailAndPassword(
-      email: user.email!,
-      password: user.password!,
+      email: user.email,
+      password: user.password,
     );
 
     return response;
   }
 
   @override
-  Future<UserModel?> login(UserModel user) {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<UserCredential> login(LoginModel user) async {
+    final response = await _firebaseService.auth.signInWithEmailAndPassword(
+      email: user.email,
+      password: user.password,
+    );
+
+    return response;
   }
 
   @override
   Future<void> resetPassword({required String email}) async {}
 
   @override
-  Future<void> signOut() async {}
+  Future<void> signOut() async {
+    await _firebaseService.auth.signOut();
+  }
 
   @override
   Future<void> sendEmailVerification() async {

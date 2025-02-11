@@ -1,22 +1,32 @@
+import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:yummy_home/core/errors/failure.dart';
+import 'package:yummy_home/core/services/auth_services.dart';
+import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/features/login/data/models/login_model.dart';
+import 'package:yummy_home/features/login/data/repos/login_repo.dart';
 
+class LoginRepositoryImp implements LoginRepository {
+  final AuthServices _authServices;
 
-class LoginRepositoryImp {
-  LoginRepositoryImp();
+  LoginRepositoryImp(this._authServices);
 
-// @override
-// Future<Either<Failure, ResponseModel>> login(LoginModel user) async {
-//   try {
-//     var response = await _api.post(
-//       endPoint: "auth/login.php",
-//       data: user.toJson(),
-//     );
-//
-//     return right(ResponseModel.fromJson(response));
-//   } catch (e) {
-//     if (e is DioException) {
-//       return left(ServerFailure.fromDioException(e));
-//     }
-//     return left(ServerFailure(e.toString()));
-//   }
-// }
+  @override
+  Future<Either<Failure, String>> login(
+      LoginModel user, BuildContext context) async {
+    try {
+      final response = await _authServices.login(user);
+
+      if (response.user != null) {
+        return right("success".tr(context));
+      } else {
+        return right("field".tr(context));
+      }
+    } on FirebaseAuthException catch (e) {
+      return left(FirebaseAuthFailure(e.code));
+    } catch (e) {
+      return left(FirebaseFailure(e.toString()));
+    }
+  }
 }

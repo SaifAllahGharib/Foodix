@@ -54,6 +54,7 @@ class MySharedPreferences {
     if (lang != null) {
       return id == null ? LoginView.id : HomeView.id;
     }
+
     return '/';
   }
 
