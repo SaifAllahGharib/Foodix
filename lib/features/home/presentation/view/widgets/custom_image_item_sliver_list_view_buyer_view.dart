@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 
 class CustomImageItemSliverListViewBuyerView extends StatelessWidget {
   const CustomImageItemSliverListViewBuyerView({super.key});
@@ -30,7 +30,7 @@ class CustomImageItemSliverListViewBuyerView extends StatelessWidget {
         ),
         image: const DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage("assets/images/person.jpg"),
+          image: AssetImage(" "),
         ),
       ),
     );

@@ -44,7 +44,7 @@ class CustomWidgetBottomSheetFloatButtonAddCategory extends StatelessWidget {
                 const CustomGridViewBuilder(
                   name: "Food",
                   cost: "280",
-                  imageUrl: "assets/images/person.jpg",
+                  imageUrl: " ",
                 ),
                 CustomFloatButton(
                   onClick: () => GoRouter.of(context).push(AddFoodView.id),

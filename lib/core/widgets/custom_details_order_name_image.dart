@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
+import 'package:yummy_home/core/widgets/custom_image.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/details_order/presentation/view/widgets/custom_details_order_text.dart';
 
@@ -20,11 +22,9 @@ class CustomDetailsOrderNameImage extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
-          child: Image.asset(
-            "assets/images/person.jpg",
-            width: Dimensions.height130(context) * 0.9,
-            height: Dimensions.height130(context) * 0.9,
-            fit: BoxFit.cover,
+          child: CustomImage(
+            image: Assets.food,
+            width: Dimensions.height80(context) * 1.2,
           ),
         ),
         SizedBox(width: Dimensions.width20(context)),

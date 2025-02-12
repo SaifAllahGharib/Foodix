@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
+import 'package:yummy_home/core/widgets/custom_image.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/signup/presentation/view/signup_view.dart';
 
@@ -19,8 +21,8 @@ class ChooseTypeViewBody extends StatelessWidget {
           SizedBox(height: Dimensions.height20(context)),
           const CustomBackButton(),
           SizedBox(height: Dimensions.height30(context)),
-          Image.asset(
-            "assets/images/choose_type.jpeg",
+          CustomImage(
+            image: Assets.chooseRole,
             width: Dimensions.width380(context),
           ),
           const Spacer(),

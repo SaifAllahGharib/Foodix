@@ -13,7 +13,7 @@ class TopSectionRestaurantView extends StatelessWidget {
       child: Stack(
         children: [
           CustomBackgroundImage(
-            image: "assets/images/person.jpg",
+            image: " ",
             height: Dimensions.height130(context) * 1.6,
           ),
           const CustomBoxOfRestaurantDetails(),

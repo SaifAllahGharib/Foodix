@@ -38,7 +38,7 @@ class CustomItemListViewCartView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomFoodImage(
-                image: "assets/images/person.jpg",
+                image: " ",
                 width: Dimensions.height130(context) * 0.8,
                 height: Dimensions.height130(context) * 0.8,
               ),

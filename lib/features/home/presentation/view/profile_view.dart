@@ -7,12 +7,13 @@ import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/image_picker_helper.dart';
-import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
-import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_state.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/change_language_widget.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_image_profile_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_item_profile_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/name_and_email.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_state.dart';
 import 'package:yummy_home/features/your_addresses/view/your_addresses_view.dart';
 
 class ProfileView extends StatefulWidget {
@@ -47,6 +48,14 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
+  void _pickImageFromCamera(BuildContext context) {
+    context.read<ProfileCubit>().pickImageFromCamera(_imagePickerHelper);
+  }
+
+  void _pickImageFromGallery(BuildContext context) {
+    context.read<ProfileCubit>().pickImageFromGallery(_imagePickerHelper);
+  }
+
   void _handelStates(state) {
     if (state is ProfilePickImage) {
       _selectedImage = state.image;
@@ -63,13 +72,9 @@ class _ProfileViewState extends State<ProfileView> {
             children: [
               SizedBox(height: Dimensions.height30(context)),
               CustomImageProfileView(
-                selectedImage: _selectedImage,
-                pickImageFromCamera: () => context
-                    .read<ProfileCubit>()
-                    .pickImageFromCamera(_imagePickerHelper),
-                pickImageFromGallery: () => context
-                    .read<ProfileCubit>()
-                    .pickImageFromGallery(_imagePickerHelper),
+                imageURL: "_selectedImage",
+                pickImageFromCamera: () => _pickImageFromCamera(context),
+                pickImageFromGallery: () => _pickImageFromGallery(context),
               ),
               SizedBox(height: Dimensions.height15(context)),
               const NameAndEmail(),
@@ -93,7 +98,9 @@ class _ProfileViewState extends State<ProfileView> {
               CustomItemProfileView(
                 title: "logout".tr(context),
                 dividerIsShowing: false,
-                onClick: () {},
+                onClick: () {
+                  MySharedPreferences().clearAllData();
+                },
               ),
             ],
           ),

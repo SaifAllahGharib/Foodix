@@ -15,7 +15,7 @@ class ImageAndNameAndRatingWidget extends StatelessWidget {
           height: Dimensions.height80(context) * 0.9,
           decoration: BoxDecoration(
             image: const DecorationImage(
-              image: AssetImage("assets/images/person.jpg"),
+              image: AssetImage(" "),
               fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
