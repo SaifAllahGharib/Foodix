@@ -3,14 +3,14 @@ class SignupModel {
   final String email;
   final String phone;
   final String password;
-  final String type;
+  final String role;
 
   SignupModel({
     required this.name,
     required this.email,
     required this.phone,
     required this.password,
-    required this.type,
+    required this.role,
   });
 
   factory SignupModel.fromJson(Map<String, dynamic> json) {
@@ -19,7 +19,7 @@ class SignupModel {
       email: json['email'],
       phone: json['phone_number'],
       password: json['password'],
-      type: json['type'],
+      role: json['role'],
     );
   }
 
@@ -29,7 +29,7 @@ class SignupModel {
       'email': email,
       'phone_number': phone,
       'password': password,
-      'type': type,
+      'role': role,
     };
   }
 }

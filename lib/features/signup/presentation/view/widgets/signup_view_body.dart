@@ -62,12 +62,14 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     if (state.msg == "success".tr(context)) {
       _pushToVerificationView();
     }
+
     snackBar(context: context, text: state.msg, color: Colors.blue);
   }
 
   void _onFailure(state) {
     if (state.failure is FirebaseAuthFailure) {
       final String msg = state.failure.errorMsg;
+
       if (msg == "weak-password") {
         snackBar(context: context, text: "weak_password".tr(context));
       } else if (msg == "email-already-in-use") {
@@ -93,7 +95,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             email: _email.text,
             phone: _phone.text,
             password: _password.text,
-            type: widget.type,
+            role: widget.type,
           ),
           context,
         );

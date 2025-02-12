@@ -2,9 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yummy_home/core/errors/failure.dart';
+import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/services/auth_services.dart';
 import 'package:yummy_home/core/services/db_services.dart';
 import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
 
@@ -23,8 +25,22 @@ class SignupRepositoryImp extends SignupRepository {
       final response = await _authService.signUp(user);
 
       if (response.user != null) {
-        _dbServices.setUser(user, response.user!.uid);
-        return right("success".tr(context));
+        String uid = response.user!.uid;
+        UserModel userModel = UserModel(
+          uid: uid,
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          role: user.role,
+        );
+
+        try {
+          await _dbServices.setUser(userModel, uid);
+          await MySharedPreferences().storeString("uid", uid);
+          return right("success".tr(context));
+        } catch (e) {
+          return left(FirebaseDBFailure(e.toString()));
+        }
       } else {
         return right("field".tr(context));
       }

@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/services/db_services.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
-import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 
 class FirebaseDBServices extends DBServices {
   final FirebaseService _firebaseService;
@@ -14,7 +14,7 @@ class FirebaseDBServices extends DBServices {
   }
 
   @override
-  Future<void> setUser(SignupModel user, String uid) async {
+  Future<void> setUser(UserModel user, String uid) async {
     await _firebaseService.db
         .ref()
         .child("users")

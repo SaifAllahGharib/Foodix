@@ -12,6 +12,7 @@ class LocalCubit extends Cubit<Locale> {
 
   Future<void> loadSavedLanguage() async {
     var prefs = MySharedPreferences();
+    
     final String? savedLanguage = prefs.getString("lang");
     if (savedLanguage != null) {
       _setDirection(savedLanguage);

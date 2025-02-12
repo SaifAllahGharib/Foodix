@@ -6,7 +6,7 @@ import 'package:yummy_home/features/home/presentation/view/profile_view.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/orders/orders_cubit.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
 
-class HomeViewBody extends StatefulWidget {
+class HomeViewBody extends StatelessWidget {
   final int selectedIndex;
 
   const HomeViewBody({
@@ -15,20 +15,9 @@ class HomeViewBody extends StatefulWidget {
   });
 
   @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
-}
-
-class _HomeViewBodyState extends State<HomeViewBody> {
-  @override
-  void initState() {
-    // MySharedPreferences().storeUser(UserModel(email: ).toJson());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return IndexedStack(
-      index: widget.selectedIndex,
+      index: selectedIndex,
       children: [
         const MainSellerView(),
         // MainBuyerView(),
