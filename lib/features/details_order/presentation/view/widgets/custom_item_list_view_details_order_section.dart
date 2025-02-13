@@ -9,7 +9,7 @@ class CustomItemListViewDetailsOrderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: Dimensions.height10(context)),
+      padding: EdgeInsets.only(top: Dimensions.height10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -22,7 +22,7 @@ class CustomItemListViewDetailsOrderSection extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(width: Dimensions.width15(context)),
+              SizedBox(width: Dimensions.width15),
               Text(
                 "x",
                 style: Styles.textStyle15(context).copyWith(
@@ -30,7 +30,7 @@ class CustomItemListViewDetailsOrderSection extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(width: Dimensions.width15(context)),
+              SizedBox(width: Dimensions.width15),
               Text(
                 "cocakola, 200m",
                 style: Styles.textStyle15(context).copyWith(

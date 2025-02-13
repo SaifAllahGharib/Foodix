@@ -16,15 +16,15 @@ class CustomRatingWidget extends StatelessWidget {
         Icon(
           Icons.star,
           color: Colors.yellow,
-          size: Dimensions.height20(context),
+          size: Dimensions.height20,
         ),
-        SizedBox(width: Dimensions.height10(context) * 0.5),
+        SizedBox(width: Dimensions.height10 * 0.5),
         Text(
           "$rating",
           style:
               Styles.textStyle15(context).copyWith(fontWeight: FontWeight.w500),
         ),
-        SizedBox(width: Dimensions.height10(context) * 0.5),
+        SizedBox(width: Dimensions.height10 * 0.5),
         Text(
           "($ratingCount)",
           style: Styles.textStyle15(context).copyWith(color: Colors.grey),

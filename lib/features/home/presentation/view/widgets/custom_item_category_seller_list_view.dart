@@ -40,15 +40,13 @@ class CustomItemCategorySellerListView extends StatelessWidget {
             "${list[index].category}",
             style: Styles.textStyle18(context),
           ),
-          if (index != list.length - 1)
-            SizedBox(height: Dimensions.height20(context)),
+          if (index != list.length - 1) SizedBox(height: Dimensions.height20),
           if (index != list.length - 1)
             const Divider(
               height: 1,
               color: AppColors.gray,
             ),
-          if (index != list.length - 1)
-            SizedBox(height: Dimensions.height20(context)),
+          if (index != list.length - 1) SizedBox(height: Dimensions.height20),
         ],
       ),
     );

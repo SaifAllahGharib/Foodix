@@ -29,7 +29,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: SignupView.id,
-        builder: (context, state) => SignupView(type: state.extra as String),
+        builder: (context, state) => SignupView(role: state.extra as String),
       ),
       GoRoute(
         path: LoginView.id,

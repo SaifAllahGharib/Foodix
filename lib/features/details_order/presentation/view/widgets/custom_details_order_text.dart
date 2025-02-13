@@ -20,7 +20,7 @@ class CustomDetailsOrderText extends StatelessWidget {
       overflow: TextOverflow.visible,
       style: Styles.textStyle15(context).copyWith(
         fontWeight: FontWeight.w400,
-        fontSize: Dimensions.height10(context) * 1.15,
+        fontSize: Dimensions.height10 * 1.15,
         color: color,
       ),
     );

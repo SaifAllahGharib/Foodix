@@ -13,15 +13,15 @@ class ChooseLanguageViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Dimensions.height20(context)),
+      padding: EdgeInsets.all(Dimensions.height20),
       child: Column(
         children: [
-          SizedBox(height: Dimensions.height45(context) * 3),
+          SizedBox(height: Dimensions.height45 * 3),
           const CustomText(
             text: "اختار اللغه",
             fontFamily: "cairo",
           ),
-          SizedBox(height: Dimensions.height45(context) * 7),
+          SizedBox(height: Dimensions.height45 * 7),
           CustomButton(
             text: "عربي",
             isEnabled: true,
@@ -30,7 +30,7 @@ class ChooseLanguageViewBody extends StatelessWidget {
               _storeLanguageAndNavigate(context, "ar");
             },
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height20),
           CustomButton(
             text: "English",
             isEnabled: true,

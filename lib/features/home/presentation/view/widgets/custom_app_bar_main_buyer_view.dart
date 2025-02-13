@@ -33,12 +33,12 @@ class _CustomAppBarMainBuyerViewState extends State<CustomAppBarMainBuyerView> {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.primaryColor,
-      height: Dimensions.height130(context) * 1.65,
+      height: Dimensions.height130 * 1.65,
       child: Padding(
         padding: EdgeInsets.only(
-          top: Dimensions.height45(context),
-          right: Dimensions.height20(context),
-          left: Dimensions.height20(context),
+          top: Dimensions.height45,
+          right: Dimensions.height20,
+          left: Dimensions.height20,
         ),
         child: Column(
           children: [
@@ -54,7 +54,7 @@ class _CustomAppBarMainBuyerViewState extends State<CustomAppBarMainBuyerView> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(width: Dimensions.height10(context) * 0.5),
+                    SizedBox(width: Dimensions.height10 * 0.5),
                     const Icon(
                       Icons.keyboard_arrow_down_outlined,
                       color: Colors.white,
@@ -65,7 +65,7 @@ class _CustomAppBarMainBuyerViewState extends State<CustomAppBarMainBuyerView> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius:
-                        BorderRadius.circular(Dimensions.height20(context) * 5),
+                        BorderRadius.circular(Dimensions.height20 * 5),
                   ),
                   child: IconButton(
                     onPressed: () {
@@ -80,7 +80,7 @@ class _CustomAppBarMainBuyerViewState extends State<CustomAppBarMainBuyerView> {
                 ),
               ],
             ),
-            SizedBox(height: Dimensions.height20(context)),
+            SizedBox(height: Dimensions.height20),
             CustomSearchTextField(
               controller: _search,
               onChange: (value) {},

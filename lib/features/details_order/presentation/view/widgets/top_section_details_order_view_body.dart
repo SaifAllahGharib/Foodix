@@ -11,7 +11,7 @@ class TopSectionDetailsOrderViewBody extends StatelessWidget {
     return Column(
       children: [
         const CustomDetailsOrderNameImage(customTextDetails: true),
-        SizedBox(height: Dimensions.height10(context)),
+        SizedBox(height: Dimensions.height10),
         const CustomTimeWidget(day: "Today", time: "12:30 PM"),
       ],
     );

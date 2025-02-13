@@ -15,7 +15,7 @@ class FoodDetailsViewBody extends StatelessWidget {
         ImageAndBackButton(),
         FoodNameAndDesc(),
         Spacer(),
-        CustomBottomBarFoodDetailsSeller()
+        CustomBottomBarFoodDetailsSeller(),
       ],
     );
   }

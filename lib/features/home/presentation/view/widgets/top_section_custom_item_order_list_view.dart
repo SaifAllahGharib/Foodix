@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class TopSectionCustomItemOrderListView extends StatelessWidget {
   const TopSectionCustomItemOrderListView({super.key});
@@ -10,7 +10,7 @@ class TopSectionCustomItemOrderListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Dimensions.height10(context)),
+      padding: EdgeInsets.all(Dimensions.height10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -24,13 +24,13 @@ class TopSectionCustomItemOrderListView extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(width: Dimensions.width10(context)),
+              SizedBox(width: Dimensions.width10),
               Icon(
                 Icons.circle,
                 color: Colors.grey,
-                size: Dimensions.width10(context) * 1.2,
+                size: Dimensions.width10 * 1.2,
               ),
-              SizedBox(width: Dimensions.width10(context)),
+              SizedBox(width: Dimensions.width10),
               Text(
                 "12:30 PM",
                 style: Styles.textStyle15(context).copyWith(
@@ -42,15 +42,15 @@ class TopSectionCustomItemOrderListView extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.symmetric(
-              vertical: Dimensions.height10(context),
-              horizontal: Dimensions.height20(context),
+              vertical: Dimensions.height10,
+              horizontal: Dimensions.height20,
             ),
             decoration: BoxDecoration(
               color: AppColors.whiteGray,
-              borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
+              borderRadius: BorderRadius.circular(Dimensions.radius10),
             ),
             child: Text(
-              "completed".tr(context),
+              S.of(context).completed,
               style: Styles.textStyle15(context).copyWith(
                 fontWeight: FontWeight.w500,
                 color: Colors.black54,

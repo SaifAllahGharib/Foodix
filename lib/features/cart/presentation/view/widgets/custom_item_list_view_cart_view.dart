@@ -31,7 +31,7 @@ class CustomItemListViewCartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: Dimensions.height15(context)),
+      padding: EdgeInsets.only(bottom: Dimensions.height15),
       child: Column(
         children: [
           Row(
@@ -39,10 +39,10 @@ class CustomItemListViewCartView extends StatelessWidget {
             children: [
               CustomFoodImage(
                 image: " ",
-                width: Dimensions.height130(context) * 0.8,
-                height: Dimensions.height130(context) * 0.8,
+                width: Dimensions.height130 * 0.8,
+                height: Dimensions.height130 * 0.8,
               ),
-              SizedBox(width: Dimensions.height20(context)),
+              SizedBox(width: Dimensions.height20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,7 +51,7 @@ class CustomItemListViewCartView extends StatelessWidget {
                     style: Styles.textStyle15(context)
                         .copyWith(fontWeight: FontWeight.w600),
                   ),
-                  SizedBox(height: Dimensions.height30(context)),
+                  SizedBox(height: Dimensions.height30),
                   const CustomRowCost(
                     egp: "250",
                     color: Colors.black87,
@@ -68,7 +68,7 @@ class CustomItemListViewCartView extends StatelessWidget {
               ),
             ],
           ),
-          if (index != 4) SizedBox(height: Dimensions.height15(context)),
+          if (index != 4) SizedBox(height: Dimensions.height15),
           if (index != 4)
             const Divider(
               height: 1,

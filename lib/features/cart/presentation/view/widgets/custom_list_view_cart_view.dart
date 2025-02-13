@@ -9,7 +9,7 @@ class CustomListViewCartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.all(Dimensions.height15(context)),
+        padding: EdgeInsets.all(Dimensions.height15),
         child: ListView.builder(
           itemCount: 5,
           padding: EdgeInsets.zero,

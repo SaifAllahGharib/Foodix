@@ -38,14 +38,13 @@ class CustomButtonImagePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => _showBottomSheet(context),
-      borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+      borderRadius: BorderRadius.circular(Dimensions.radius20),
       child: selectedImage == null
           ? Container(
               width: double.infinity,
-              height: Dimensions.height130(context),
+              height: Dimensions.height130,
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.circular(Dimensions.radius20(context)),
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
                 border: Border.all(
                   width: 1,
                   color: AppColors.gray,
@@ -53,16 +52,16 @@ class CustomButtonImagePicker extends StatelessWidget {
               ),
               child: Icon(
                 Icons.add,
-                size: Dimensions.height45(context),
+                size: Dimensions.height45,
                 color: AppColors.gray,
               ),
             )
           : ClipRRect(
-              borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+              borderRadius: BorderRadius.circular(Dimensions.radius20),
               child: Image.file(
                 selectedImage!,
-                width: Dimensions.height130(context) * 1.7,
-                height: Dimensions.height130(context) * 1.7,
+                width: Dimensions.height130 * 1.7,
+                height: Dimensions.height130 * 1.7,
                 fit: BoxFit.cover,
               ),
             ),

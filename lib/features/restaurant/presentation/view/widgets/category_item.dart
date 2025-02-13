@@ -52,8 +52,7 @@ class _CategoryItemState extends State<CategoryItem> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: Dimensions.width20(context)),
+          padding: EdgeInsets.symmetric(horizontal: Dimensions.width20),
           child: Text(
             widget.text,
             style: Styles.textStyle15(context).copyWith(
@@ -67,9 +66,9 @@ class _CategoryItemState extends State<CategoryItem> {
           duration: const Duration(milliseconds: 240),
           curve: Curves.easeInOut,
           width: widget.selected
-              ? _textPainter.width + Dimensions.width20(context) * 1.65
+              ? _textPainter.width + Dimensions.width20 * 1.65
               : 0,
-          height: Dimensions.height10(context) * 0.2,
+          height: Dimensions.height10 * 0.2,
           color: Colors.black,
         ),
       ],

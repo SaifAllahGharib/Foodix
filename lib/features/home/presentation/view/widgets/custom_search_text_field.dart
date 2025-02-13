@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class CustomSearchTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -22,21 +22,20 @@ class CustomSearchTextField extends StatelessWidget {
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        hintText: "search".tr(context),
+        hintText: S.of(context).search,
         hintStyle: const TextStyle(
           color: Colors.black45,
         ),
-        contentPadding:
-            EdgeInsets.symmetric(horizontal: Dimensions.height20(context)),
+        contentPadding: EdgeInsets.symmetric(horizontal: Dimensions.height20),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 4),
+          borderRadius: BorderRadius.circular(Dimensions.radius20 * 4),
           borderSide: BorderSide(
             width: isSeller ? 1 : 0,
             color: isSeller ? AppColors.gray : Colors.white,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 2),
+          borderRadius: BorderRadius.circular(Dimensions.radius20 * 2),
           borderSide: BorderSide(
             width: isSeller ? 1 : 0,
             color: isSeller ? AppColors.primaryColor : Colors.white,

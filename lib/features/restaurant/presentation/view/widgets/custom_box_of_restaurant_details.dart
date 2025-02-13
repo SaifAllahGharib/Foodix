@@ -12,19 +12,18 @@ class CustomBoxOfRestaurantDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: Dimensions.height130(context) * 0.92,
+      top: Dimensions.height130 * 0.92,
       left: 0,
       right: 0,
       child: Container(
-        height: Dimensions.height130(context) * 1.1,
+        height: Dimensions.height130 * 1.1,
         width: double.infinity,
         padding: EdgeInsets.only(
-          top: Dimensions.height15(context),
-          right: Dimensions.height15(context),
-          left: Dimensions.height15(context),
+          top: Dimensions.height15,
+          right: Dimensions.height15,
+          left: Dimensions.height15,
         ),
-        margin:
-            EdgeInsets.symmetric(horizontal: Dimensions.width30(context) * 1.2),
+        margin: EdgeInsets.symmetric(horizontal: Dimensions.width30 * 1.2),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: const [
@@ -35,19 +34,19 @@ class CustomBoxOfRestaurantDetails extends StatelessWidget {
               offset: Offset(0, 4),
             ),
           ],
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+          borderRadius: BorderRadius.circular(Dimensions.radius20),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const ImageAndNameAndRatingWidget(),
-            SizedBox(height: Dimensions.height15(context)),
+            SizedBox(height: Dimensions.height15),
             Row(
               children: [
                 const CustomDeliveryTimeWidget(time: 24),
-                SizedBox(width: Dimensions.width15(context)),
+                SizedBox(width: Dimensions.width15),
                 const CustomDotWidget(),
-                SizedBox(width: Dimensions.width15(context)),
+                SizedBox(width: Dimensions.width15),
                 const CustomCostDelivery(),
               ],
             ),

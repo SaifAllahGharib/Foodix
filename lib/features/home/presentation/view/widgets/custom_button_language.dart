@@ -19,7 +19,7 @@ class CustomButtonLanguage extends StatelessWidget {
       child: Text(
         text,
         style: Styles.textStyle18(context)
-            .copyWith(fontSize: Dimensions.fontSize18(context) * 0.9),
+            .copyWith(fontSize: Dimensions.fontSize18 * 0.9),
       ),
     );
   }

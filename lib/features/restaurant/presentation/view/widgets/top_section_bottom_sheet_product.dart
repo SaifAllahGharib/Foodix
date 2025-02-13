@@ -14,8 +14,8 @@ class TopSectionBottomSheetProduct extends StatelessWidget {
         const ImageAndBackButton(),
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: Dimensions.height15(context),
-            vertical: Dimensions.height20(context),
+            horizontal: Dimensions.height15,
+            vertical: Dimensions.height20,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +24,7 @@ class TopSectionBottomSheetProduct extends StatelessWidget {
                 "foodName",
                 style: Styles.textStyle18(context),
               ),
-              SizedBox(height: Dimensions.height15(context)),
+              SizedBox(height: Dimensions.height15),
               Text(
                 "foodDesc",
                 style: Styles.textStyle15(context).copyWith(color: Colors.grey),

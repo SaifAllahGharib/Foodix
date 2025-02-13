@@ -28,10 +28,10 @@ class CustomButtonCartView extends StatelessWidget {
         color: color,
         textColor: textColor,
         padding: EdgeInsets.symmetric(
-          vertical: Dimensions.height15(context),
+          vertical: Dimensions.height15,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 5),
+          borderRadius: BorderRadius.circular(Dimensions.radius20 * 5),
           side: enableBorder
               ? const BorderSide(
                   color: Colors.black54,

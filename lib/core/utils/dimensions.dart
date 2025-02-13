@@ -1,132 +1,49 @@
 import 'package:flutter/material.dart';
 
-abstract class Dimensions {
-  static double getHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height;
-  }
+class Dimensions {
+  static final MediaQueryData _mediaQuery = MediaQueryData.fromView(
+    WidgetsBinding.instance.platformDispatcher.views.first,
+  );
 
-  static double getWidth(BuildContext context) {
-    return MediaQuery.of(context).size.width;
-  }
+  static final double screenHeight = _mediaQuery.size.height;
+  static final double screenWidth = _mediaQuery.size.width;
 
   // Dynamic Height Padding and Margin
-  static double height10(BuildContext context) {
-    return getHeight(context) / 84.4;
-  }
-
-  static double height12(BuildContext context) {
-    return getHeight(context) / 70;
-  }
-
-  static double height15(BuildContext context) {
-    return getHeight(context) / 56.27;
-  }
-
-  static double height20(BuildContext context) {
-    return getHeight(context) / 42.2;
-  }
-
-  static double height30(BuildContext context) {
-    return getHeight(context) / 28.13;
-  }
-
-  static double height45(BuildContext context) {
-    return getHeight(context) / 18.76;
-  }
-
-  static double height80(BuildContext context) {
-    return getHeight(context) / 11.3;
-  }
-
-  static double height100(BuildContext context) {
-    return getHeight(context) / 11.3;
-  }
-
-  static double height130(BuildContext context) {
-    return getHeight(context) / 7;
-  }
+  static final double height10 = screenHeight / 84.4;
+  static final double height12 = screenHeight / 70;
+  static final double height15 = screenHeight / 56.27;
+  static final double height20 = screenHeight / 42.2;
+  static final double height30 = screenHeight / 28.13;
+  static final double height45 = screenHeight / 18.76;
+  static final double height80 = screenHeight / 11.3;
+  static final double height100 = screenHeight / 11.3;
+  static final double height130 = screenHeight / 7;
 
   // Dynamic width padding and margin
-  static double width10(BuildContext context) {
-    return getWidth(context) / 84.4;
-  }
-
-  static double width15(BuildContext context) {
-    return getWidth(context) / 56.27;
-  }
-
-  static double width20(BuildContext context) {
-    return getWidth(context) / 42.2;
-  }
-
-  static double width30(BuildContext context) {
-    return getWidth(context) / 28.13;
-  }
-
-  static double width65(BuildContext context) {
-    return getWidth(context) / 6.5;
-  }
-
-  static double width120(BuildContext context) {
-    return getWidth(context) / 3.6;
-  }
-
-  static double width380(BuildContext context) {
-    return getWidth(context) / 1.3;
-  }
+  static final double width10 = screenWidth / 84.4;
+  static final double width15 = screenWidth / 56.27;
+  static final double width20 = screenWidth / 42.2;
+  static final double width30 = screenWidth / 28.13;
+  static final double width65 = screenWidth / 6.5;
+  static final double width120 = screenWidth / 3.6;
+  static final double width380 = screenWidth / 1.3;
 
   // Dynamic font size
-  static double fontSize12(BuildContext context) {
-    return getHeight(context) / 65;
-  }
-
-  static double fontSize15(BuildContext context) {
-    return getHeight(context) / 58.75;
-  }
-
-  static double fontSize18(BuildContext context) {
-    return getHeight(context) / 48.3;
-  }
-
-  static double fontSize20(BuildContext context) {
-    return getHeight(context) / 42.2;
-  }
-
-  static double fontSize30(BuildContext context) {
-    return getHeight(context) / 28.2;
-  }
+  static final double fontSize12 = screenHeight / 65;
+  static final double fontSize15 = screenHeight / 58.75;
+  static final double fontSize18 = screenHeight / 48.3;
+  static final double fontSize20 = screenHeight / 42.2;
+  static final double fontSize30 = screenHeight / 28.2;
 
   // Dynamic radius
-  static double radius10(BuildContext context) {
-    return getHeight(context) / 77.6;
-  }
-
-  static double radius15(BuildContext context) {
-    return getHeight(context) / 56.27;
-  }
-
-  static double radius20(BuildContext context) {
-    return getHeight(context) / 42.2;
-  }
-
-  static double radius30(BuildContext context) {
-    return getHeight(context) / 28.13;
-  }
+  static final double radius10 = screenHeight / 77.6;
+  static final double radius15 = screenHeight / 56.27;
+  static final double radius20 = screenHeight / 42.2;
+  static final double radius30 = screenHeight / 28.13;
 
   // Dynamic icon size
-  static double iconSize16(BuildContext context) {
-    return getHeight(context) / 52.75;
-  }
-
-  static double iconSize20(BuildContext context) {
-    return getHeight(context) / 42.2;
-  }
-
-  static double iconSize24(BuildContext context) {
-    return getHeight(context) / 35.17;
-  }
-
-  static double iconSize45(BuildContext context) {
-    return getHeight(context) / 21.17;
-  }
+  static final double iconSize16 = screenHeight / 52.75;
+  static final double iconSize20 = screenHeight / 42.2;
+  static final double iconSize24 = screenHeight / 35.17;
+  static final double iconSize45 = screenHeight / 21.17;
 }

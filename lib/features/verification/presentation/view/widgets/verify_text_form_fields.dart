@@ -56,11 +56,10 @@ class _VerifyTextFormFieldsState extends State<VerifyTextFormFields> {
         4,
         (index) {
           return Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: Dimensions.width15(context)),
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.width15),
             child: SizedBox(
-              width: Dimensions.width65(context),
-              height: Dimensions.height100(context),
+              width: Dimensions.width65,
+              height: Dimensions.height80,
               child: TextFormField(
                 controller: controllers[index],
                 focusNode: focusNodes[index],

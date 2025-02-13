@@ -40,11 +40,11 @@ class CustomAppBarRestaurantView extends StatelessWidget {
                   ]
                 : null,
           ),
-          height: Dimensions.height45(context) * 1.85,
+          height: Dimensions.height45 * 1.85,
           padding: EdgeInsets.only(
-            left: Dimensions.width30(context),
-            right: Dimensions.width30(context),
-            top: Dimensions.height20(context),
+            left: Dimensions.width30,
+            right: Dimensions.width30,
+            top: Dimensions.height20,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,8 +52,8 @@ class CustomAppBarRestaurantView extends StatelessWidget {
             children: [
               const CustomBackButton(),
               Container(
-                width: Dimensions.height45(context),
-                height: Dimensions.height45(context),
+                width: Dimensions.height45,
+                height: Dimensions.height45,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5000),
@@ -69,19 +69,19 @@ class CustomAppBarRestaurantView extends StatelessWidget {
                   highlightColor: Colors.transparent,
                   icon: Icon(
                     Icons.search_rounded,
-                    size: Dimensions.iconSize24(context),
+                    size: Dimensions.iconSize24,
                   ),
                 ),
               ),
             ],
           ),
         ),
-        if (appBarHeight >= Dimensions.height45(context) * 4)
+        if (appBarHeight >= Dimensions.height45 * 4)
           const Divider(
             height: 1,
             color: AppColors.gray,
           ),
-        if (appBarHeight >= Dimensions.height45(context) * 4)
+        if (appBarHeight >= Dimensions.height45 * 4)
           CustomCategoryTabBar(
             tabController: tabController,
             onClickCategory: onClickCategory,

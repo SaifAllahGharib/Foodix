@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 
 class CustomBackButton extends StatelessWidget {
   final Color color;
@@ -13,7 +13,7 @@ class CustomBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: context.read<LocalCubit>().isDirectionRight
+      alignment: context.watch<LocalCubit>().isArabic
           ? Alignment.topRight
           : Alignment.topLeft,
       child: Container(
@@ -33,7 +33,7 @@ class CustomBackButton extends StatelessWidget {
           splashColor: Colors.transparent,
           icon: Icon(
             Icons.arrow_back,
-            size: Dimensions.iconSize24(context),
+            size: Dimensions.iconSize24,
             color: color,
           ),
         ),

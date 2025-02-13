@@ -33,15 +33,15 @@ class CustomCategoryTabBar extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
         labelPadding: EdgeInsets.symmetric(
-          vertical: Dimensions.height10(context),
-          horizontal: Dimensions.width30(context),
+          vertical: Dimensions.height10,
+          horizontal: Dimensions.width30,
         ),
         tabAlignment: TabAlignment.start,
         indicatorSize: TabBarIndicatorSize.tab,
         unselectedLabelColor: Colors.grey,
         indicatorPadding: EdgeInsets.only(
-          right: Dimensions.width20(context),
-          left: Dimensions.width20(context),
+          right: Dimensions.width20,
+          left: Dimensions.width20,
         ),
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         tabs: List.generate(

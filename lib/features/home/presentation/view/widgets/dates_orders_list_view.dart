@@ -15,7 +15,7 @@ class DatesOrdersListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Dimensions.height80(context) * 0.6,
+      height: Dimensions.height80 * 0.6,
       child: ListView.builder(
         padding: EdgeInsets.zero,
         itemCount: list.length,

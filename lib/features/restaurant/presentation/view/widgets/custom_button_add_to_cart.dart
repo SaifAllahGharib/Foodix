@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
@@ -18,19 +18,19 @@ class CustomButtonAddToCart extends StatelessWidget {
     return Expanded(
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: Dimensions.height20(context),
-          vertical: Dimensions.height15(context),
+          horizontal: Dimensions.height20,
+          vertical: Dimensions.height15,
         ),
         decoration: BoxDecoration(
           color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 5),
+          borderRadius: BorderRadius.circular(Dimensions.radius20 * 5),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: Text(
-                "add_to_cart".tr(context),
+                "add_to_cart",
                 overflow: TextOverflow.ellipsis,
                 softWrap: true,
                 style: Styles.textStyle15(context).copyWith(
@@ -39,7 +39,7 @@ class CustomButtonAddToCart extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: Dimensions.width20(context)),
+            SizedBox(width: Dimensions.width20),
             CustomRowCost(
               egp: "$price",
               color: Colors.white,

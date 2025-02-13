@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_cubit.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class ColumnOfTextFields extends StatefulWidget {
   final BuildContext context;
@@ -34,26 +34,26 @@ class _ColumnOfTextFieldsState extends State<ColumnOfTextFields> {
       children: [
         CustomTextField(
           controller: widget.name,
-          hint: "hint_name".tr(widget.context),
+          hint: S.of(context).hintName,
           onChanged: widget.validator,
         ),
-        SizedBox(height: Dimensions.height15(widget.context)),
+        SizedBox(height: Dimensions.height15),
         CustomTextField(
           controller: widget.email,
-          hint: "hint_email".tr(widget.context),
+          hint: S.of(context).hintEmail,
           onChanged: widget.validator,
         ),
-        SizedBox(height: Dimensions.height15(widget.context)),
+        SizedBox(height: Dimensions.height15),
         CustomTextField(
           controller: widget.phone,
-          hint: "hint_phone".tr(widget.context),
+          hint: S.of(context).hintPhone,
           onChanged: widget.validator,
         ),
-        SizedBox(height: Dimensions.height15(widget.context)),
+        SizedBox(height: Dimensions.height15),
         CustomTextField(
           controller: widget.password,
           isPassword: true,
-          hint: "hint_pass".tr(widget.context),
+          hint: S.of(context).hintPass,
           onPressedShowPassword:
               widget.context.read<SignupCubit>().togglePasswordVisibility,
           showPassword: widget.context.watch<SignupCubit>().showPassword,

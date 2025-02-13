@@ -23,13 +23,13 @@ class CustomTimeWidget extends StatelessWidget {
             color: Colors.grey,
           ),
         ),
-        SizedBox(width: Dimensions.width10(context)),
+        SizedBox(width: Dimensions.width10),
         Icon(
           Icons.circle,
           color: Colors.grey,
-          size: Dimensions.width10(context) * 1.2,
+          size: Dimensions.width10 * 1.2,
         ),
-        SizedBox(width: Dimensions.width10(context)),
+        SizedBox(width: Dimensions.width10),
         Text(
           time,
           style: Styles.textStyle15(context).copyWith(

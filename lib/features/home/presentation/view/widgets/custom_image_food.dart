@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/widgets/custom_cashed_network_image.dart';
 
 class CustomImageFood extends StatelessWidget {
   final String imageUrl;
@@ -11,14 +13,14 @@ class CustomImageFood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      height: Dimensions.height130(context) * 1.2,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
-        image: DecorationImage(
-          image: AssetImage(imageUrl),
-          fit: BoxFit.cover,
+      height: Dimensions.height130 * 1.2,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(Dimensions.radius20),
+        child: CustomCashedNetworkImage(
+          imageURL: imageUrl,
+          placeholder: Assets.food,
         ),
       ),
     );

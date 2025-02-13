@@ -3,10 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yummy_home/core/errors/failure.dart';
 import 'package:yummy_home/core/services/auth_services.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/features/login/data/models/login_model.dart';
 import 'package:yummy_home/features/login/data/repos/login_repo.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class LoginRepositoryImp implements LoginRepository {
   final AuthServices _authServices;
@@ -21,9 +21,9 @@ class LoginRepositoryImp implements LoginRepository {
 
       if (response.user != null) {
         await MySharedPreferences().storeString("uid", response.user!.uid);
-        return right("success".tr(context));
+        return right(S.of(context).success);
       } else {
-        return right("field".tr(context));
+        return right("field");
       }
     } on FirebaseAuthException catch (e) {
       return left(FirebaseAuthFailure(e.code));

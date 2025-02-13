@@ -1,18 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/custom_placeholder.dart';
 
 class CustomCashedNetworkImage extends StatelessWidget {
   final String? imageURL;
-  final double width;
-  final double height;
+  final String placeholder;
+  final double? width;
+  final double? height;
 
   const CustomCashedNetworkImage({
     super.key,
     this.imageURL,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
+    required this.placeholder,
   });
 
   @override
@@ -22,10 +23,9 @@ class CustomCashedNetworkImage extends StatelessWidget {
       fit: BoxFit.cover,
       width: width,
       height: height,
-      placeholder: (context, url) =>
-          const CustomPlaceholder(image: Assets.placeholder),
+      placeholder: (context, url) => CustomPlaceholder(image: placeholder),
       errorWidget: (context, url, error) =>
-          const CustomPlaceholder(image: Assets.placeholder),
+          CustomPlaceholder(image: placeholder),
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
@@ -14,6 +13,7 @@ import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/data/models/change_password_model.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/change_password/change_password_cubit.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/change_password/change_password_state.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class ChangePasswordViewBody extends StatefulWidget {
   final String verifyCode;
@@ -71,7 +71,7 @@ class _ChangePasswordViewBodyState extends State<ChangePasswordViewBody> {
       if (msg == "Password updated successfully") {
         snackBar(
           context: context,
-          text: "change_password_successful".tr(context),
+          text: "change_password_successful",
           color: AppColors.primaryColor,
         );
 
@@ -81,7 +81,7 @@ class _ChangePasswordViewBodyState extends State<ChangePasswordViewBody> {
       } else if (msg == "Failed to update password") {
         snackBar(
           context: context,
-          text: "change_password_failed".tr(context),
+          text: "change_password_failed",
         );
       }
     } else if (state is ChangePasswordFailure) {
@@ -102,33 +102,33 @@ class _ChangePasswordViewBodyState extends State<ChangePasswordViewBody> {
         }
 
         return Padding(
-          padding: EdgeInsets.all(Dimensions.height20(context)),
+          padding: EdgeInsets.all(Dimensions.height20),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: Dimensions.height45(context)),
-                CustomText(text: "change_password".tr(context)),
-                SizedBox(height: Dimensions.height45(context) * 2),
+                SizedBox(height: Dimensions.height45),
+                CustomText(text: "change_password"),
+                SizedBox(height: Dimensions.height45 * 2),
                 CustomTextField(
                   controller: _changePassword,
                   isPassword: true,
-                  hint: "hint_pass".tr(context),
+                  hint: S.of(context).hintPass,
                   onPressedShowPassword: () => showPassword(context),
                   showPassword: isShow(context),
                   onChanged: (val) => _validation(context),
                 ),
-                SizedBox(height: Dimensions.height15(context)),
+                SizedBox(height: Dimensions.height15),
                 CustomTextField(
                   controller: _confirmPassword,
                   isPassword: true,
-                  hint: "confirm_password".tr(context),
+                  hint: "confirm_password",
                   onPressedShowPassword: () => showPassword(context),
                   showPassword: isShow(context),
                   onChanged: (val) => _validation(context),
                 ),
-                SizedBox(height: Dimensions.height30(context)),
+                SizedBox(height: Dimensions.height30),
                 CustomButton(
-                  text: "verify".tr(context),
+                  text: "verify",
                   isEnabled: context.watch<ChangePasswordCubit>().buttonEnabled,
                   onClick: () =>
                       context.read<ChangePasswordCubit>().changePassword(

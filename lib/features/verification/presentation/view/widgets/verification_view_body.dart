@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
@@ -15,6 +14,7 @@ import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/verification/presentation/view/widgets/success_verification_widget.dart';
 import 'package:yummy_home/features/verification/presentation/viewmodel/cubits/verification/verification_cubit.dart';
 import 'package:yummy_home/features/verification/presentation/viewmodel/cubits/verification/verification_state.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class VerificationViewBody extends StatefulWidget {
   final String email;
@@ -35,8 +35,8 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
   @override
   void initState() {
     _verificationController = StreamController.broadcast();
-    _sendEmailVerification(context);
-    _startVerificationListener(context);
+    // _sendEmailVerification(context);
+    // _startVerificationListener(context);
     super.initState();
   }
 
@@ -49,7 +49,7 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
     if (state is VerificationIsEmailVerificationSend) {
       snackBar(
         context: context,
-        text: "send_to_email_success".tr(context),
+        text: S.of(context).sendToEmailSuccess,
         color: AppColors.primaryColor,
       );
     } else if (state is VerificationSuccess) {
@@ -95,22 +95,22 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
             }
 
             return Padding(
-              padding: EdgeInsets.all(Dimensions.height20(context)),
+              padding: EdgeInsets.all(Dimensions.height20),
               child: SizedBox(
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: Dimensions.height30(context)),
+                    SizedBox(height: Dimensions.height30),
                     Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
                       alignment: WrapAlignment.center,
                       runAlignment: WrapAlignment.center,
-                      spacing: Dimensions.width20(context),
-                      runSpacing: Dimensions.height10(context) * 0.3,
+                      spacing: Dimensions.width20,
+                      runSpacing: Dimensions.height10 * 0.3,
                       children: [
                         Text(
-                          "send_link_verification_your_email_to".tr(context),
+                          S.of(context).sendLinkVerificationYourEmailTo,
                           style: Styles.textStyle16(context),
                         ),
                         Text(
@@ -120,17 +120,17 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
                         ),
                       ],
                     ),
-                    SizedBox(height: Dimensions.height20(context)),
+                    SizedBox(height: Dimensions.height20),
                     Image.asset(Assets.verify),
                     const Spacer(),
                     CustomButton(
                       text: context.read<VerificationCubit>().time != 0
                           ? "${context.read<VerificationCubit>().time}s"
-                          : "Resend email",
+                          : S.of(context).resendEmail,
                       isEnabled: context.read<VerificationCubit>().canSend,
                       onClick: () => _sendEmailVerification(context),
                     ),
-                    SizedBox(height: Dimensions.height30(context)),
+                    SizedBox(height: Dimensions.height30),
                   ],
                 ),
               ),

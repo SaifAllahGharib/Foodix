@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+
 import 'package:yummy_home/core/utils/dimensions.dart';
 
 class Or extends StatelessWidget {
@@ -14,10 +14,10 @@ class Or extends StatelessWidget {
         ),
         const SizedBox(width: 7),
         Text(
-          "or".tr(context),
+          "or",
           style: TextStyle(
             color: Colors.black,
-            fontSize: Dimensions.fontSize15(context),
+            fontSize: Dimensions.fontSize15,
           ),
         ),
         const SizedBox(width: 7),

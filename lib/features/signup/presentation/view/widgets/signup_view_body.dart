@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/errors/failure.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
@@ -16,11 +15,12 @@ import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_t
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_cubit.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class SignupViewBody extends StatefulWidget {
-  final String type;
+  final String role;
 
-  const SignupViewBody({super.key, required this.type});
+  const SignupViewBody({super.key, required this.role});
 
   @override
   State<SignupViewBody> createState() => _SignupViewBodyState();
@@ -59,7 +59,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
   }
 
   void _onSuccess(state) {
-    if (state.msg == "success".tr(context)) {
+    if (state.msg == S.of(context).success) {
       _pushToVerificationView();
     }
 
@@ -71,9 +71,9 @@ class _SignupViewBodyState extends State<SignupViewBody> {
       final String msg = state.failure.errorMsg;
 
       if (msg == "weak-password") {
-        snackBar(context: context, text: "weak_password".tr(context));
+        snackBar(context: context, text: "weak_password");
       } else if (msg == "email-already-in-use") {
-        snackBar(context: context, text: "user_already_exists".tr(context));
+        snackBar(context: context, text: "user_already_exists");
       }
     } else {
       snackBar(context: context, text: state.failure.errorMsg);
@@ -95,7 +95,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
             email: _email.text,
             phone: _phone.text,
             password: _password.text,
-            role: widget.type,
+            role: widget.role,
           ),
           context,
         );
@@ -107,7 +107,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           email: _email,
           phone: _phone,
           password: _password,
-          userType: widget.type,
+          userType: widget.role,
         );
   }
 
@@ -121,15 +121,15 @@ class _SignupViewBodyState extends State<SignupViewBody> {
         }
 
         return Padding(
-          padding: EdgeInsets.all(Dimensions.height20(context)),
+          padding: EdgeInsets.all(Dimensions.height20),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: Dimensions.height20(context)),
+                SizedBox(height: Dimensions.height20),
                 const CustomBackButton(),
-                SizedBox(height: Dimensions.height30(context)),
-                CustomText(text: "create_account".tr(context)),
-                SizedBox(height: Dimensions.height45(context) * 1.3),
+                SizedBox(height: Dimensions.height30),
+                CustomText(text: S.of(context).createAccount),
+                SizedBox(height: Dimensions.height45 * 1.3),
                 ColumnOfTextFields(
                   context: context,
                   name: _name,
@@ -138,15 +138,15 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   password: _password,
                   validator: (val) => _validation(context),
                 ),
-                SizedBox(height: Dimensions.height45(context)),
+                SizedBox(height: Dimensions.height45),
                 CustomButton(
-                  text: "signup".tr(context),
+                  text: S.of(context).signup,
                   isEnabled: context.watch<SignupCubit>().buttonEnabled,
                   onClick: () => _signup(context),
                 ),
-                SizedBox(height: Dimensions.height45(context)),
+                SizedBox(height: Dimensions.height45),
                 CustomTextButton(
-                  text: "already_have_account".tr(context),
+                  text: S.of(context).alreadyHaveAccount,
                   onClick: () {
                     GoRouter.of(context).push(LoginView.id);
                   },

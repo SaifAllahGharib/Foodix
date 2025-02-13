@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
@@ -13,6 +12,7 @@ import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/forget_password/forget_password_cubit.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/forget_password/forget_password_state.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class ForgetPasswordViewBody extends StatefulWidget {
   const ForgetPasswordViewBody({super.key});
@@ -56,7 +56,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
       if (msg == "Send code successfully") {
         snackBar(
           context: context,
-          text: "code_send_successfully".tr(context),
+          text: "code_send_successfully",
           color: AppColors.primaryColor,
         );
 
@@ -64,14 +64,14 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
       } else if (msg == "Not send code success") {
         snackBar(
           context: context,
-          text: "code_not_send_success".tr(context),
+          text: "code_not_send_success",
         );
 
         _onSuccess(user);
       } else if (msg == "User not found") {
         snackBar(
           context: context,
-          text: "this_user_does_not_exist".tr(context),
+          text: "this_user_does_not_exist",
         );
       }
     } else if (state is ForgetPasswordFailure) {
@@ -92,25 +92,25 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
         }
 
         return Padding(
-          padding: EdgeInsets.all(Dimensions.height20(context)),
+          padding: EdgeInsets.all(Dimensions.height20),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: Dimensions.height20(context)),
+                SizedBox(height: Dimensions.height20),
                 const CustomBackButton(),
-                SizedBox(height: Dimensions.height30(context)),
-                CustomText(text: "re_password".tr(context)),
-                SizedBox(height: Dimensions.height45(context) * 2),
+                SizedBox(height: Dimensions.height30),
+                CustomText(text: "re_password"),
+                SizedBox(height: Dimensions.height45 * 2),
                 CustomTextField(
                   controller: _email,
-                  hint: "hint_email".tr(context),
+                  hint: S.of(context).hintEmail,
                   onChanged: (val) => context
                       .read<ForgetPasswordCubit>()
                       .validationFields(email: _email),
                 ),
-                SizedBox(height: Dimensions.height30(context)),
+                SizedBox(height: Dimensions.height30),
                 CustomButton(
-                  text: "verify".tr(context),
+                  text: "verify",
                   isEnabled: context.watch<ForgetPasswordCubit>().buttonEnabled,
                   onClick: () {
                     context

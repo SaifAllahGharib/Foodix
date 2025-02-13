@@ -2,14 +2,22 @@ import 'dart:io';
 
 sealed class ProfileState {}
 
-class ProfileInit extends ProfileState {}
+class ProfileInitState extends ProfileState {}
 
-class ProfileSuccess extends ProfileState {}
+class ProfileLoadingState extends ProfileState {}
 
-class ProfileFailure extends ProfileState {}
+class ProfileSuccessState extends ProfileState {}
 
-class ProfilePickImage extends ProfileState {
+class ProfileFailureState extends ProfileState {
+  final String errorMsg;
+
+  ProfileFailureState(this.errorMsg);
+}
+
+class ProfileSignOutState extends ProfileState {}
+
+class ProfilePickImageState extends ProfileState {
   final File? image;
 
-  ProfilePickImage(this.image);
+  ProfilePickImageState(this.image);
 }

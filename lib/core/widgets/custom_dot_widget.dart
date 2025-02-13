@@ -8,7 +8,7 @@ class CustomDotWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       Icons.circle,
-      size: Dimensions.height10(context) * 0.6,
+      size: Dimensions.height10 * 0.6,
       color: Colors.black54,
     );
   }

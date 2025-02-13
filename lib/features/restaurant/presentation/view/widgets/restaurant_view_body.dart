@@ -205,7 +205,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
       context!,
       duration: const Duration(milliseconds: 250),
       curve: Curves.easeInOut,
-      alignment: Dimensions.height10(context) * 0.04,
+      alignment: Dimensions.height10 * 0.04,
     );
   }
 

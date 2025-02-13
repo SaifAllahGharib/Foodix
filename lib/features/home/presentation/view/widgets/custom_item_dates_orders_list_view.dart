@@ -30,12 +30,11 @@ class CustomItemDatesOrdersListView extends StatelessWidget {
       onTap: () => _setSelectedIndex(context, index),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding:
-            EdgeInsets.symmetric(horizontal: Dimensions.width30(context) * 2),
-        margin: EdgeInsets.only(right: Dimensions.width30(context)),
+        padding: EdgeInsets.symmetric(horizontal: Dimensions.width30 * 2),
+        margin: EdgeInsets.only(right: Dimensions.width30),
         decoration: BoxDecoration(
           color: selectedIndex == index ? AppColors.primaryColor : Colors.white,
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 5),
+          borderRadius: BorderRadius.circular(Dimensions.radius20 * 5),
           border: Border.all(
             width: 1,
             color: AppColors.primaryColor,

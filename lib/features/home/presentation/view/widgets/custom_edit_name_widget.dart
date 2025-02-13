@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class CustomEditNameWidget extends StatefulWidget {
   const CustomEditNameWidget({super.key});
@@ -29,29 +29,29 @@ class _CustomEditNameWidgetState extends State<CustomEditNameWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Dimensions.height15(context)),
+      padding: EdgeInsets.all(Dimensions.height15),
       child: Column(
         children: [
           Align(
             alignment: Alignment.topCenter,
             child: Container(
-              width: Dimensions.width30(context) * 2,
-              height: Dimensions.height10(context) * 0.8,
+              width: Dimensions.width30 * 2,
+              height: Dimensions.height10 * 0.8,
               decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(5000),
               ),
             ),
           ),
-          SizedBox(height: Dimensions.height30(context)),
+          SizedBox(height: Dimensions.height30),
           CustomTextField(
-            hint: "edit_name".tr(context),
+            hint: S.of(context).editName,
             onChanged: (val) {},
             controller: _editName,
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height20),
           CustomButton(
-            text: "edit".tr(context),
+            text: S.of(context).edit,
             onClick: () {},
           ),
         ],

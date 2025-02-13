@@ -4,44 +4,39 @@ import 'package:yummy_home/core/services/db_services.dart';
 import 'package:yummy_home/core/services/firebase_auth_services.dart';
 import 'package:yummy_home/core/services/firebase_db_services.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
+import 'package:yummy_home/core/utils/image_picker_helper.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
+import 'package:yummy_home/features/home/data/repos/profile/profile_repo_imp.dart';
 import 'package:yummy_home/features/login/data/repos/login_repo_imp.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo_imp.dart';
 import 'package:yummy_home/features/verification/data/repos/verificatoin_repo_imp.dart';
 
-final getIt = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 
-void setup() {
+void setupServiceLocator() {
   getIt.registerSingleton<FirebaseService>(FirebaseService());
 
-  getIt.registerSingleton<AuthServices>(
-    FirebaseAuthServices(getIt.get<FirebaseService>()),
-  );
+  final firebaseService = getIt<FirebaseService>();
 
-  getIt.registerSingleton<DBServices>(
-    FirebaseDBServices(getIt.get<FirebaseService>()),
-  );
+  getIt.registerSingleton<AuthServices>(FirebaseAuthServices(firebaseService));
+
+  getIt.registerSingleton<DBServices>(FirebaseDBServices(firebaseService));
+
+  final authServices = getIt<AuthServices>();
+  final dbServices = getIt<DBServices>();
 
   getIt.registerSingleton<SignupRepositoryImp>(
-    SignupRepositoryImp(
-      getIt.get<AuthServices>(),
-      getIt.get<DBServices>(),
-    ),
-  );
+      SignupRepositoryImp(authServices, dbServices));
 
   getIt.registerSingleton<VerificationRepositoryImp>(
-    VerificationRepositoryImp(getIt.get<AuthServices>()),
-  );
+      VerificationRepositoryImp(authServices));
 
-  getIt.registerSingleton<LoginRepositoryImp>(
-    LoginRepositoryImp(getIt.get<AuthServices>()),
-  );
+  getIt.registerSingleton<LoginRepositoryImp>(LoginRepositoryImp(authServices));
 
-  //
-  // getIt.registerSingleton<ForgetPasswordRepositoryImp>(
-  //   ForgetPasswordRepositoryImp(getIt.get<Api>()),
-  // );
-  //
-  // getIt.registerSingleton<ChangePasswordRepositoryImp>(
-  //   ChangePasswordRepositoryImp(getIt.get<Api>()),
-  // );
+  getIt.registerSingleton<ProfileRepositoryImp>(
+      ProfileRepositoryImp(authServices));
+
+  getIt.registerSingleton<ImagePickerHelper>(ImagePickerHelper());
+
+  getIt.registerSingleton<MySharedPreferences>(MySharedPreferences());
 }

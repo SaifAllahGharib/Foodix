@@ -11,10 +11,10 @@ class CustomCostDelivery extends StatelessWidget {
       children: [
         Icon(
           Icons.motorcycle_outlined,
-          size: Dimensions.height15(context),
+          size: Dimensions.height15,
           color: Colors.black54,
         ),
-        SizedBox(width: Dimensions.height10(context) * 0.5),
+        SizedBox(width: Dimensions.height10 * 0.5),
         const CustomRowCost(
           egp: "15.99",
           color: Colors.grey,

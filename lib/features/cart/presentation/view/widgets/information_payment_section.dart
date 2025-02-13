@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_item_details_order.dart';
@@ -10,7 +10,7 @@ class InformationPaymentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Dimensions.height15(context)),
+      padding: EdgeInsets.symmetric(horizontal: Dimensions.height15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -19,20 +19,20 @@ class InformationPaymentSection extends StatelessWidget {
             style: Styles.textStyle18(context),
           ),
           CustomItemDetailsOrder(
-            startText: "total_basket".tr(context),
+            startText: "total_basket",
             endText: "250",
           ),
-          SizedBox(height: Dimensions.height10(context) * 0.5),
+          SizedBox(height: Dimensions.height10 * 0.5),
           CustomItemDetailsOrder(
-            startText: "delivery".tr(context),
+            startText: "delivery",
             endText: "20",
           ),
-          SizedBox(height: Dimensions.height10(context) * 0.5),
+          SizedBox(height: Dimensions.height10 * 0.5),
           CustomItemDetailsOrder(
-            startText: "total".tr(context),
+            startText: "total",
             endText: "270",
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height20),
         ],
       ),
     );

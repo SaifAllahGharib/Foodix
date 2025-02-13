@@ -22,9 +22,9 @@ class CustomGridViewBuilder extends StatelessWidget {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: Dimensions.height10(context),
-        mainAxisSpacing: Dimensions.height10(context),
-        childAspectRatio: Dimensions.getHeight(context) * 0.00087,
+        crossAxisSpacing: Dimensions.height10,
+        mainAxisSpacing: Dimensions.height10,
+        childAspectRatio: Dimensions.screenHeight * 0.00087,
       ),
       padding: EdgeInsets.zero,
       itemCount: 7,

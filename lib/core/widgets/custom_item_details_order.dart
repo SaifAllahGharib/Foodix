@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class CustomItemDetailsOrder extends StatelessWidget {
   final String startText;
@@ -18,7 +18,7 @@ class CustomItemDetailsOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: Dimensions.height10(context)),
+      padding: EdgeInsets.only(top: Dimensions.height10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -39,11 +39,11 @@ class CustomItemDetailsOrder extends StatelessWidget {
                 ),
               ),
               cashEnabled
-                  ? SizedBox(width: Dimensions.width10(context))
+                  ? SizedBox(width: Dimensions.width10)
                   : const SizedBox.shrink(),
               cashEnabled
                   ? Text(
-                      "food_cost".tr(context),
+                      S.of(context).foodCost,
                       style: Styles.textStyle15(context).copyWith(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,

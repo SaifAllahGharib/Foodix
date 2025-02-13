@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/category_seller_list_view.dart';
@@ -8,6 +7,7 @@ import 'package:yummy_home/features/home/presentation/view/widgets/custom_search
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_widget_float_button_add_category.dart';
 import 'package:yummy_home/features/restaurant/data/models/Foods.dart';
 import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class MainSellerView extends StatefulWidget {
   const MainSellerView({super.key});
@@ -173,9 +173,9 @@ class _MainSellerViewState extends State<MainSellerView> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: Dimensions.height20(context) * 2,
-        right: Dimensions.height20(context),
-        left: Dimensions.height20(context),
+        top: Dimensions.height20 * 2,
+        right: Dimensions.height20,
+        left: Dimensions.height20,
       ),
       child: Stack(
         children: [
@@ -187,12 +187,12 @@ class _MainSellerViewState extends State<MainSellerView> {
                 controller: _searchCategoryController,
                 onChange: (value) {},
               ),
-              SizedBox(height: Dimensions.height20(context)),
+              SizedBox(height: Dimensions.height20),
               Text(
-                "categories".tr(context),
+                S.of(context).categories,
                 style: Styles.textStyle30(context),
               ),
-              SizedBox(height: Dimensions.height20(context)),
+              SizedBox(height: Dimensions.height20),
               CategorySellerListView(
                 list: listOfFoodCategories,
                 searchFoodController: _searchFoodController,

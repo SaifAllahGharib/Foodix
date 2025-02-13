@@ -20,12 +20,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(Dimensions.height12(context) * 0.7),
-      margin: EdgeInsets.all(Dimensions.height20(context)),
-      height: Dimensions.height45(context) * 1.4,
+      padding: EdgeInsets.all(Dimensions.height12 * 0.7),
+      margin: EdgeInsets.all(Dimensions.height20),
+      height: Dimensions.height45 * 1.4,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 1.2),
+        borderRadius: BorderRadius.circular(Dimensions.radius20 * 1.2),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -66,18 +66,18 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          height: Dimensions.width10(context) * 0.8,
-          width: isSelected ? Dimensions.getWidth(context) * 0.055 : 0,
+          height: Dimensions.width10 * 0.8,
+          width: isSelected ? Dimensions.screenWidth * 0.055 : 0,
           decoration: BoxDecoration(
             color: isSelected ? AppColors.primaryColor : Colors.transparent,
-            borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
+            borderRadius: BorderRadius.circular(Dimensions.radius10),
           ),
         ),
-        SizedBox(height: Dimensions.height10(context) * 0.3),
+        SizedBox(height: Dimensions.height10 * 0.3),
         Icon(
           iconData[index],
           color: isSelected ? AppColors.primaryColor : AppColors.gray,
-          size: Dimensions.getWidth(context) * 0.055,
+          size: Dimensions.screenWidth * 0.055,
         ),
       ],
     );

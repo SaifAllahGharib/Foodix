@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_divider.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_button_language.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class ChangeLanguageWidget extends StatelessWidget {
   const ChangeLanguageWidget({super.key});
@@ -20,32 +20,32 @@ class ChangeLanguageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Dimensions.height15(context)),
+      padding: EdgeInsets.all(Dimensions.height15),
       child: SizedBox(
-        height: Dimensions.height130(context) * 1.6,
+        height: Dimensions.height130 * 1.6,
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CustomDivider(),
-            SizedBox(height: Dimensions.height10(context)),
+            SizedBox(height: Dimensions.height10),
             Row(
               children: [
                 const CustomBackButton(),
-                SizedBox(width: Dimensions.width30(context)),
+                SizedBox(width: Dimensions.width30),
                 Text(
-                  "language".tr(context),
+                  S.of(context).language,
                   style: Styles.textStyle18(context)
                       .copyWith(fontWeight: FontWeight.w500),
                 ),
               ],
             ),
-            SizedBox(height: Dimensions.height20(context)),
+            SizedBox(height: Dimensions.height20),
             CustomButtonLanguage(
               text: "العربيه",
               onClick: () => _changeLanguage(context, "ar"),
             ),
-            SizedBox(height: Dimensions.height20(context)),
+            SizedBox(height: Dimensions.height20),
             CustomButtonLanguage(
               text: "English",
               onClick: () => _changeLanguage(context, "en"),

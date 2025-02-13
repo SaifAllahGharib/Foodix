@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
+import 'package:yummy_home/core/widgets/custom_image.dart';
 
 class ImageAndBackButton extends StatelessWidget {
   const ImageAndBackButton({super.key});
@@ -9,18 +11,13 @@ class ImageAndBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
+        CustomImage(
+          image: Assets.food,
           width: double.infinity,
-          height: Dimensions.height130(context) * 2.4,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(" "),
-              fit: BoxFit.cover,
-            ),
-          ),
+          height: Dimensions.height130 * 2.4,
         ),
         Padding(
-          padding: EdgeInsets.all(Dimensions.height20(context)),
+          padding: EdgeInsets.all(Dimensions.height20),
           child: const CustomBackButton(),
         ),
       ],

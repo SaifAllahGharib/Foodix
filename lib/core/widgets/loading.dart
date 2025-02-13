@@ -11,7 +11,7 @@ class Loading extends StatelessWidget {
     return Center(
       child: LoadingAnimationWidget.stretchedDots(
         color: AppColors.primaryColor,
-        size: Dimensions.height80(context),
+        size: Dimensions.height80,
       ),
     );
   }

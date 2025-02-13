@@ -21,7 +21,7 @@ class CartViewBody extends StatelessWidget {
           children: [
             const CustomAppBarCartView(),
             const CustomListViewCartView(),
-            SizedBox(height: Dimensions.height10(context)),
+            SizedBox(height: Dimensions.height10),
             const InformationPaymentSection(),
             const BottomSectionCartView(),
           ],

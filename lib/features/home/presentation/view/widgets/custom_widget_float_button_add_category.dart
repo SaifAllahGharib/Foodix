@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class CustomWidgetFloatButtonAddCategory extends StatelessWidget {
   final TextEditingController categoryController;
@@ -20,21 +20,21 @@ class CustomWidgetFloatButtonAddCategory extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(Dimensions.radius20(context)),
-          topRight: Radius.circular(Dimensions.radius20(context)),
+          topLeft: Radius.circular(Dimensions.radius20),
+          topRight: Radius.circular(Dimensions.radius20),
         ),
       ),
-      padding: EdgeInsets.all(Dimensions.height20(context)),
+      padding: EdgeInsets.all(Dimensions.height20),
       child: Column(
         children: [
           CustomTextField(
             controller: categoryController,
-            hint: "category".tr(context),
+            hint: S.of(context).category,
             onChanged: (val) {},
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height20),
           CustomButton(
-            text: "add".tr(context),
+            text: S.of(context).add,
             onClick: () {},
           ),
         ],

@@ -17,7 +17,7 @@ class _MainBuyerViewState extends State<MainBuyerView> {
       slivers: [
         const SliverToBoxAdapter(child: CustomAppBarMainBuyerView()),
         SliverPadding(
-          padding: EdgeInsets.all(Dimensions.height20(context)),
+          padding: EdgeInsets.all(Dimensions.height20),
           sliver: const CustomSliverListViewMainBuyerView(),
         ),
       ],
