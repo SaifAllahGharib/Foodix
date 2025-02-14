@@ -8,7 +8,14 @@ import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_edit_name_widget.dart';
 
 class NameAndEmail extends StatelessWidget {
-  const NameAndEmail({super.key});
+  final String name;
+  final String email;
+
+  const NameAndEmail({
+    super.key,
+    required this.name,
+    required this.email,
+  });
 
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -36,14 +43,14 @@ class NameAndEmail extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text: "Saif Gharib",
+                text: name,
                 textSize: Dimensions.height20 * 1.2,
                 alignment: context.watch<LocalCubit>().isArabic
                     ? Alignment.topRight
                     : Alignment.topLeft,
               ),
               Text(
-                "saifgharib28@gmail.com",
+                email,
                 style: Styles.textStyle15(context)
                     .copyWith(fontWeight: FontWeight.w500),
               ),

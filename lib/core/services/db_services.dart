@@ -5,4 +5,6 @@ abstract class DBServices {
   Future<DataSnapshot> getUser(String uid);
 
   Future<void> setUser(UserModel user, String uid);
+
+  Future<void> updateName(String uid, String name);
 }

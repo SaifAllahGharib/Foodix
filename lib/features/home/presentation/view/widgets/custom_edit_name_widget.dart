@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
+import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
 import 'package:yummy_home/generated/l10n.dart';
 
 class CustomEditNameWidget extends StatefulWidget {
@@ -24,6 +28,13 @@ class _CustomEditNameWidgetState extends State<CustomEditNameWidget> {
   void dispose() {
     _editName.dispose();
     super.dispose();
+  }
+
+  void _updateName(BuildContext context) {
+    context.read<ProfileCubit>().updateName(
+          getIt.get<MySharedPreferences>().getIdUser()!,
+          _editName.text,
+        );
   }
 
   @override
@@ -52,7 +63,8 @@ class _CustomEditNameWidgetState extends State<CustomEditNameWidget> {
           SizedBox(height: Dimensions.height20),
           CustomButton(
             text: S.of(context).edit,
-            onClick: () {},
+            isEnabled: true,
+            onClick: () => _updateName(context),
           ),
         ],
       ),

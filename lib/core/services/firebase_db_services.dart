@@ -21,4 +21,9 @@ class FirebaseDBServices extends DBServices {
         .child(uid)
         .set(user.toJson());
   }
+
+  @override
+  Future<void> updateName(String uid, String name) async {
+    await _firebaseService.db.ref().child("users/$uid").update({"name": name});
+  }
 }

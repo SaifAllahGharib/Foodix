@@ -5,8 +5,14 @@ import 'package:yummy_home/core/utils/app_router.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/functions/init_app.dart';
 import 'package:yummy_home/core/utils/functions/set_portrait_orientation.dart';
+import 'package:yummy_home/core/utils/image_picker_helper.dart';
+import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
+import 'package:yummy_home/features/home/data/repos/home/home_repo_imp.dart';
+import 'package:yummy_home/features/home/data/repos/profile/profile_repo_imp.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/home/home_cubit.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
 import 'package:yummy_home/generated/l10n.dart';
 
 void main() async {
@@ -33,8 +39,21 @@ class MyApp extends StatelessWidget {
           );
         }
 
-        return BlocProvider(
-          create: (context) => LocalCubit()..loadSavedLanguage(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<LocalCubit>(
+              create: (context) => LocalCubit()..loadSavedLanguage(),
+            ),
+            BlocProvider<HomeCubit>(
+              create: (context) => HomeCubit(getIt.get<HomeRepositoryImp>()),
+            ),
+            BlocProvider<ProfileCubit>(
+              create: (context) => ProfileCubit(
+                getIt.get<ImagePickerHelper>(),
+                getIt.get<ProfileRepositoryImp>(),
+              ),
+            ),
+          ],
           child: BlocBuilder<LocalCubit, Locale>(
             builder: (context, locale) {
               return MaterialApp.router(

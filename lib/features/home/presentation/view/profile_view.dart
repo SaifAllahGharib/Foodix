@@ -26,6 +26,7 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  final _storage = getIt.get<MySharedPreferences>();
   File? _selectedImage;
 
   void _showBottomSheet(BuildContext context) {
@@ -70,6 +71,16 @@ class _ProfileViewState extends State<ProfileView> {
       _selectedImage = state.image;
     } else if (state is ProfileSignOutState) {
       _signOutSuccess();
+    } else if (state is ProfileUpdateNameState) {
+      snackBar(
+        context: context,
+        text: S.of(context).success,
+        color: AppColors.primaryColor,
+      );
+      getIt.get<MySharedPreferences>().storeString(
+            "name",
+            state.newName,
+          );
     } else if (state is ProfileFailureState) {
       snackBar(context: context, text: state.errorMsg);
     }
@@ -82,41 +93,42 @@ class _ProfileViewState extends State<ProfileView> {
       builder: (context, state) {
         if (state is ProfileLoadingState) return const Loading();
 
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: Dimensions.height30),
-              CustomImageProfileView(
-                imageURL: "_selectedImage",
-                pickImageFromCamera: () => _pickImageFromCamera(context),
-                pickImageFromGallery: () => _pickImageFromGallery(context),
-              ),
-              SizedBox(height: Dimensions.height15),
-              const NameAndEmail(),
-              SizedBox(height: Dimensions.height20),
-              Divider(
-                color: AppColors.whiteGray,
-                height: 1,
-                thickness: Dimensions.height10,
-              ),
-              SizedBox(height: Dimensions.height45),
-              CustomItemProfileView(
-                title: S.of(context).addresses,
-                onClick: () => GoRouter.of(context).push(YourAddressesView.id),
-              ),
-              SizedBox(height: Dimensions.height30),
-              CustomItemProfileView(
-                title: S.of(context).language,
-                onClick: () => _showBottomSheet(context),
-              ),
-              SizedBox(height: Dimensions.height30),
-              CustomItemProfileView(
-                title: S.of(context).logout,
-                dividerIsShowing: false,
-                onClick: () => _signOut(context),
-              ),
-            ],
-          ),
+        return Column(
+          children: [
+            SizedBox(height: Dimensions.height30),
+            CustomImageProfileView(
+              imageURL: "_selectedImage",
+              pickImageFromCamera: () => _pickImageFromCamera(context),
+              pickImageFromGallery: () => _pickImageFromGallery(context),
+            ),
+            SizedBox(height: Dimensions.height15),
+            NameAndEmail(
+              name: _storage.getNameUser()!,
+              email: _storage.getEmailUser()!,
+            ),
+            SizedBox(height: Dimensions.height20),
+            Divider(
+              color: AppColors.whiteGray,
+              height: 1,
+              thickness: Dimensions.height10,
+            ),
+            SizedBox(height: Dimensions.height45),
+            CustomItemProfileView(
+              title: S.of(context).addresses,
+              onClick: () => GoRouter.of(context).push(YourAddressesView.id),
+            ),
+            SizedBox(height: Dimensions.height30),
+            CustomItemProfileView(
+              title: S.of(context).language,
+              onClick: () => _showBottomSheet(context),
+            ),
+            SizedBox(height: Dimensions.height30),
+            CustomItemProfileView(
+              title: S.of(context).logout,
+              dividerIsShowing: false,
+              onClick: () => _signOut(context),
+            ),
+          ],
         );
       },
     );

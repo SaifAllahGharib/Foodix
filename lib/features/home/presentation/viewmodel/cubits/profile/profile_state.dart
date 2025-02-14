@@ -16,6 +16,12 @@ class ProfileFailureState extends ProfileState {
 
 class ProfileSignOutState extends ProfileState {}
 
+class ProfileUpdateNameState extends ProfileState {
+  final String newName;
+
+  ProfileUpdateNameState(this.newName);
+}
+
 class ProfilePickImageState extends ProfileState {
   final File? image;
 

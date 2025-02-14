@@ -31,7 +31,7 @@ class MySharedPreferences {
 
   String? getPhoneUser() => getString('phone');
 
-  String? getTypeUser() => getString('role');
+  String? getRoleUser() => getString('role');
 
   Future<bool> storeString(String key, String value) async {
     return await _safeWrite(

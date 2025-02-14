@@ -6,6 +6,7 @@ import 'package:yummy_home/core/services/firebase_db_services.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
 import 'package:yummy_home/core/utils/image_picker_helper.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
+import 'package:yummy_home/features/home/data/repos/home/home_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/profile/profile_repo_imp.dart';
 import 'package:yummy_home/features/login/data/repos/login_repo_imp.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo_imp.dart';
@@ -33,8 +34,10 @@ void setupServiceLocator() {
 
   getIt.registerSingleton<LoginRepositoryImp>(LoginRepositoryImp(authServices));
 
+  getIt.registerSingleton<HomeRepositoryImp>(HomeRepositoryImp(dbServices));
+
   getIt.registerSingleton<ProfileRepositoryImp>(
-      ProfileRepositoryImp(authServices));
+      ProfileRepositoryImp(authServices, dbServices));
 
   getIt.registerSingleton<ImagePickerHelper>(ImagePickerHelper());
 
