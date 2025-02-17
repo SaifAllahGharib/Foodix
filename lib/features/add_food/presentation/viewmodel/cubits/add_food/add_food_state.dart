@@ -8,7 +8,11 @@ class AddFoodLoading extends AddFoodState {}
 
 class AddFoodSuccess extends AddFoodState {}
 
-class AddFoodFailure extends AddFoodState {}
+class AddFoodFailure extends AddFoodState {
+  final String errorMsg;
+
+  AddFoodFailure(this.errorMsg);
+}
 
 class AddFoodPickImage extends AddFoodState {
   final File? image;

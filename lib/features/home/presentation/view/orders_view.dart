@@ -6,6 +6,7 @@ import 'package:yummy_home/features/home/presentation/view/widgets/custom_item_o
 import 'package:yummy_home/features/home/presentation/view/widgets/dates_orders_list_view.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/orders/orders_cubit.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/orders/orders_state.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class OrdersView extends StatefulWidget {
   const OrdersView({super.key});
@@ -38,30 +39,30 @@ class _OrdersViewState extends State<OrdersView> {
       builder: (context, state) {
         return Padding(
           padding: EdgeInsets.only(
-            top: Dimensions.height20(context) * 2,
-            right: Dimensions.height20(context),
-            left: Dimensions.height20(context),
+            top: Dimensions.height20 * 2,
+            right: Dimensions.height20,
+            left: Dimensions.height20,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: Dimensions.height10(context)),
+              SizedBox(height: Dimensions.height10),
               Text(
-                'Your Orders',
+                S.of(context).yourOrders,
                 style: Styles.textStyle18(context),
               ),
-              SizedBox(height: Dimensions.height20(context)),
+              SizedBox(height: Dimensions.height20),
               DatesOrdersListView(
                 list: listOfDates,
                 selectedIndex: _selectedIndex,
               ),
-              SizedBox(height: Dimensions.height30(context)),
+              SizedBox(height: Dimensions.height30),
               Expanded(
                 child: ListView.builder(
                   itemCount: 4,
                   padding: EdgeInsets.zero,
                   itemBuilder: (context, index) {
-                    return CustomItemOrderListView();
+                    return const CustomItemOrderListView();
                   },
                 ),
               ),

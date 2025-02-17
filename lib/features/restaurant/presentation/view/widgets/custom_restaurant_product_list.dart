@@ -26,8 +26,8 @@ class CustomRestaurantProductList extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.symmetric(
-                  vertical: Dimensions.height15(context),
-                  horizontal: Dimensions.height20(context),
+                  vertical: Dimensions.height15,
+                  horizontal: Dimensions.height20,
                 ),
                 child: Text(
                   listOfFoodCategories[index].category!,

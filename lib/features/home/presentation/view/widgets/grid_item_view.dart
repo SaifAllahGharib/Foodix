@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_image_food.dart';
 
@@ -28,15 +28,15 @@ class GridItemView extends StatelessWidget {
         child: Column(
           children: [
             CustomImageFood(imageUrl: imageUrl),
-            SizedBox(height: Dimensions.height10(context)),
+            SizedBox(height: Dimensions.height10),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: Dimensions.height10(context) * 0.5,
+                horizontal: Dimensions.height10 * 0.5,
               ),
               child: Column(
                 children: [
                   Align(
-                    alignment: context.read<LocalCubit>().isDirectionRight
+                    alignment: context.watch<LocalCubit>().isArabic
                         ? Alignment.centerRight
                         : Alignment.centerLeft,
                     child: Text(
@@ -44,9 +44,9 @@ class GridItemView extends StatelessWidget {
                       style: Styles.textStyle18(context),
                     ),
                   ),
-                  SizedBox(height: Dimensions.height10(context) * 0.7),
+                  SizedBox(height: Dimensions.height10 * 0.7),
                   Align(
-                    alignment: context.read<LocalCubit>().isDirectionRight
+                    alignment: context.watch<LocalCubit>().isArabic
                         ? Alignment.centerRight
                         : Alignment.centerLeft,
                     child: CustomRowCost(

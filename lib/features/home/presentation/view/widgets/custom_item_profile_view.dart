@@ -25,8 +25,7 @@ class CustomItemProfileView extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: Dimensions.height20(context)),
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.height20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -37,7 +36,7 @@ class CustomItemProfileView extends StatelessWidget {
                     color: Colors.black87,
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.keyboard_arrow_right_outlined,
                   size: 28,
                   color: Colors.grey,
@@ -45,16 +44,16 @@ class CustomItemProfileView extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: Dimensions.height15(context)),
+          SizedBox(height: Dimensions.height15),
           dividerIsShowing
               ? Padding(
-                  padding: EdgeInsets.only(right: Dimensions.height20(context)),
-                  child: Divider(
+                  padding: EdgeInsets.only(right: Dimensions.height20),
+                  child: const Divider(
                     height: 1,
                     color: AppColors.gray,
                   ),
                 )
-              : SizedBox.shrink(),
+              : const SizedBox.shrink(),
         ],
       ),
     );

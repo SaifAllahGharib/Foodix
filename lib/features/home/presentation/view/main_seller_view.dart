@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/category_seller_list_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_float_button.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_search_text_field.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_widget_float_button_add_category.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/main_seller/main_seller_cubit.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/main_seller/main_seller_state.dart';
 import 'package:yummy_home/features/restaurant/data/models/Foods.dart';
 import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class MainSellerView extends StatefulWidget {
   const MainSellerView({super.key});
@@ -29,19 +35,19 @@ class _MainSellerViewState extends State<MainSellerView> {
           desc:
               "Classic pizza with tomato sauce, mozzarella cheese, and basil.",
           price: 120,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Pepperoni",
           desc: "Pepperoni pizza with cheese and delicious tomato sauce.",
           price: 150,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "BBQ Chicken",
           desc: "Grilled chicken pizza with BBQ sauce and cheese.",
           price: 180,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -53,20 +59,20 @@ class _MainSellerViewState extends State<MainSellerView> {
           desc:
               "Fresh beef burger with cheese, lettuce, tomato, and special sauce.",
           price: 90,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Double Beef Burger",
           desc:
               "Double beef burger with cheese, lettuce, and caramelized onions.",
           price: 140,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Chicken Burger",
           desc: "Crispy chicken burger with spicy sauce and lettuce.",
           price: 110,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -77,19 +83,19 @@ class _MainSellerViewState extends State<MainSellerView> {
           name: "Spaghetti Bolognese",
           desc: "Spaghetti with tomato sauce and minced meat.",
           price: 130,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Fettuccine Alfredo",
           desc: "Fettuccine with creamy sauce and grilled chicken.",
           price: 160,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Penne Arrabbiata",
           desc: "Penne pasta with spicy tomato sauce and basil.",
           price: 125,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -100,19 +106,19 @@ class _MainSellerViewState extends State<MainSellerView> {
           name: "Orange Juice",
           desc: "Fresh orange juice.",
           price: 50,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Strawberry Smoothie",
           desc: "Creamy and delicious strawberry smoothie.",
           price: 70,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Cold Coffee",
           desc: "Iced coffee with vanilla flavor.",
           price: 90,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -123,19 +129,19 @@ class _MainSellerViewState extends State<MainSellerView> {
           name: "Chocolate Cake",
           desc: "Rich chocolate cake with chocolate sauce.",
           price: 100,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Cheesecake",
           desc: "Creamy cheesecake with vanilla and berry flavor.",
           price: 130,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Baklava",
           desc: "Baklava filled with nuts and soaked in honey.",
           price: 80,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -169,39 +175,65 @@ class _MainSellerViewState extends State<MainSellerView> {
     );
   }
 
+  void _handleState(state) {
+    if (state is MainSellerAddCategory) {
+      snackBar(
+        context: context,
+        text: S.of(context).success,
+        color: AppColors.primaryColor,
+      );
+    } else if (state is MainSellerAddFood) {
+      snackBar(
+        context: context,
+        text: S.of(context).success,
+        color: AppColors.primaryColor,
+      );
+    } else if (state is MainSellerFailure) {
+      snackBar(context: context, text: state.errorMsg);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: Dimensions.height20(context) * 2,
-        right: Dimensions.height20(context),
-        left: Dimensions.height20(context),
-      ),
-      child: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocConsumer<MainSellerCubit, MainSellerState>(
+      listener: (context, state) => _handleState(state),
+      builder: (context, state) {
+        if (state is MainSellerLoading) return const Loading();
+
+        return Padding(
+          padding: EdgeInsets.only(
+            top: Dimensions.height20 * 2,
+            right: Dimensions.height20,
+            left: Dimensions.height20,
+          ),
+          child: Stack(
             children: [
-              CustomSearchTextField(
-                isSeller: true,
-                controller: _searchCategoryController,
-                onChange: (value) {},
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomSearchTextField(
+                    isSeller: true,
+                    controller: _searchCategoryController,
+                    onChange: (value) {},
+                  ),
+                  SizedBox(height: Dimensions.height20),
+                  Text(
+                    S.of(context).categories,
+                    style: Styles.textStyle30(context),
+                  ),
+                  SizedBox(height: Dimensions.height20),
+                  CategorySellerListView(
+                    list: listOfFoodCategories,
+                    searchFoodController: _searchFoodController,
+                  ),
+                ],
               ),
-              SizedBox(height: Dimensions.height20(context)),
-              Text(
-                "categories".tr(context),
-                style: Styles.textStyle30(context),
-              ),
-              SizedBox(height: Dimensions.height20(context)),
-              CategorySellerListView(
-                list: listOfFoodCategories,
-                searchFoodController: _searchFoodController,
-              ),
+              CustomFloatButton(
+                  onClick: () => _addCategoryBottomSheet(context)),
             ],
           ),
-          CustomFloatButton(onClick: () => _addCategoryBottomSheet(context)),
-        ],
-      ),
+        );
+      },
     );
   }
 }

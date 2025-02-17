@@ -7,10 +7,12 @@ class VerificationInit extends VerificationState {}
 class VerificationLoading extends VerificationState {}
 
 class VerificationSuccess extends VerificationState {
-  final ResponseModel response;
+  final bool isVerified;
 
-  VerificationSuccess(this.response);
+  VerificationSuccess(this.isVerified);
 }
+
+class VerificationIsEmailVerificationSend extends VerificationState {}
 
 class VerificationReSendCode extends VerificationState {
   final ResponseModel response;

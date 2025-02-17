@@ -33,19 +33,19 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
           desc:
               "Classic pizza with tomato sauce, mozzarella cheese, and basil.",
           price: 120,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Pepperoni",
           desc: "Pepperoni pizza with cheese and delicious tomato sauce.",
           price: 150,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "BBQ Chicken",
           desc: "Grilled chicken pizza with BBQ sauce and cheese.",
           price: 180,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -57,20 +57,20 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
           desc:
               "Fresh beef burger with cheese, lettuce, tomato, and special sauce.",
           price: 90,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Double Beef Burger",
           desc:
               "Double beef burger with cheese, lettuce, and caramelized onions.",
           price: 140,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Chicken Burger",
           desc: "Crispy chicken burger with spicy sauce and lettuce.",
           price: 110,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -81,19 +81,19 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
           name: "Spaghetti Bolognese",
           desc: "Spaghetti with tomato sauce and minced meat.",
           price: 130,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Fettuccine Alfredo",
           desc: "Fettuccine with creamy sauce and grilled chicken.",
           price: 160,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Penne Arrabbiata",
           desc: "Penne pasta with spicy tomato sauce and basil.",
           price: 125,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -104,19 +104,19 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
           name: "Orange Juice",
           desc: "Fresh orange juice.",
           price: 50,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Strawberry Smoothie",
           desc: "Creamy and delicious strawberry smoothie.",
           price: 70,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Cold Coffee",
           desc: "Iced coffee with vanilla flavor.",
           price: 90,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -127,19 +127,19 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
           name: "Chocolate Cake",
           desc: "Rich chocolate cake with chocolate sauce.",
           price: 100,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Cheesecake",
           desc: "Creamy cheesecake with vanilla and berry flavor.",
           price: 130,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
         Foods(
           name: "Baklava",
           desc: "Baklava filled with nuts and soaked in honey.",
           price: 80,
-          image: "assets/images/person.jpg",
+          image: " ",
         ),
       ],
     ),
@@ -203,9 +203,9 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
 
     Scrollable.ensureVisible(
       context!,
-      duration: Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 250),
       curve: Curves.easeInOut,
-      alignment: Dimensions.height10(context) * 0.04,
+      alignment: Dimensions.height10 * 0.04,
     );
   }
 
@@ -218,7 +218,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
       if (_scrollController.offset >= position.dy) {
         _tabController.animateTo(
           i,
-          duration: Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 250),
           curve: Curves.easeInOut,
         );
       }
@@ -247,7 +247,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
               CustomScrollView(
                 controller: _scrollController,
                 slivers: [
-                  SliverToBoxAdapter(child: TopSectionRestaurantView()),
+                  const SliverToBoxAdapter(child: TopSectionRestaurantView()),
                   SliverToBoxAdapter(
                     child: CustomCategoryTabBar(
                       tabController: _tabController,

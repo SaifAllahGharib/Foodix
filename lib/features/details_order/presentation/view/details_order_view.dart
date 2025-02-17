@@ -8,6 +8,6 @@ class DetailsOrderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: DetailsOrderViewBody());
+    return const Scaffold(body: DetailsOrderViewBody());
   }
 }

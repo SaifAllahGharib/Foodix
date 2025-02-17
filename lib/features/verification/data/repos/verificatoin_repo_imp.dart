@@ -1,46 +1,28 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:yummy_home/core/errors/failure.dart';
-import 'package:yummy_home/core/models/response.dart';
-import 'package:yummy_home/core/utils/api.dart';
-import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
+import 'package:yummy_home/core/services/auth_services.dart';
 import 'package:yummy_home/features/verification/data/repos/verificarion_repo.dart';
 
 class VerificationRepositoryImp extends VerificationRepository {
-  final Api _api;
+  final AuthServices _authServices;
 
-  VerificationRepositoryImp(this._api);
+  VerificationRepositoryImp(this._authServices);
 
   @override
-  Future<Either<Failure, ResponseModel>> verifyCode(
-      VerifyCodeModel code) async {
+  Future<Either<Failure, void>> sendEmailVerification() async {
     try {
-      var response =
-          await _api.post(endPoint: "auth/verify.php", data: code.toJson());
-
-      return right(ResponseModel.fromJson(response));
+      return right(await _authServices.sendEmailVerification());
     } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
-      }
-      return left(ServerFailure(e.toString()));
+      return left(FirebaseFailure(e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, ResponseModel>> reSendCode(String email) async {
+  Future<Either<Failure, bool>> isEmailVerified() async {
     try {
-      var response = await _api.post(
-        endPoint: "auth/resend_code.php",
-        data: {"email": email},
-      );
-
-      return right(ResponseModel.fromJson(response));
+      return right(await _authServices.isEmailVerified());
     } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioException(e));
-      }
-      return left(ServerFailure(e.toString()));
+      return left(FirebaseFailure(e.toString()));
     }
   }
 }

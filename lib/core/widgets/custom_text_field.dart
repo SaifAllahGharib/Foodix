@@ -36,25 +36,25 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: isPassword
             ? IconButton(
                 onPressed: onPressedShowPassword,
-                icon: Icon(Icons.remove_red_eye_outlined),
+                icon: const Icon(Icons.remove_red_eye_outlined),
               )
             : null,
         label: Text(
           hint,
-          style: TextStyle(color: Colors.grey),
+          style: const TextStyle(color: Colors.grey),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            Dimensions.radius10(context),
+            Dimensions.radius10,
           ),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: AppColors.gray,
             width: 1.3,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
-          borderSide: BorderSide(
+          borderRadius: BorderRadius.circular(Dimensions.radius10),
+          borderSide: const BorderSide(
             color: AppColors.primaryColor,
             width: 2,
           ),

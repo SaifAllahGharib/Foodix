@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 
@@ -17,17 +16,17 @@ class CustomDeliveryTimeWidget extends StatelessWidget {
       children: [
         Icon(
           Icons.access_time_rounded,
-          size: Dimensions.height20(context),
+          size: Dimensions.height20,
           color: Colors.grey,
         ),
-        SizedBox(width: Dimensions.height10(context) * 0.5),
+        SizedBox(width: Dimensions.height10 * 0.5),
         Text(
           "$time",
           style: Styles.textStyle15(context).copyWith(color: Colors.grey),
         ),
-        SizedBox(width: Dimensions.height10(context) * 0.3),
+        SizedBox(width: Dimensions.height10 * 0.3),
         Text(
-          "minute".tr(context),
+          "minute",
           style: Styles.textStyle15(context).copyWith(color: Colors.grey),
         ),
       ],

@@ -24,15 +24,15 @@ class CustomItemSliverListViewBuyerView extends StatelessWidget {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       child: Container(
-        margin: EdgeInsets.only(bottom: Dimensions.height10(context)),
+        margin: EdgeInsets.only(bottom: Dimensions.height10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+          borderRadius: BorderRadius.circular(Dimensions.radius20),
           color: AppColors.whiteGray,
         ),
         child: Row(
           children: [
-            CustomImageItemSliverListViewBuyerView(),
-            SizedBox(width: Dimensions.height15(context)),
+            const CustomImageItemSliverListViewBuyerView(),
+            SizedBox(width: Dimensions.height15),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -40,20 +40,20 @@ class CustomItemSliverListViewBuyerView extends StatelessWidget {
                   "Bazoka",
                   style: Styles.textStyle18(context),
                 ),
-                SizedBox(height: Dimensions.height15(context)),
-                CustomRatingWidget(
+                SizedBox(height: Dimensions.height15),
+                const CustomRatingWidget(
                   rating: 4.8,
                   ratingCount: 265,
                 ),
-                SizedBox(height: Dimensions.height10(context) * 0.6),
+                SizedBox(height: Dimensions.height10 * 0.6),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CustomDeliveryTimeWidget(time: 24),
-                    SizedBox(width: Dimensions.height10(context) * 0.5),
-                    CustomDotWidget(),
-                    SizedBox(width: Dimensions.height10(context) * 0.5),
-                    CustomCostDelivery(),
+                    const CustomDeliveryTimeWidget(time: 24),
+                    SizedBox(width: Dimensions.height10 * 0.5),
+                    const CustomDotWidget(),
+                    SizedBox(width: Dimensions.height10 * 0.5),
+                    const CustomCostDelivery(),
                   ],
                 ),
               ],

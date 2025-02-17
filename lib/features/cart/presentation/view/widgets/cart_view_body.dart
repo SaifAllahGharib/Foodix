@@ -19,11 +19,11 @@ class CartViewBody extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomAppBarCartView(),
-            CustomListViewCartView(),
-            SizedBox(height: Dimensions.height10(context)),
-            InformationPaymentSection(),
-            BottomSectionCartView(),
+            const CustomAppBarCartView(),
+            const CustomListViewCartView(),
+            SizedBox(height: Dimensions.height10),
+            const InformationPaymentSection(),
+            const BottomSectionCartView(),
           ],
         );
       },

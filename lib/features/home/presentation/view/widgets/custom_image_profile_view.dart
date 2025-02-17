@@ -1,19 +1,19 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/widgets/custom_cashed_network_image.dart';
 import 'package:yummy_home/core/widgets/custom_item_pick_image.dart';
 
 class CustomImageProfileView extends StatelessWidget {
   final void Function() pickImageFromCamera;
   final void Function() pickImageFromGallery;
-  final File? selectedImage;
+  final String? imageURL;
 
   const CustomImageProfileView({
     super.key,
     required this.pickImageFromCamera,
     required this.pickImageFromGallery,
-    required this.selectedImage,
+    required this.imageURL,
   });
 
   void _showBottomSheet(BuildContext context) {
@@ -33,22 +33,15 @@ class CustomImageProfileView extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 20),
+        borderRadius: BorderRadius.circular(Dimensions.radius20 * 20),
         child: GestureDetector(
           onTap: () => _showBottomSheet(context),
-          child: selectedImage == null
-              ? Image.asset(
-                  "assets/images/person.jpg",
-                  width: Dimensions.height130(context) * 1.2,
-                  height: Dimensions.height130(context) * 1.2,
-                  fit: BoxFit.cover,
-                )
-              : Image.file(
-                  selectedImage!,
-                  width: Dimensions.height130(context) * 1.2,
-                  height: Dimensions.height130(context) * 1.2,
-                  fit: BoxFit.cover,
-                ),
+          child: CustomCashedNetworkImage(
+            imageURL: imageURL,
+            placeholder: Assets.placeholder,
+            width: Dimensions.height130 * 1.2,
+            height: Dimensions.height130 * 1.2,
+          ),
         ),
       ),
     );

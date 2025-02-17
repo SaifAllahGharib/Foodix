@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 
 class CustomFloatButton extends StatelessWidget {
   final void Function() onClick;
@@ -12,7 +12,7 @@ class CustomFloatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: context.read<LocalCubit>().isDirectionRight
+      alignment: context.watch<LocalCubit>().isArabic
           ? Alignment.bottomLeft
           : Alignment.bottomRight,
       child: Container(
@@ -20,13 +20,13 @@ class CustomFloatButton extends StatelessWidget {
           color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(5000),
         ),
-        padding: EdgeInsets.all(Dimensions.width10(context)),
+        padding: EdgeInsets.all(Dimensions.width10),
         child: IconButton(
           onPressed: onClick,
           enableFeedback: false,
           icon: Icon(
             Icons.add,
-            size: Dimensions.getWidth(context) * 0.070,
+            size: Dimensions.screenWidth * 0.070,
             color: Colors.white,
           ),
         ),

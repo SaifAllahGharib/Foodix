@@ -9,14 +9,14 @@ class TopSectionRestaurantView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Dimensions.height130(context) * 2.15,
+      height: Dimensions.height130 * 2.15,
       child: Stack(
         children: [
           CustomBackgroundImage(
-            image: "assets/images/person.jpg",
-            height: Dimensions.height130(context) * 1.6,
+            image: " ",
+            height: Dimensions.height130 * 1.6,
           ),
-          CustomBoxOfRestaurantDetails(),
+          const CustomBoxOfRestaurantDetails(),
         ],
       ),
     );

@@ -4,15 +4,14 @@ import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
 
 class MySharedPreferences {
+  MySharedPreferences._internal();
+
   static final MySharedPreferences _instance = MySharedPreferences._internal();
 
   factory MySharedPreferences() => _instance;
 
-  MySharedPreferences._internal();
-
   final Logger _logger = Logger();
-
-  SharedPreferences? _prefs;
+  late final SharedPreferences _prefs;
 
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
@@ -20,49 +19,45 @@ class MySharedPreferences {
 
   Future<void> storeUser(Map<String, dynamic> user) async {
     for (var entry in user.entries) {
-      await _safeWrite(
-        () async => _prefs?.setString(entry.key, entry.value.toString()),
-        'Error storing user data',
-      );
+      await storeString(entry.key, entry.value.toString());
     }
   }
 
-  String? getIdUser() => getString("id");
+  String? getIdUser() => getString('uid');
 
-  String? getNameUser() => getString("name");
+  String? getNameUser() => getString('name');
 
-  String? getEmailUser() => getString("email");
+  String? getEmailUser() => getString('email');
 
-  String? getPhoneUser() => getString("phone_number");
+  String? getPhoneUser() => getString('phone');
 
-  String? getTypeUser() => getString("type");
+  String? getRoleUser() => getString('role');
 
-  Future<void> clearAllData() async {
-    await _safeWrite(() async => _prefs?.clear(), 'Error clearing data');
+  Future<bool> storeString(String key, String value) async {
+    return await _safeWrite(
+        () => _prefs.setString(key, value), 'Error storing string');
   }
 
-  Future<void> storeString(String key, String value) async {
-    await _safeWrite(
-        () async => _prefs?.setString(key, value), 'Error storing string');
-  }
+  String? getString(String key) => _prefs.getString(key);
 
-  String? getString(String key) => _prefs?.getString(key);
+  Future<bool> clearAllData() async {
+    return await _safeWrite(() => _prefs.clear(), 'Error clearing data');
+  }
 
   String getInitRoute() {
     final lang = getString('lang');
     final id = getIdUser();
-    if (lang != null) {
-      return id == null ? LoginView.id : HomeView.id;
-    }
-    return '/';
+    if (lang == null) return '/';
+    return id == null ? LoginView.id : HomeView.id;
   }
 
-  Future<void> _safeWrite(
-      Future<void> Function() operation, String errorMessage) async {
+  Future<bool> _safeWrite(
+      Future<bool> Function() operation, String errorMessage) async {
     try {
-      await operation();
+      return await operation();
     } catch (e, stacktrace) {
       _logger.e(errorMessage, error: e, stackTrace: stacktrace);
+      return false;
     }
   }
 }

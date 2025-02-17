@@ -19,7 +19,7 @@ class CustomFoodImage extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+        borderRadius: BorderRadius.circular(Dimensions.radius20),
         image: DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage(image),

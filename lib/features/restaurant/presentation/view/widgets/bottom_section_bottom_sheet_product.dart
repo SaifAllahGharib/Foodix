@@ -31,8 +31,8 @@ class BottomSectionBottomSheetProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(Dimensions.height20(context)),
-      decoration: BoxDecoration(
+      padding: EdgeInsets.all(Dimensions.height20),
+      decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
@@ -50,7 +50,7 @@ class BottomSectionBottomSheetProduct extends StatelessWidget {
             decrement: () => _decrementCountOfProduct(context, index),
             count: getCountOfProduct(context, index),
           ),
-          SizedBox(width: Dimensions.width30(context)),
+          SizedBox(width: Dimensions.width30),
           CustomButtonAddToCart(
             price: price * getCountOfProduct(context, index),
           ),

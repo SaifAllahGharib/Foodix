@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class CustomRowCost extends StatelessWidget {
   final String egp;
@@ -32,9 +32,9 @@ class CustomRowCost extends StatelessWidget {
             fontSize: fontSize,
           ),
         ),
-        SizedBox(width: Dimensions.width10(context)),
+        SizedBox(width: Dimensions.width10),
         Text(
-          "food_cost".tr(context),
+          S.of(context).foodCost,
           style: Styles.textStyle15(context).copyWith(
               fontWeight: FontWeight.w400, color: color, fontSize: fontSize),
         ),

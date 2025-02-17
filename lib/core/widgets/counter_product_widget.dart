@@ -21,10 +21,10 @@ class CounterProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: Dimensions.height10(context) * 0.5,
+        horizontal: Dimensions.height10 * 0.5,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimensions.radius20(context) * 5),
+        borderRadius: BorderRadius.circular(Dimensions.radius20 * 5),
         border: Border.all(
           color: AppColors.gray,
           width: 1,
@@ -34,18 +34,18 @@ class CounterProductWidget extends StatelessWidget {
         children: [
           IconButton(
             onPressed: increment,
-            icon: Icon(
+            icon: const Icon(
               Icons.add,
               color: AppColors.primaryColor,
             ),
           ),
-          SizedBox(width: Dimensions.width15(context)),
+          SizedBox(width: Dimensions.width15),
           Text(
             "$count",
             style: Styles.textStyle15(context)
                 .copyWith(fontWeight: FontWeight.w600),
           ),
-          SizedBox(width: Dimensions.width15(context)),
+          SizedBox(width: Dimensions.width15),
           IconButton(
             onPressed: decrement,
             icon: Icon(

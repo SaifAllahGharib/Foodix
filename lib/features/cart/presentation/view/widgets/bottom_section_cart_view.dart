@@ -16,10 +16,10 @@ class BottomSectionCartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: Dimensions.height20(context),
-        vertical: Dimensions.height15(context),
+        horizontal: Dimensions.height20,
+        vertical: Dimensions.height15,
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(
           top: BorderSide(
@@ -35,7 +35,7 @@ class BottomSectionCartView extends StatelessWidget {
             text: "Get Order",
             onClick: () {},
           ),
-          SizedBox(width: Dimensions.width30(context) * 1.5),
+          SizedBox(width: Dimensions.width30 * 1.5),
           CustomButtonCartView(
             text: "Add Products",
             textColor: Colors.black,

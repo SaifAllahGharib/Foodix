@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/services/firebase_service.dart';
+import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/choose_type/presentation/view/choose_type_view.dart';
+import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/data/models/login_model.dart';
 import 'package:yummy_home/features/login/presentation/view/forget_password_view.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/login/login_cubit.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/login/login_state.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
+import 'package:yummy_home/generated/l10n.dart';
+
+import '../../../../../core/errors/failure.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -41,17 +47,52 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     super.dispose();
   }
 
-  void _onSuccess(user) {
-    GoRouter.of(context).push(
-      VerificationView.id,
-      extra: {
-        "user": user,
-        "purpose": "login",
-      },
+  bool _isEmailVerified() {
+    FirebaseService firebaseService = FirebaseService();
+    return firebaseService.auth.currentUser?.emailVerified ?? false;
+  }
+
+  void _onSuccess(state) {
+    if (state.msg == S.of(context).success) {
+      if (_isEmailVerified()) {
+        GoRouter.of(context).push(HomeView.id);
+      } else {
+        GoRouter.of(context).push(
+          VerificationView.id,
+          extra: _email.text,
+        );
+      }
+    }
+
+    snackBar(
+      context: context,
+      text: state.msg,
+      color: AppColors.primaryColor,
     );
   }
 
-  void _handelState(state) async {}
+  void _onFailure(state) {
+    if (state.failure is FirebaseAuthFailure) {
+      final String msg = state.failure.errorMsg;
+      if (msg == "user-not-found") {
+        snackBar(context: context, text: "this_user_does_not_exist");
+      } else if (msg == "wrong-password") {
+        snackBar(context: context, text: "password_incorrect");
+      } else {
+        snackBar(context: context, text: msg);
+      }
+    } else {
+      snackBar(context: context, text: state.failure.errorMsg);
+    }
+  }
+
+  void _handelState(state) async {
+    if (state is LoginSuccess) {
+      _onSuccess(state);
+    } else if (state is LoginFailure) {
+      _onFailure(state);
+    }
+  }
 
   void _validation(BuildContext context) {
     context.read<LoginCubit>().validationFields(
@@ -63,9 +104,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   void _login(BuildContext context) {
     context.read<LoginCubit>().login(
           LoginModel(
-            email: _email.text,
-            password: _password.text,
+            email: _email.text.trim(),
+            password: _password.text.trim(),
           ),
+          context,
         );
   }
 
@@ -75,51 +117,55 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       listener: (context, state) => _handelState(state),
       builder: (context, state) {
         if (state is LoginLoading) {
-          return Loading();
+          return const Loading();
         }
 
         return Padding(
-          padding: EdgeInsets.all(Dimensions.height20(context)),
+          padding: EdgeInsets.all(Dimensions.height20),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: Dimensions.height30(context)),
-                CustomText(text: "welcome_back".tr(context)),
-                SizedBox(height: Dimensions.height45(context) * 2),
+                SizedBox(height: Dimensions.height30),
+                CustomText(text: S.of(context).welcomeBack),
+                SizedBox(height: Dimensions.height45 * 2),
                 CustomTextField(
                   controller: _email,
-                  hint: "hint_email".tr(context),
+                  hint: S.of(context).hintEmail,
                   onChanged: (val) => _validation(context),
                 ),
-                SizedBox(height: Dimensions.height15(context)),
+                SizedBox(height: Dimensions.height15),
                 CustomTextField(
                   controller: _password,
                   isPassword: true,
-                  hint: "hint_pass".tr(context),
+                  hint: S.of(context).hintPass,
                   onPressedShowPassword:
                       context.read<LoginCubit>().togglePasswordVisibility,
                   showPassword: context.watch<LoginCubit>().showPassword,
                   onChanged: (val) => _validation(context),
                 ),
-                SizedBox(height: Dimensions.height10(context)),
+                SizedBox(height: Dimensions.height10),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: CustomTextButton(
-                    text: "forget_pass".tr(context),
+                    text: S.of(context).forgetPass,
                     onClick: () {
                       GoRouter.of(context).push(ForgetPasswordView.id);
                     },
                   ),
                 ),
-                SizedBox(height: Dimensions.height30(context)),
+                SizedBox(height: Dimensions.height30),
                 CustomButton(
-                  text: "login".tr(context),
+                  text: S.of(context).login,
                   isEnabled: context.watch<LoginCubit>().buttonEnabled,
-                  onClick: () => _login(context),
+                  onClick: () {
+                    print(_email.text);
+                    print(_password.text);
+                    _login(context);
+                  },
                 ),
-                SizedBox(height: Dimensions.height20(context)),
+                SizedBox(height: Dimensions.height20),
                 CustomTextButton(
-                  text: "not_have_account".tr(context),
+                  text: S.of(context).notHaveAccount,
                   color: Colors.black,
                   onClick: () {
                     GoRouter.of(context).push(ChooseTypeView.id);

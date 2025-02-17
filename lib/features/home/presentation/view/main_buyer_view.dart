@@ -15,10 +15,10 @@ class _MainBuyerViewState extends State<MainBuyerView> {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(child: CustomAppBarMainBuyerView()),
+        const SliverToBoxAdapter(child: CustomAppBarMainBuyerView()),
         SliverPadding(
-          padding: EdgeInsets.all(Dimensions.height20(context)),
-          sliver: CustomSliverListViewMainBuyerView(),
+          padding: EdgeInsets.all(Dimensions.height20),
+          sliver: const CustomSliverListViewMainBuyerView(),
         ),
       ],
     );

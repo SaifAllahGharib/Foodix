@@ -14,17 +14,17 @@ class CustomItemPickImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Dimensions.height20(context)),
+      padding: EdgeInsets.all(Dimensions.height20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-            icon: Icon(Icons.camera_alt_outlined),
+            icon: const Icon(Icons.camera_alt_outlined),
             onPressed: pickImageFromCamera,
           ),
-          SizedBox(width: Dimensions.width10(context)),
+          SizedBox(width: Dimensions.width10),
           IconButton(
-            icon: Icon(Icons.image_outlined),
+            icon: const Icon(Icons.image_outlined),
             onPressed: pickImageFromGallery,
           ),
         ],

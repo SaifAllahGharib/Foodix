@@ -10,15 +10,15 @@ class CustomItemOrderListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: Dimensions.height10(context)),
+      margin: EdgeInsets.only(bottom: Dimensions.height10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+        borderRadius: BorderRadius.circular(Dimensions.radius20),
         border: Border.all(
           color: AppColors.gray,
           width: 1,
         ),
       ),
-      child: Column(
+      child: const Column(
         children: [
           TopSectionCustomItemOrderListView(),
           Divider(color: AppColors.gray, height: 1),

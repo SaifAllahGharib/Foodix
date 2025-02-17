@@ -13,13 +13,13 @@ class SignupCubit extends Cubit<SignupState> {
 
   SignupCubit(this._signupRepository) : super(SignupInit());
 
-  Future<void> signup(SignupModel user) async {
+  Future<void> signup(SignupModel user, BuildContext context) async {
     emit(SignupLoading());
-    var result = await _signupRepository.signup(user);
+    final result = await _signupRepository.signup(user, context);
 
     result.fold(
-      (e) => emit(SignupFailure(e.errorMsg)),
-      (user) => emit(SignupSuccess(user)),
+      (failure) => emit(SignupFailure(failure)),
+      (msg) => emit(SignupSuccess(msg)),
     );
   }
 

@@ -12,12 +12,12 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit(this._loginRepository) : super(LoginInit());
 
-  Future<void> login(LoginModel user) async {
+  Future<void> login(LoginModel user, BuildContext context) async {
     emit(LoginLoading());
-    var response = await _loginRepository.login(user);
+    var response = await _loginRepository.login(user, context);
 
     response.fold(
-      (e) => emit(LoginFailure(e.errorMsg)),
+      (e) => emit(LoginFailure(e)),
       (user) => emit(LoginSuccess(user)),
     );
   }

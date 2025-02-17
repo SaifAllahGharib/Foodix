@@ -10,8 +10,9 @@ class CustomBottomBarFoodDetailsSeller extends StatelessWidget {
   void _showBottomSheet(BuildContext context) {
     showBottomSheet(
       context: context,
+      backgroundColor: Colors.white,
       builder: (context) {
-        return EditFoodDerailsWidgets();
+        return const EditFoodDerailsWidgets();
       },
     );
   }
@@ -19,16 +20,16 @@ class CustomBottomBarFoodDetailsSeller extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(Dimensions.height20(context)),
+      margin: EdgeInsets.all(Dimensions.height20),
       padding: EdgeInsets.symmetric(
-        vertical: Dimensions.height10(context),
-        horizontal: Dimensions.height30(context),
+        vertical: Dimensions.height10,
+        horizontal: Dimensions.height30,
       ),
       width: double.infinity,
-      height: Dimensions.height80(context) * 0.9,
+      height: Dimensions.height80 * 0.9,
       decoration: BoxDecoration(
         color: AppColors.whiteGray,
-        borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
+        borderRadius: BorderRadius.circular(Dimensions.radius20),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,12 +37,12 @@ class CustomBottomBarFoodDetailsSeller extends StatelessWidget {
           CustomRowCost(
             egp: "250",
             fontWeight: FontWeight.w500,
-            fontSize: Dimensions.height20(context) * 0.9,
+            fontSize: Dimensions.height20 * 0.9,
           ),
           IconButton(
             enableFeedback: false,
             onPressed: () => _showBottomSheet(context),
-            icon: Icon(
+            icon: const Icon(
               Icons.edit,
               color: AppColors.primaryColor,
             ),

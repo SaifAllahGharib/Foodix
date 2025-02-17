@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+import 'package:yummy_home/core/errors/failure.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_button.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/login/presentation/view/login_view.dart';
+import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/presentation/view/widgets/column_of_text_fields.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_cubit.dart';
 import 'package:yummy_home/features/signup/presentation/viewmodel/cubits/signup/signup_state.dart';
 import 'package:yummy_home/features/verification/presentation/view/verification_view.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class SignupViewBody extends StatefulWidget {
-  final String type;
+  final String role;
 
-  const SignupViewBody({super.key, required this.type});
+  const SignupViewBody({super.key, required this.role});
 
   @override
   State<SignupViewBody> createState() => _SignupViewBodyState();
@@ -48,28 +51,54 @@ class _SignupViewBodyState extends State<SignupViewBody> {
     super.dispose();
   }
 
-  void _onSuccess(user) async {
+  void _pushToVerificationView() {
     GoRouter.of(context).push(
       VerificationView.id,
-      extra: {
-        "user": user,
-        "purpose": "signup",
-      },
+      extra: _email.text,
     );
   }
 
-  void _handelState(state) {}
+  void _onSuccess(state) {
+    if (state.msg == S.of(context).success) {
+      _pushToVerificationView();
+    }
 
-  void _signup(BuildContext context) {
-    // context.read<SignupCubit>().signup(
-    //       SignupModel(
-    //         name: _name.text,
-    //         email: _email.text,
-    //         phone_number: _phone.text,
-    //         password: _password.text,
-    //         type: widget.type,
-    //       ),
-    //     );
+    snackBar(context: context, text: state.msg, color: Colors.blue);
+  }
+
+  void _onFailure(state) {
+    if (state.failure is FirebaseAuthFailure) {
+      final String msg = state.failure.errorMsg;
+
+      if (msg == "weak-password") {
+        snackBar(context: context, text: "weak_password");
+      } else if (msg == "email-already-in-use") {
+        snackBar(context: context, text: "user_already_exists");
+      }
+    } else {
+      snackBar(context: context, text: state.failure.errorMsg);
+    }
+  }
+
+  void _handelState(state) {
+    if (state is SignupSuccess) {
+      _onSuccess(state);
+    } else if (state is SignupFailure) {
+      _onFailure(state);
+    }
+  }
+
+  void _signup(BuildContext context) async {
+    context.read<SignupCubit>().signup(
+          SignupModel(
+            name: _name.text,
+            email: _email.text,
+            phone: _phone.text,
+            password: _password.text,
+            role: widget.role,
+          ),
+          context,
+        );
   }
 
   void _validation(BuildContext context) {
@@ -78,7 +107,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           email: _email,
           phone: _phone,
           password: _password,
-          userType: widget.type,
+          userType: widget.role,
         );
   }
 
@@ -88,19 +117,19 @@ class _SignupViewBodyState extends State<SignupViewBody> {
       listener: (context, state) => _handelState(state),
       builder: (context, state) {
         if (state is SignupLoading) {
-          return Loading();
+          return const Loading();
         }
 
         return Padding(
-          padding: EdgeInsets.all(Dimensions.height20(context)),
+          padding: EdgeInsets.all(Dimensions.height20),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: Dimensions.height20(context)),
-                CustomBackButton(),
-                SizedBox(height: Dimensions.height30(context)),
-                CustomText(text: "create_account".tr(context)),
-                SizedBox(height: Dimensions.height45(context) * 1.3),
+                SizedBox(height: Dimensions.height20),
+                const CustomBackButton(),
+                SizedBox(height: Dimensions.height30),
+                CustomText(text: S.of(context).createAccount),
+                SizedBox(height: Dimensions.height45 * 1.3),
                 ColumnOfTextFields(
                   context: context,
                   name: _name,
@@ -109,17 +138,15 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                   password: _password,
                   validator: (val) => _validation(context),
                 ),
-                SizedBox(height: Dimensions.height45(context)),
+                SizedBox(height: Dimensions.height45),
                 CustomButton(
-                  text: "signup".tr(context),
+                  text: S.of(context).signup,
                   isEnabled: context.watch<SignupCubit>().buttonEnabled,
-                  onClick: () {
-                    _signup(context);
-                  },
+                  onClick: () => _signup(context),
                 ),
-                SizedBox(height: Dimensions.height45(context)),
+                SizedBox(height: Dimensions.height45),
                 CustomTextButton(
-                  text: "already_have_account".tr(context),
+                  text: S.of(context).alreadyHaveAccount,
                   onClick: () {
                     GoRouter.of(context).push(LoginView.id);
                   },

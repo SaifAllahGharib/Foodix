@@ -8,10 +8,13 @@ class Loading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: LoadingAnimationWidget.stretchedDots(
-        color: AppColors.primaryColor,
-        size: Dimensions.height80(context),
+    return Container(
+      color: Colors.white,
+      child: Center(
+        child: LoadingAnimationWidget.stretchedDots(
+          color: AppColors.primaryColor,
+          size: Dimensions.height80,
+        ),
       ),
     );
   }

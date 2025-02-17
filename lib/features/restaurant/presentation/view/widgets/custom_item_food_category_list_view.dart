@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/widgets/custom_food_image.dart';
 import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 
@@ -39,14 +39,14 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: Dimensions.height130(context),
+            height: Dimensions.height130,
             padding: EdgeInsets.only(
-              bottom: Dimensions.height15(context),
-              right: context.read<LocalCubit>().isDirectionRight
+              bottom: Dimensions.height15,
+              right: context.watch<LocalCubit>().isArabic
                   ? 0
-                  : Dimensions.height20(context),
-              left: context.read<LocalCubit>().isDirectionRight
-                  ? Dimensions.height20(context)
+                  : Dimensions.height20,
+              left: context.watch<LocalCubit>().isArabic
+                  ? Dimensions.height20
                   : 0,
             ),
             child: Row(
@@ -54,10 +54,10 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
               children: [
                 CustomFoodImage(
                   image: foodImage,
-                  width: Dimensions.height130(context) * 0.9,
-                  height: Dimensions.height130(context) * 0.9,
+                  width: Dimensions.height130 * 0.9,
+                  height: Dimensions.height130 * 0.9,
                 ),
-                SizedBox(width: Dimensions.width30(context) * 2),
+                SizedBox(width: Dimensions.width30 * 2),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -71,7 +71,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                           style: Styles.textStyle16(context),
                         ),
                       ),
-                      SizedBox(height: Dimensions.height10(context)),
+                      SizedBox(height: Dimensions.height10),
                       Expanded(
                         child: Text(
                           foodDesc,
@@ -81,7 +81,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                           style: Styles.textStyle12(context),
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       CustomRowCost(
                         egp: "$foodPrice",
                         fontWeight: FontWeight.w600,
@@ -94,12 +94,12 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
             ),
           ),
           if (index != listOfFood.length - 1)
-            Divider(
+            const Divider(
               height: 1,
               color: AppColors.gray,
             ),
           if (index != listOfFood.length - 1)
-            SizedBox(height: Dimensions.height20(context)),
+            SizedBox(height: Dimensions.height20),
         ],
       ),
     );

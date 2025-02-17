@@ -4,14 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 
 class LocalCubit extends Cubit<Locale> {
-  bool isDirectionRight = false;
+  bool _isArabic = false;
 
-  LocalCubit() : super(Locale("ar")) {
+  LocalCubit() : super(const Locale("ar")) {
     _setDirection("ar");
   }
 
   Future<void> loadSavedLanguage() async {
     var prefs = MySharedPreferences();
+
     final String? savedLanguage = prefs.getString("lang");
     if (savedLanguage != null) {
       _setDirection(savedLanguage);
@@ -27,6 +28,8 @@ class LocalCubit extends Cubit<Locale> {
   }
 
   void _setDirection(String languageCode) {
-    isDirectionRight = languageCode == "ar";
+    _isArabic = languageCode == "ar";
   }
+  
+  bool get isArabic => _isArabic;
 }

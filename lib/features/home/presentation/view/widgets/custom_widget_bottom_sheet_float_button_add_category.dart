@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
@@ -21,30 +22,30 @@ class CustomWidgetBottomSheetFloatButtonAddCategory extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: Colors.white,
-      padding: EdgeInsets.all(Dimensions.height20(context)),
+      padding: EdgeInsets.all(Dimensions.height20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomBackButton(),
-          SizedBox(height: Dimensions.height20(context)),
+          const CustomBackButton(),
+          SizedBox(height: Dimensions.height20),
           CustomSearchTextField(
             controller: searchFoodController,
             isSeller: true,
             onChange: (value) {},
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height20),
           Text(
             "Pizza",
             style: Styles.textStyle20(context),
           ),
-          SizedBox(height: Dimensions.height20(context)),
+          SizedBox(height: Dimensions.height20),
           Expanded(
             child: Stack(
               children: [
-                CustomGridViewBuilder(
+                const CustomGridViewBuilder(
                   name: "Food",
                   cost: "280",
-                  imageUrl: "assets/images/person.jpg",
+                  imageUrl: Assets.food,
                 ),
                 CustomFloatButton(
                   onClick: () => GoRouter.of(context).push(AddFoodView.id),

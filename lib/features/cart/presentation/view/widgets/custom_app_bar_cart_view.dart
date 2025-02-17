@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
@@ -12,12 +12,12 @@ class CustomAppBarCartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-        right: Dimensions.height10(context),
-        top: Dimensions.height20(context),
-        left: Dimensions.height10(context),
-        bottom: Dimensions.height10(context),
+        right: Dimensions.height10,
+        top: Dimensions.height20,
+        left: Dimensions.height10,
+        bottom: Dimensions.height10,
       ),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(
           bottom: BorderSide(
@@ -28,17 +28,17 @@ class CustomAppBarCartView extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CustomBackButton(),
-          SizedBox(width: Dimensions.width30(context) * 1.5),
+          const CustomBackButton(),
+          SizedBox(width: Dimensions.width30 * 1.5),
           Column(
             children: [
               Text(
-                "cart".tr(context),
+                "cart",
                 style: Styles.textStyle18(context),
               ),
-              SizedBox(height: Dimensions.height10(context) * 0.5),
+              SizedBox(height: Dimensions.height10 * 0.5),
               Text(
-                "Bazoka".tr(context),
+                "Bazoka",
                 style: Styles.textStyle12(context),
               ),
             ],

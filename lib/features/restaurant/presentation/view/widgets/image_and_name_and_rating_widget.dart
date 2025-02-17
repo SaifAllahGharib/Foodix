@@ -11,17 +11,17 @@ class ImageAndNameAndRatingWidget extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: Dimensions.height80(context) * 0.9,
-          height: Dimensions.height80(context) * 0.9,
+          width: Dimensions.height80 * 0.9,
+          height: Dimensions.height80 * 0.9,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/person.jpg"),
+            image: const DecorationImage(
+              image: AssetImage(" "),
               fit: BoxFit.cover,
             ),
-            borderRadius: BorderRadius.circular(Dimensions.radius10(context)),
+            borderRadius: BorderRadius.circular(Dimensions.radius10),
           ),
         ),
-        SizedBox(width: Dimensions.width20(context)),
+        SizedBox(width: Dimensions.width20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,13 +29,13 @@ class ImageAndNameAndRatingWidget extends StatelessWidget {
               "Bazoka",
               style: Styles.textStyle16(context),
             ),
-            SizedBox(height: Dimensions.height10(context) * 0.2),
+            SizedBox(height: Dimensions.height10 * 0.2),
             Text(
               "Burger, Cheken, Beef",
               style: Styles.textStyle12(context),
             ),
-            SizedBox(height: Dimensions.height10(context) * 0.2),
-            CustomRatingWidget(
+            SizedBox(height: Dimensions.height10 * 0.2),
+            const CustomRatingWidget(
               rating: 4.9,
               ratingCount: 1925,
             ),

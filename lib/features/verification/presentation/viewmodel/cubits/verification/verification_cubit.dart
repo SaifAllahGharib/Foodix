@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/features/verification/data/models/verify_code_model.dart';
 import 'package:yummy_home/features/verification/data/repos/verificarion_repo.dart';
 import 'package:yummy_home/features/verification/presentation/viewmodel/cubits/verification/verification_state.dart';
 
@@ -13,29 +12,22 @@ class VerificationCubit extends Cubit<VerificationState> {
 
   VerificationCubit(this._verificationRepository) : super(VerificationInit());
 
-  Future<void> verifyCode(VerifyCodeModel code) async {
-    emit(VerificationLoading());
+  Future<void> sendEmailVerification() async {
+    _startTimer();
+    _verificationRepository.sendEmailVerification();
+    emit(VerificationIsEmailVerificationSend());
+  }
 
-    var result = await _verificationRepository.verifyCode(code);
+  Future<void> isEmailVerified() async {
+    final res = await _verificationRepository.isEmailVerified();
 
-    result.fold(
+    res.fold(
       (e) => emit(VerificationFailure(e.errorMsg)),
-      (code) => emit(VerificationSuccess(code)),
+      (success) => emit(VerificationSuccess(success)),
     );
   }
 
-  Future<void> reSendCode(String email) async {
-    startTimer();
-
-    var result = await _verificationRepository.reSendCode(email);
-
-    result.fold(
-      (e) => emit(VerificationFailure(e.errorMsg)),
-      (code) => emit(VerificationReSendCode(code)),
-    );
-  }
-
-  void startTimer() {
+  void _startTimer() {
     if (_timer != null) {
       _timer!.cancel();
     }

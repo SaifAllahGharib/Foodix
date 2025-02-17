@@ -20,15 +20,15 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: isEnabled ? onClick : () {},
-      height: Dimensions.height45(context),
+      height: Dimensions.height45,
       elevation: 0,
       enableFeedback: isEnabled ? true : false,
       padding: EdgeInsets.symmetric(
-        horizontal: Dimensions.width120(context),
+        horizontal: Dimensions.width120,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          Dimensions.radius10(context),
+          Dimensions.radius10,
         ),
       ),
       textColor: Colors.white,
@@ -36,7 +36,7 @@ class CustomButton extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          fontSize: Dimensions.fontSize15(context),
+          fontSize: Dimensions.fontSize15,
           fontFamily: fontFamily,
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
+
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 
@@ -25,21 +25,21 @@ class _UserTypeState extends State<UserType> {
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
         label: Text(
-          "type".tr(context),
-          style: TextStyle(color: Colors.grey),
+          "type",
+          style: const TextStyle(color: Colors.grey),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(
-            Dimensions.radius10(context),
+            Dimensions.radius10,
           ),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: AppColors.gray,
             width: 1.3,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Dimensions.radius20(context)),
-          borderSide: BorderSide(
+          borderRadius: BorderRadius.circular(Dimensions.radius20),
+          borderSide: const BorderSide(
             color: AppColors.primaryColor,
             width: 2,
           ),
@@ -49,7 +49,7 @@ class _UserTypeState extends State<UserType> {
       items: userTypes.map((type) {
         return DropdownMenuItem(
           value: type,
-          child: Text(type.tr(context)),
+          child: Text(type),
         );
       }).toList(),
       onChanged: widget.onChange,

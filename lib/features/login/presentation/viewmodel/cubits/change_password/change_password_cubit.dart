@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/features/login/data/models/change_password_model.dart';
-import 'package:yummy_home/features/login/data/repos/change_password_repo.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/change_password/change_password_state.dart';
 
 class ChangePasswordCubit extends Cubit<ChangePasswordState> {
-  final ChangePasswordRepository _changePasswordRepository;
+  // final ChangePasswordRepository _changePasswordRepository;
   bool _showPassword = true;
   bool _buttonEnabled = false;
 
-  ChangePasswordCubit(this._changePasswordRepository)
-      : super(ChangePasswordInit());
+  ChangePasswordCubit() : super(ChangePasswordInit());
 
   Future<void> changePassword(ChangePasswordModel changePassword) async {
-    emit(ChangePasswordLoading());
-    var result = await _changePasswordRepository.changePassword(changePassword);
-
-    result.fold(
-      (e) => emit(ChangePasswordFailure(e.errorMsg)),
-      (password) => emit(ChangePasswordSuccess(password)),
-    );
+    // emit(ChangePasswordLoading());
+    // var result = await _changePasswordRepository.changePassword(changePassword);
+    //
+    // result.fold(
+    //   (e) => emit(ChangePasswordFailure(e.errorMsg)),
+    //   (password) => emit(ChangePasswordSuccess(password)),
+    // );
   }
 
   void togglePasswordVisibility() {

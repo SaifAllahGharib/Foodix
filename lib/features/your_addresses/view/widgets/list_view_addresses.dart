@@ -10,7 +10,7 @@ class ListViewAddresses extends StatelessWidget {
       child: ListView.builder(
         itemCount: 2,
         itemBuilder: (context, index) {
-          return CustomItemListViewAddresses();
+          return const CustomItemListViewAddresses();
         },
       ),
     );

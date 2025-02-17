@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/utils/app_localizations.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/features/your_addresses/view/widgets/list_view_addresses.dart';
+import 'package:yummy_home/generated/l10n.dart';
 
 class YourAddressesViewBody extends StatelessWidget {
   const YourAddressesViewBody({super.key});
@@ -12,19 +12,19 @@ class YourAddressesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(Dimensions.height20(context)),
+      padding: EdgeInsets.all(Dimensions.height20),
       child: Column(
         children: [
-          SizedBox(height: Dimensions.height10(context)),
+          SizedBox(height: Dimensions.height10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  CustomBackButton(),
-                  SizedBox(width: Dimensions.width30(context)),
+                  const CustomBackButton(),
+                  SizedBox(width: Dimensions.width30),
                   Text(
-                    "addresses".tr(context),
+                    S.of(context).addresses,
                     style: Styles.textStyle18(context)
                         .copyWith(fontWeight: FontWeight.w500),
                   ),
@@ -34,11 +34,10 @@ class YourAddressesViewBody extends StatelessWidget {
                 onPressed: () {},
                 color: AppColors.primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(Dimensions.radius20(context)),
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
                 ),
                 child: Text(
-                  "add".tr(context),
+                  S.of(context).add,
                   style: Styles.textStyle15(context).copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -47,7 +46,7 @@ class YourAddressesViewBody extends StatelessWidget {
               ),
             ],
           ),
-          ListViewAddresses(),
+          const ListViewAddresses(),
         ],
       ),
     );

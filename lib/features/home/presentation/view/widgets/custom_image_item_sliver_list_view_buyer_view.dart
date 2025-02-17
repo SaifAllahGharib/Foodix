@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 
 class CustomImageItemSliverListViewBuyerView extends StatelessWidget {
   const CustomImageItemSliverListViewBuyerView({super.key});
@@ -9,28 +9,22 @@ class CustomImageItemSliverListViewBuyerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dimensions.height130(context),
-      height: Dimensions.height130(context),
+      width: Dimensions.height130,
+      height: Dimensions.height130,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(context.read<LocalCubit>().isDirectionRight
-              ? 0
-              : Dimensions.radius20(context)),
+          topLeft: Radius.circular(
+              context.watch<LocalCubit>().isArabic ? 0 : Dimensions.radius20),
           bottomLeft: Radius.circular(
-              context.read<LocalCubit>().isDirectionRight
-                  ? 0
-                  : Dimensions.radius20(context)),
-          topRight: Radius.circular(context.read<LocalCubit>().isDirectionRight
-              ? Dimensions.radius20(context)
-              : 0),
+              context.watch<LocalCubit>().isArabic ? 0 : Dimensions.radius20),
+          topRight: Radius.circular(
+              context.watch<LocalCubit>().isArabic ? Dimensions.radius20 : 0),
           bottomRight: Radius.circular(
-              context.read<LocalCubit>().isDirectionRight
-                  ? Dimensions.radius20(context)
-                  : 0),
+              context.watch<LocalCubit>().isArabic ? Dimensions.radius20 : 0),
         ),
-        image: DecorationImage(
+        image: const DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage("assets/images/person.jpg"),
+          image: AssetImage(" "),
         ),
       ),
     );
