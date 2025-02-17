@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/errors/failure.dart';
+import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/utils/service_locator.dart';
@@ -21,6 +22,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
+  UserModel user = UserModel();
 
   @override
   void initState() {
@@ -30,8 +32,7 @@ class _HomeViewState extends State<HomeView> {
 
   void _getUser(BuildContext context) {
     final storage = getIt.get<MySharedPreferences>();
-    if (storage.getIdUser() == null &&
-        storage.getNameUser() == null &&
+    if (storage.getNameUser() == null &&
         storage.getEmailUser() == null &&
         storage.getRoleUser() == null &&
         storage.getPhoneUser() == null) {
@@ -45,6 +46,7 @@ class _HomeViewState extends State<HomeView> {
     if (state is HomeChangeViewState) {
       _selectedIndex = state.selectedIndex;
     } else if (state is HomeSuccessState) {
+      user = state.user;
       getIt.get<MySharedPreferences>().storeUser(state.user.toJson());
     } else if (state is FirebaseDBFailure) {
       snackBar(context: context, text: state.errorMsg);
@@ -61,7 +63,10 @@ class _HomeViewState extends State<HomeView> {
         if (state is HomeLoadingState) return const Loading();
 
         return Scaffold(
-          body: HomeViewBody(selectedIndex: _selectedIndex),
+          body: HomeViewBody(
+            selectedIndex: _selectedIndex,
+            user: user,
+          ),
           bottomNavigationBar: CustomBottomNavigationBar(
             onIndexChanged: (index) {
               context.read<HomeCubit>().changeTab(index);

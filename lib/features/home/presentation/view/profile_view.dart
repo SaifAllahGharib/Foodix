@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
@@ -13,13 +14,16 @@ import 'package:yummy_home/features/home/presentation/view/widgets/change_langua
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_image_profile_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_item_profile_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/name_and_email.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/home/home_cubit.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_state.dart';
 import 'package:yummy_home/features/your_addresses/view/your_addresses_view.dart';
 import 'package:yummy_home/generated/l10n.dart';
 
 class ProfileView extends StatefulWidget {
-  const ProfileView({super.key});
+  final UserModel user;
+
+  const ProfileView({super.key, required this.user});
 
   @override
   State<ProfileView> createState() => _ProfileViewState();
@@ -27,6 +31,7 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   final _storage = getIt.get<MySharedPreferences>();
+
   File? _selectedImage;
 
   void _showBottomSheet(BuildContext context) {
@@ -54,6 +59,7 @@ class _ProfileViewState extends State<ProfileView> {
 
   void _signOut(BuildContext context) {
     context.read<ProfileCubit>().signOut();
+    context.read<HomeCubit>().resetState();
   }
 
   void _signOutSuccess() {
@@ -83,8 +89,6 @@ class _ProfileViewState extends State<ProfileView> {
       _selectedImage = state.image;
     } else if (state is ProfileSignOutState) {
       _signOutSuccess();
-    } else if (state is ProfileLoadingState) {
-      GoRouter.of(context).pop();
     } else if (state is ProfileUpdateNameState) {
       _updateNameSuccess(state);
     } else if (state is ProfileFailureState) {
@@ -109,8 +113,12 @@ class _ProfileViewState extends State<ProfileView> {
             ),
             SizedBox(height: Dimensions.height15),
             NameAndEmail(
-              name: _storage.getNameUser()!,
-              email: _storage.getEmailUser()!,
+              name: _storage.getNameUser() == null
+                  ? widget.user.name!
+                  : _storage.getNameUser()!,
+              email: _storage.getEmailUser() == null
+                  ? widget.user.name!
+                  : _storage.getEmailUser()!,
             ),
             SizedBox(height: Dimensions.height20),
             Divider(
