@@ -10,8 +10,10 @@ import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/data/repos/home/home_repo_imp.dart';
+import 'package:yummy_home/features/home/data/repos/main_seller/main_seller_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/profile/profile_repo_imp.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/home/home_cubit.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/main_seller/main_seller_cubit.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
 import 'package:yummy_home/generated/l10n.dart';
 
@@ -51,6 +53,11 @@ class MyApp extends StatelessWidget {
               create: (context) => ProfileCubit(
                 getIt.get<ImagePickerHelper>(),
                 getIt.get<ProfileRepositoryImp>(),
+              ),
+            ),
+            BlocProvider<MainSellerCubit>(
+              create: (context) => MainSellerCubit(
+                getIt.get<MainSellerRepositoryImp>(),
               ),
             ),
           ],

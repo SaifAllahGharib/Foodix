@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
+import 'package:yummy_home/core/utils/my_shared_preferences.dart';
+import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/main_seller/main_seller_cubit.dart';
 import 'package:yummy_home/generated/l10n.dart';
 
 class CustomWidgetFloatButtonAddCategory extends StatelessWidget {
@@ -11,6 +16,18 @@ class CustomWidgetFloatButtonAddCategory extends StatelessWidget {
     super.key,
     required this.categoryController,
   });
+
+  void _validation(BuildContext context) {
+    context.read<MainSellerCubit>().enableButton(categoryController);
+  }
+
+  void _addCategory(BuildContext context) {
+    GoRouter.of(context).pop();
+    context.read<MainSellerCubit>().addCategory(
+          getIt.get<MySharedPreferences>().getIdUser()!,
+          categoryController.text,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +47,13 @@ class CustomWidgetFloatButtonAddCategory extends StatelessWidget {
           CustomTextField(
             controller: categoryController,
             hint: S.of(context).category,
-            onChanged: (val) {},
+            onChanged: (val) => _validation(context),
           ),
           SizedBox(height: Dimensions.height20),
           CustomButton(
             text: S.of(context).add,
-            onClick: () {},
+            isEnabled: context.watch<MainSellerCubit>().isEnabled,
+            onClick: () => _addCategory(context),
           ),
         ],
       ),
