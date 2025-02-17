@@ -27,3 +27,5 @@ class ProfilePickImageState extends ProfileState {
 
   ProfilePickImageState(this.image);
 }
+
+class ProfileEnableButtonState extends ProfileState {}

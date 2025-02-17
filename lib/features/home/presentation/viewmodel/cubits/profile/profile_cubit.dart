@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yummy_home/core/utils/image_picker_helper.dart';
 import 'package:yummy_home/features/home/data/repos/profile/profile_repo.dart';
@@ -8,6 +9,7 @@ import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/p
 class ProfileCubit extends Cubit<ProfileState> {
   final ImagePickerHelper _imagePickerHelper;
   final ProfileRepository _profileRepository;
+  bool _isEnabled = false;
 
   ProfileCubit(
     this._imagePickerHelper,
@@ -41,4 +43,11 @@ class ProfileCubit extends Cubit<ProfileState> {
       (r) => emit(ProfileUpdateNameState(name)),
     );
   }
+
+  void enableButton(TextEditingController controller) {
+    _isEnabled = controller.text.isNotEmpty;
+    emit(ProfileEnableButtonState());
+  }
+
+  bool get isEnabled => _isEnabled;
 }

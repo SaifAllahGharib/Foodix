@@ -66,21 +66,27 @@ class _ProfileViewState extends State<ProfileView> {
     GoRouter.of(context).go("/");
   }
 
+  void _updateNameSuccess(state) {
+    snackBar(
+      context: context,
+      text: S.of(context).success,
+      color: AppColors.primaryColor,
+    );
+    getIt.get<MySharedPreferences>().storeString(
+          "name",
+          state.newName,
+        );
+  }
+
   void _handelStates(state) {
     if (state is ProfilePickImageState) {
       _selectedImage = state.image;
     } else if (state is ProfileSignOutState) {
       _signOutSuccess();
+    } else if (state is ProfileLoadingState) {
+      GoRouter.of(context).pop();
     } else if (state is ProfileUpdateNameState) {
-      snackBar(
-        context: context,
-        text: S.of(context).success,
-        color: AppColors.primaryColor,
-      );
-      getIt.get<MySharedPreferences>().storeString(
-            "name",
-            state.newName,
-          );
+      _updateNameSuccess(state);
     } else if (state is ProfileFailureState) {
       snackBar(context: context, text: state.errorMsg);
     }

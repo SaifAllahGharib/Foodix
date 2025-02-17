@@ -37,6 +37,10 @@ class _CustomEditNameWidgetState extends State<CustomEditNameWidget> {
         );
   }
 
+  void _validation(BuildContext context) {
+    context.read<ProfileCubit>().enableButton(_editName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -57,13 +61,13 @@ class _CustomEditNameWidgetState extends State<CustomEditNameWidget> {
           SizedBox(height: Dimensions.height30),
           CustomTextField(
             hint: S.of(context).editName,
-            onChanged: (val) {},
+            onChanged: (val) => _validation(context),
             controller: _editName,
           ),
           SizedBox(height: Dimensions.height20),
           CustomButton(
             text: S.of(context).edit,
-            isEnabled: true,
+            isEnabled: context.watch<ProfileCubit>().isEnabled,
             onClick: () => _updateName(context),
           ),
         ],
