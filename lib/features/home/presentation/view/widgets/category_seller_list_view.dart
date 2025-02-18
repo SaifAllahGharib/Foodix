@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_item_category_seller_list_view.dart';
-import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 
 class CategorySellerListView extends StatelessWidget {
   final List<ProductModel> list;

@@ -21,9 +21,9 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeChangeViewState(_selectedIndex));
   }
 
-  Future<void> getUser(String uid) async {
+  Future<void> getUser() async {
     emit(HomeLoadingState());
-    final result = await _homeRepository.getUser(uid);
+    final result = await _homeRepository.getUser();
 
     result.fold(
       (e) => emit(HomeFailureState(e.errorMsg)),

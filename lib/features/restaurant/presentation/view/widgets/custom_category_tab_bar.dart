@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
-import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 
 class CustomCategoryTabBar extends StatelessWidget {
   final TabController tabController;

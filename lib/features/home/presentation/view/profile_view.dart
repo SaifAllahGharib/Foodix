@@ -114,10 +114,10 @@ class _ProfileViewState extends State<ProfileView> {
             SizedBox(height: Dimensions.height15),
             NameAndEmail(
               name: _storage.getNameUser() == null
-                  ? widget.user.name!
+                  ? widget.user.name ?? ""
                   : _storage.getNameUser()!,
               email: _storage.getEmailUser() == null
-                  ? widget.user.name!
+                  ? widget.user.name ?? ""
                   : _storage.getEmailUser()!,
             ),
             SizedBox(height: Dimensions.height20),

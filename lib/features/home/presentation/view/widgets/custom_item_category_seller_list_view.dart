@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_widget_bottom_sheet_float_button_add_category.dart';
-import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 
 class CustomItemCategorySellerListView extends StatelessWidget {
   final int index;
@@ -17,12 +17,13 @@ class CustomItemCategorySellerListView extends StatelessWidget {
     required this.searchFoodController,
   });
 
-  void _showBottomSheetOnTabListTile(BuildContext context) {
+  void _showBottomSheetOnTabListTile(BuildContext context, int index) {
     showBottomSheet(
       context: context,
       builder: (context) {
         return CustomWidgetBottomSheetFloatButtonAddCategory(
           searchFoodController: searchFoodController,
+          productModel: list[index],
         );
       },
     );
@@ -31,7 +32,7 @@ class CustomItemCategorySellerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => _showBottomSheetOnTabListTile(context),
+      onTap: () => _showBottomSheetOnTabListTile(context, index),
       contentPadding: EdgeInsets.zero,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

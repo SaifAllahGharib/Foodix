@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
@@ -7,16 +8,14 @@ import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_image_food.dart';
 
 class GridItemView extends StatelessWidget {
-  final String imageUrl;
-  final String foodName;
-  final String foodCost;
+  final ProductModel productModel;
+  final int index;
   final void Function() onClick;
 
   const GridItemView({
     super.key,
-    required this.foodName,
-    required this.imageUrl,
-    required this.foodCost,
+    required this.productModel,
+    required this.index,
     required this.onClick,
   });
 
@@ -27,7 +26,9 @@ class GridItemView extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            CustomImageFood(imageUrl: imageUrl),
+            CustomImageFood(
+              imageUrl: productModel.foods![index].foodImage ?? "",
+            ),
             SizedBox(height: Dimensions.height10),
             Padding(
               padding: EdgeInsets.symmetric(
@@ -40,7 +41,7 @@ class GridItemView extends StatelessWidget {
                         ? Alignment.centerRight
                         : Alignment.centerLeft,
                     child: Text(
-                      foodName,
+                      productModel.foods![index].foodName,
                       style: Styles.textStyle18(context),
                     ),
                   ),
@@ -50,7 +51,7 @@ class GridItemView extends StatelessWidget {
                         ? Alignment.centerRight
                         : Alignment.centerLeft,
                     child: CustomRowCost(
-                      egp: foodCost,
+                      egp: productModel.foods![index].foodPrice,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

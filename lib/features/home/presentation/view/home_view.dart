@@ -32,13 +32,12 @@ class _HomeViewState extends State<HomeView> {
 
   void _getUser(BuildContext context) {
     final storage = getIt.get<MySharedPreferences>();
-    if (storage.getNameUser() == null &&
+    if (storage.getIdUser() == null &&
+        storage.getNameUser() == null &&
         storage.getEmailUser() == null &&
         storage.getRoleUser() == null &&
         storage.getPhoneUser() == null) {
-      context.read<HomeCubit>().getUser(
-            getIt.get<MySharedPreferences>().getIdUser()!,
-          );
+      context.read<HomeCubit>().getUser();
     }
   }
 

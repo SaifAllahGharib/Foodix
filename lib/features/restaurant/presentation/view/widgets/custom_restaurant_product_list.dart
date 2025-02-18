@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
-import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_food_category_list_view.dart';
 
 class CustomRestaurantProductList extends StatelessWidget {

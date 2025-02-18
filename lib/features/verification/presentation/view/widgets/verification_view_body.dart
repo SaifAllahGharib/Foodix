@@ -35,8 +35,8 @@ class _VerificationViewBodyState extends State<VerificationViewBody> {
   @override
   void initState() {
     _verificationController = StreamController.broadcast();
-    // _sendEmailVerification(context);
-    // _startVerificationListener(context);
+    _sendEmailVerification(context);
+    _startVerificationListener(context);
     super.initState();
   }
 
