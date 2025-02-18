@@ -46,8 +46,10 @@ class _HomeViewState extends State<HomeView> {
       _selectedIndex = state.selectedIndex;
     } else if (state is HomeSuccessState) {
       user = state.user;
+      print("USER: $user");
       getIt.get<MySharedPreferences>().storeUser(state.user.toJson());
     } else if (state is FirebaseDBFailure) {
+      print("ERROR: ${state.errorMsg}");
       snackBar(context: context, text: state.errorMsg);
     } else if (state is FirebaseFailure) {
       snackBar(context: context, text: state.errorMsg);

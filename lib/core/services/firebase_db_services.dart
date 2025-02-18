@@ -14,7 +14,8 @@ class FirebaseDBServices extends DBServices {
   Future<DataSnapshot> getUser() async {
     return await _firebaseService.db
         .ref()
-        .child("users/$_firebaseService.auth.currentUser!.uid")
+        .child("users")
+        .child(_firebaseService.auth.currentUser!.uid)
         .get();
   }
 

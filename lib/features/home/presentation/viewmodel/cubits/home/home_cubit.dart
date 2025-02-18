@@ -28,7 +28,7 @@ class HomeCubit extends Cubit<HomeState> {
     result.fold(
       (e) => emit(HomeFailureState(e.errorMsg)),
       (r) => emit(
-        HomeSuccessState(UserModel.fromJson(r.value as Map<Object?, Object?>)),
+        HomeSuccessState(UserModel.fromJson(r.value as Map)),
       ),
     );
   }
