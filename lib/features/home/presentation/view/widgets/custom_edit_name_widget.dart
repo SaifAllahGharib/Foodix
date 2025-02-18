@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
-import 'package:yummy_home/core/utils/my_shared_preferences.dart';
-import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
@@ -33,10 +31,7 @@ class _CustomEditNameWidgetState extends State<CustomEditNameWidget> {
 
   void _updateName(BuildContext context) {
     GoRouter.of(context).pop();
-    context.read<ProfileCubit>().updateName(
-          getIt.get<MySharedPreferences>().getIdUser()!,
-          _editName.text,
-        );
+    context.read<ProfileCubit>().updateName(_editName.text);
   }
 
   void _validation(BuildContext context) {

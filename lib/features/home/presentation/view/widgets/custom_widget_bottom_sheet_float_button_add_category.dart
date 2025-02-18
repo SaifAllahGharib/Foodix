@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/utils/assets.dart';
+import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
+import 'package:yummy_home/core/widgets/empty_widget.dart';
 import 'package:yummy_home/features/add_food/presentation/view/add_food_view.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_float_button.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_grid_view_builder.dart';
@@ -11,10 +12,12 @@ import 'package:yummy_home/features/home/presentation/view/widgets/custom_search
 
 class CustomWidgetBottomSheetFloatButtonAddCategory extends StatelessWidget {
   final TextEditingController searchFoodController;
+  final ProductModel productModel;
 
   const CustomWidgetBottomSheetFloatButtonAddCategory({
     super.key,
     required this.searchFoodController,
+    required this.productModel,
   });
 
   @override
@@ -35,20 +38,22 @@ class CustomWidgetBottomSheetFloatButtonAddCategory extends StatelessWidget {
           ),
           SizedBox(height: Dimensions.height20),
           Text(
-            "Pizza",
+            productModel.category!,
             style: Styles.textStyle20(context),
           ),
           SizedBox(height: Dimensions.height20),
           Expanded(
             child: Stack(
               children: [
-                const CustomGridViewBuilder(
-                  name: "Food",
-                  cost: "280",
-                  imageUrl: Assets.food,
-                ),
+                if (productModel.foods!.isEmpty)
+                  const EmptyWidget()
+                else
+                  CustomGridViewBuilder(productModel: productModel),
                 CustomFloatButton(
-                  onClick: () => GoRouter.of(context).push(AddFoodView.id),
+                  onClick: () => GoRouter.of(context).push(
+                    AddFoodView.id,
+                    extra: productModel.category,
+                  ),
                 ),
               ],
             ),

@@ -10,9 +10,9 @@ class HomeRepositoryImp extends HomeRepository {
   HomeRepositoryImp(this._dbServices);
 
   @override
-  Future<Either<Failure, DataSnapshot>> getUser(String uid) async {
+  Future<Either<Failure, DataSnapshot>> getUser() async {
     try {
-      return right(await _dbServices.getUser(uid));
+      return right(await _dbServices.getUser());
     } on FirebaseDBFailure catch (e) {
       return left(FirebaseDBFailure(e.toString()));
     } catch (e) {

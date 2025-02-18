@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:yummy_home/core/errors/failure.dart';
+import 'package:yummy_home/core/models/food_model.dart';
 import 'package:yummy_home/core/services/db_services.dart';
-import 'package:yummy_home/features/add_food/data/models/food_model.dart';
 import 'package:yummy_home/features/add_food/data/repos/add_food_repo.dart';
 
 class AddFoodRepositoryImp extends AddFoodRepository {
@@ -11,9 +11,9 @@ class AddFoodRepositoryImp extends AddFoodRepository {
 
   @override
   Future<Either<Failure, void>> addFood(
-      String uid, String categoryName, FoodModel food) async {
+      String categoryName, FoodModel food) async {
     try {
-      return right(await _dbServices.addFood(uid, categoryName, food));
+      return right(await _dbServices.addFood(categoryName, food));
     } catch (e) {
       if (e is FirebaseDBFailure) {
         return left(FirebaseDBFailure(e.errorMsg));

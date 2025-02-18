@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
@@ -41,7 +40,7 @@ class CustomButtonAddToCart extends StatelessWidget {
             ),
             SizedBox(width: Dimensions.width20),
             CustomRowCost(
-              egp: "$price",
+              egp: price,
               color: Colors.white,
               fontWeight: FontWeight.w500,
             ),

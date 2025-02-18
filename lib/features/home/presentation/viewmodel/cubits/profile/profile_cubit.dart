@@ -35,9 +35,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
-  Future<void> updateName(String uid, String name) async {
+  Future<void> updateName(String name) async {
     emit(ProfileLoadingState());
-    final result = await _profileRepository.updateName(uid, name);
+    final result = await _profileRepository.updateName(name);
     result.fold(
       (e) => emit(ProfileFailureState(e.errorMsg)),
       (r) => emit(ProfileUpdateNameState(name)),

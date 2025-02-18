@@ -23,9 +23,9 @@ class ProfileRepositoryImp extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> updateName(String uid, String name) async {
+  Future<Either<Failure, void>> updateName(String name) async {
     try {
-      return right(await _dbServices.updateName(uid, name));
+      return right(await _dbServices.updateName(name));
     } on FirebaseAuthException catch (e) {
       return left(FirebaseAuthFailure(e.code));
     } catch (e) {

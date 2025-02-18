@@ -5,7 +5,6 @@ import 'package:yummy_home/core/errors/failure.dart';
 import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/services/auth_services.dart';
 import 'package:yummy_home/core/services/db_services.dart';
-import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/features/signup/data/models/signup_model.dart';
 import 'package:yummy_home/features/signup/data/repos/signup_repo.dart';
 import 'package:yummy_home/generated/l10n.dart';
@@ -35,14 +34,16 @@ class SignupRepositoryImp extends SignupRepository {
         );
 
         try {
-          await _dbServices.setUser(userModel, uid);
-          await MySharedPreferences().storeString("uid", uid);
+          await Future.wait([
+            _dbServices.setUser(userModel),
+            _dbServices.createRestaurant(userModel.name!),
+          ]);
           return right(S.of(context).success);
         } catch (e) {
           return left(FirebaseDBFailure(e.toString()));
         }
       } else {
-        return right("field");
+        return right(S.of(context).field);
       }
     } on FirebaseAuthException catch (e) {
       return left(FirebaseAuthFailure(e.code));

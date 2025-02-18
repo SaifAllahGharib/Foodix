@@ -61,7 +61,8 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: AddFoodView.id,
-        builder: (context, state) => const AddFoodView(),
+        builder: (context, state) =>
+            AddFoodView(categoryName: state.extra as String),
       ),
       GoRoute(
         path: DetailsOrderView.id,

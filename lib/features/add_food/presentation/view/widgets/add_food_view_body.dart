@@ -3,24 +3,24 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yummy_home/core/models/food_model.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
-import 'package:yummy_home/core/utils/my_shared_preferences.dart';
-import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
-import 'package:yummy_home/features/add_food/data/models/food_model.dart';
 import 'package:yummy_home/features/add_food/presentation/view/widgets/custom_button_image_picker.dart';
 import 'package:yummy_home/features/add_food/presentation/viewmodel/cubits/add_food/add_food_cubit.dart';
 import 'package:yummy_home/features/add_food/presentation/viewmodel/cubits/add_food/add_food_state.dart';
 import 'package:yummy_home/generated/l10n.dart';
 
 class AddFoodViewBody extends StatefulWidget {
-  const AddFoodViewBody({super.key});
+  final String categoryName;
+
+  const AddFoodViewBody({super.key, required this.categoryName});
 
   @override
   State<AddFoodViewBody> createState() => _AddFoodViewBodyState();
@@ -69,13 +69,12 @@ class _AddFoodViewBodyState extends State<AddFoodViewBody> {
 
   void _addFood(BuildContext context) {
     context.read<AddFoodCubit>().addFood(
-          getIt.get<MySharedPreferences>().getIdUser()!,
-          "PIZZA",
+          widget.categoryName,
           FoodModel(
             foodImage: "",
             foodName: _foodName.text,
             foodDesc: _foodDesc.text,
-            foodPrice: _foodPrice.text,
+            foodPrice: double.tryParse(_foodPrice.text) ?? 0.0,
           ),
         );
   }
@@ -89,6 +88,8 @@ class _AddFoodViewBodyState extends State<AddFoodViewBody> {
         text: S.of(context).success,
         color: AppColors.primaryColor,
       );
+
+      GoRouter.of(context).pop();
     } else if (state is AddFoodFailure) {
       snackBar(
         context: context,

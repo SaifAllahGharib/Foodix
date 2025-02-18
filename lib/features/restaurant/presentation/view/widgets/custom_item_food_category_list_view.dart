@@ -83,7 +83,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                       ),
                       const Spacer(),
                       CustomRowCost(
-                        egp: "$foodPrice",
+                        egp: foodPrice,
                         fontWeight: FontWeight.w600,
                         mainAxisAlignment: MainAxisAlignment.end,
                       ),

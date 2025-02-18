@@ -53,7 +53,7 @@ class CustomItemListViewCartView extends StatelessWidget {
                   ),
                   SizedBox(height: Dimensions.height30),
                   const CustomRowCost(
-                    egp: "250",
+                    egp: 250,
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
                   ),

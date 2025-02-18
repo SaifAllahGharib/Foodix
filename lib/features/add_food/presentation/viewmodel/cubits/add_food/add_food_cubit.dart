@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/models/food_model.dart';
 import 'package:yummy_home/core/utils/image_picker_helper.dart';
-import 'package:yummy_home/features/add_food/data/models/food_model.dart';
 import 'package:yummy_home/features/add_food/data/repos/add_food_repo.dart';
 import 'package:yummy_home/features/add_food/presentation/viewmodel/cubits/add_food/add_food_state.dart';
 
@@ -38,9 +38,9 @@ class AddFoodCubit extends Cubit<AddFoodState> {
     emit(AddFoodValidation(_isValid));
   }
 
-  Future<void> addFood(String uid, String categoryName, FoodModel food) async {
+  Future<void> addFood(String categoryName, FoodModel food) async {
     emit(AddFoodLoading());
-    final result = await _addFoodRepository.addFood(uid, categoryName, food);
+    final result = await _addFoodRepository.addFood(categoryName, food);
 
     result.fold(
       (l) => emit(AddFoodFailure(l.errorMsg)),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
-import 'package:yummy_home/features/restaurant/data/models/ProductModel.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_tab_bar.dart';
 
 class CustomAppBarRestaurantView extends StatelessWidget {

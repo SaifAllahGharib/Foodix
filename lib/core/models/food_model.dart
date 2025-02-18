@@ -2,7 +2,7 @@ class FoodModel {
   final String? foodImage;
   final String foodName;
   final String foodDesc;
-  final String foodPrice;
+  final num foodPrice;
 
   FoodModel({
     required this.foodImage,
@@ -11,7 +11,7 @@ class FoodModel {
     required this.foodPrice,
   });
 
-  factory FoodModel.fromJson(Map<String, dynamic> json) {
+  factory FoodModel.fromJson(Map<dynamic, dynamic> json) {
     return FoodModel(
       foodImage: json['foodImage'] ?? "",
       foodName: json['foodName'],

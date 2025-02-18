@@ -35,7 +35,7 @@ class CustomBottomBarFoodDetailsSeller extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CustomRowCost(
-            egp: "250",
+            egp: 250,
             fontWeight: FontWeight.w500,
             fontSize: Dimensions.height20 * 0.9,
           ),

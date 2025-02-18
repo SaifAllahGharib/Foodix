@@ -4,7 +4,7 @@ import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/generated/l10n.dart';
 
 class CustomRowCost extends StatelessWidget {
-  final String egp;
+  final num egp;
   final FontWeight fontWeight;
   final Color color;
   final double? fontSize;
@@ -25,7 +25,7 @@ class CustomRowCost extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       children: [
         Text(
-          egp,
+          "$egp",
           style: Styles.textStyle15(context).copyWith(
             fontWeight: fontWeight,
             color: color,

@@ -24,7 +24,7 @@ class BottomSectionCustomItemOrderListView extends StatelessWidget {
         children: [
           const CustomDetailsOrderNameImage(),
           SizedBox(height: Dimensions.height15),
-          const CustomRowCost(egp: "280"),
+          const CustomRowCost(egp: 280),
           SizedBox(height: Dimensions.height10 * 0.3),
           InkWell(
             onTap: () => GoRouter.of(context).push(DetailsOrderView.id),

@@ -8,8 +8,9 @@ import 'package:yummy_home/features/add_food/presentation/viewmodel/cubits/add_f
 
 class AddFoodView extends StatelessWidget {
   static const String id = "/add_food";
+  final String categoryName;
 
-  const AddFoodView({super.key});
+  const AddFoodView({super.key, required this.categoryName});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,8 @@ class AddFoodView extends StatelessWidget {
         getIt.get<AddFoodRepositoryImp>(),
         getIt.get<ImagePickerHelper>(),
       ),
-      child: const Scaffold(
-        body: AddFoodViewBody(),
+      child: Scaffold(
+        body: AddFoodViewBody(categoryName: categoryName),
       ),
     );
   }

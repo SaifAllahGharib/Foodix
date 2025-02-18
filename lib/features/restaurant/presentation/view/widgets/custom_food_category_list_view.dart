@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/models/food_model.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
-import 'package:yummy_home/features/restaurant/data/models/Foods.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_bottom_sheet_restaurant_product_widget.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_item_food_category_list_view.dart';
 
 class CustomFoodCategoryListView extends StatelessWidget {
-  final List<Foods> listOfFoodCategories;
+  final List<FoodModel> listOfFoodCategories;
 
   const CustomFoodCategoryListView({
     super.key,
@@ -30,10 +30,10 @@ class CustomFoodCategoryListView extends StatelessWidget {
               return CustomItemFoodCategoryListView(
                 index: listOfFoodCategories.indexOf(food),
                 listOfFood: listOfFoodCategories,
-                foodImage: food.image!,
-                foodName: food.name!,
-                foodDesc: food.desc!,
-                foodPrice: food.price!,
+                foodImage: food.foodImage!,
+                foodName: food.foodName!,
+                foodDesc: food.foodDesc!,
+                foodPrice: 22,
                 onClickInItem: () {
                   showBottomSheet(
                     context: context,
@@ -41,7 +41,7 @@ class CustomFoodCategoryListView extends StatelessWidget {
                     builder: (context) {
                       return CustomBottomSheetRestaurantProductWidget(
                         index: listOfFoodCategories.indexOf(food),
-                        price: food.price!,
+                        price: 45,
                       );
                     },
                   );
