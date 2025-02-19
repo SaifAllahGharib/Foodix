@@ -79,7 +79,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: RestaurantView.id,
-        builder: (context, state) => const RestaurantView(),
+        builder: (context, state) => RestaurantView(
+          extra: state.extra as Map<dynamic, dynamic>,
+        ),
       ),
       GoRoute(
         path: CartView.id,

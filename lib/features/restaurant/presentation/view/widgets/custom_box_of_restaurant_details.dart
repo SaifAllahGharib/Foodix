@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_cost_delivery.dart';
@@ -7,7 +8,10 @@ import 'package:yummy_home/core/widgets/custom_dot_widget.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/image_and_name_and_rating_widget.dart';
 
 class CustomBoxOfRestaurantDetails extends StatelessWidget {
-  const CustomBoxOfRestaurantDetails({super.key});
+  final RestaurantModel restaurantModel;
+
+  const CustomBoxOfRestaurantDetails(
+      {super.key, required this.restaurantModel});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,7 @@ class CustomBoxOfRestaurantDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ImageAndNameAndRatingWidget(),
+            ImageAndNameAndRatingWidget(restaurantModel: restaurantModel),
             SizedBox(height: Dimensions.height15),
             Row(
               children: [

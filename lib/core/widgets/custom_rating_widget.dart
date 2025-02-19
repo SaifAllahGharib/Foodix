@@ -3,8 +3,8 @@ import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 
 class CustomRatingWidget extends StatelessWidget {
-  final double rating;
-  final int ratingCount;
+  final num? rating;
+  final int? ratingCount;
 
   const CustomRatingWidget(
       {super.key, required this.rating, required this.ratingCount});

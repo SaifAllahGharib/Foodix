@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/models/food_model.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
+import 'package:yummy_home/core/widgets/custom_cashed_network_image.dart';
 import 'package:yummy_home/core/widgets/custom_food_image.dart';
 import 'package:yummy_home/core/widgets/custom_row_cost.dart';
 
-class CustomItemFoodCategoryListView extends StatelessWidget {
+class CustomItemFoodCategoryListView extends StatefulWidget {
+  final FoodModel foodModel;
   final int index;
-  final String foodName;
-  final String foodDesc;
-  final double foodPrice;
-  final String foodImage;
   final List listOfFood;
   final void Function() onClickInItem;
 
   const CustomItemFoodCategoryListView({
     super.key,
     required this.index,
-    required this.foodName,
-    required this.foodDesc,
-    required this.foodPrice,
-    required this.foodImage,
+    required this.foodModel,
     required this.listOfFood,
     required this.onClickInItem,
   });
 
   @override
+  State<CustomItemFoodCategoryListView> createState() =>
+      _CustomItemFoodCategoryListViewState();
+}
+
+class _CustomItemFoodCategoryListViewState
+    extends State<CustomItemFoodCategoryListView> {
+  bool get isArabic => context.watch<LocalCubit>().isArabic;
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onClickInItem,
+      onTap: widget.onClickInItem,
       enableFeedback: false,
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
@@ -42,20 +48,20 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
             height: Dimensions.height130,
             padding: EdgeInsets.only(
               bottom: Dimensions.height15,
-              right: context.watch<LocalCubit>().isArabic
-                  ? 0
-                  : Dimensions.height20,
-              left: context.watch<LocalCubit>().isArabic
-                  ? Dimensions.height20
-                  : 0,
+              right: isArabic ? 0 : Dimensions.height20,
+              left: isArabic ? Dimensions.height20 : 0,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomFoodImage(
-                  image: foodImage,
-                  width: Dimensions.height130 * 0.9,
-                  height: Dimensions.height130 * 0.9,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  child: CustomCashedNetworkImage(
+                    width: Dimensions.height130 * 0.9,
+                    height: Dimensions.height130 * 0.9,
+                    imageURL: widget.foodModel.foodImage,
+                    placeholder: Assets.food,
+                  ),
                 ),
                 SizedBox(width: Dimensions.width30 * 2),
                 Expanded(
@@ -65,7 +71,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          foodName,
+                          widget.foodModel.foodName,
                           softWrap: true,
                           overflow: TextOverflow.ellipsis,
                           style: Styles.textStyle16(context),
@@ -74,7 +80,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                       SizedBox(height: Dimensions.height10),
                       Expanded(
                         child: Text(
-                          foodDesc,
+                          widget.foodModel.foodDesc,
                           softWrap: true,
                           textAlign: TextAlign.end,
                           overflow: TextOverflow.ellipsis,
@@ -83,7 +89,7 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
                       ),
                       const Spacer(),
                       CustomRowCost(
-                        egp: foodPrice,
+                        egp: widget.foodModel.foodPrice,
                         fontWeight: FontWeight.w600,
                         mainAxisAlignment: MainAxisAlignment.end,
                       ),
@@ -93,12 +99,12 @@ class CustomItemFoodCategoryListView extends StatelessWidget {
               ],
             ),
           ),
-          if (index != listOfFood.length - 1)
+          if (widget.index != widget.listOfFood.length - 1)
             const Divider(
               height: 1,
               color: AppColors.gray,
             ),
-          if (index != listOfFood.length - 1)
+          if (widget.index != widget.listOfFood.length - 1)
             SizedBox(height: Dimensions.height20),
         ],
       ),

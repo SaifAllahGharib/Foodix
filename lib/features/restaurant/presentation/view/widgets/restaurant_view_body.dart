@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_app_bar_restaurant_view.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_category_tab_bar.dart';
@@ -10,7 +9,9 @@ import 'package:yummy_home/features/restaurant/viewmodel/cubits/restaurant/resta
 import 'package:yummy_home/features/restaurant/viewmodel/cubits/restaurant/restaurant_state.dart';
 
 class RestaurantViewBody extends StatefulWidget {
-  const RestaurantViewBody({super.key});
+  final Map<dynamic, dynamic> extra;
+
+  const RestaurantViewBody({super.key, required this.extra});
 
   @override
   State<RestaurantViewBody> createState() => _RestaurantViewBodyState();
@@ -23,7 +24,6 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
   late final List<GlobalKey> keys;
   double _opacity = 0.0;
   double _appBarHeight = 0.0;
-  final List<ProductModel> listOfFoodCategories = [];
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
   void initControllers() {
     _scrollController = ScrollController();
     _tabController = TabController(
-      length: listOfFoodCategories.length,
+      length: widget.extra.values.length,
       vsync: this,
     );
   }
@@ -69,7 +69,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
   }
 
   void _generateGlobalKeys() {
-    keys = List.generate(listOfFoodCategories.length, (index) => GlobalKey());
+    keys = List.generate(widget.extra.values.length, (index) => GlobalKey());
   }
 
   void _onClickCategory(int index) {
@@ -127,18 +127,20 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
               CustomScrollView(
                 controller: _scrollController,
                 slivers: [
-                  const SliverToBoxAdapter(child: TopSectionRestaurantView()),
+                  SliverToBoxAdapter(
+                      child: TopSectionRestaurantView(
+                          restaurantModel: widget.extra.values.first)),
                   SliverToBoxAdapter(
                     child: CustomCategoryTabBar(
                       tabController: _tabController,
-                      list: listOfFoodCategories,
+                      restaurantModel: widget.extra.values.first,
                       onClickCategory: (index) => _onClickCategory(index),
                     ),
                   ),
                   SliverToBoxAdapter(
                     child: CustomRestaurantProductList(
                       keys: keys,
-                      listOfFoodCategories: listOfFoodCategories,
+                      restaurantModel: widget.extra.values.first,
                     ),
                   ),
                 ],
@@ -146,7 +148,7 @@ class _RestaurantViewBodyState extends State<RestaurantViewBody>
               CustomAppBarRestaurantView(
                 tabController: _tabController,
                 opacity: _opacity,
-                list: listOfFoodCategories,
+                restaurantModel: widget.extra.values.first,
                 appBarHeight: _appBarHeight,
                 onClickCategory: (index) => _onClickCategory(index),
               ),

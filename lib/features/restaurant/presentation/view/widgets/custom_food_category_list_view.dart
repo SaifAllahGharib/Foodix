@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yummy_home/core/models/food_model.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_bottom_sheet_restaurant_product_widget.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_item_food_category_list_view.dart';
 
 class CustomFoodCategoryListView extends StatelessWidget {
-  final List<FoodModel> listOfFoodCategories;
+  final int index;
+  final RestaurantModel restaurantModel;
 
   const CustomFoodCategoryListView({
     super.key,
-    required this.listOfFoodCategories,
+    required this.index,
+    required this.restaurantModel,
   });
 
   @override
@@ -25,22 +27,20 @@ class CustomFoodCategoryListView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ...listOfFoodCategories.map(
+          ...restaurantModel.categories![index].foods!.map(
             (food) {
               return CustomItemFoodCategoryListView(
-                index: listOfFoodCategories.indexOf(food),
-                listOfFood: listOfFoodCategories,
-                foodImage: food.foodImage!,
-                foodName: food.foodName!,
-                foodDesc: food.foodDesc!,
-                foodPrice: 22,
+                index: restaurantModel.categories![index].foods!.indexOf(food),
+                listOfFood: restaurantModel.categories![index].foods!,
+                foodModel: food,
                 onClickInItem: () {
                   showBottomSheet(
                     context: context,
                     backgroundColor: Colors.white,
                     builder: (context) {
                       return CustomBottomSheetRestaurantProductWidget(
-                        index: listOfFoodCategories.indexOf(food),
+                        index: restaurantModel.categories![index].foods!
+                            .indexOf(food),
                         price: 45,
                       );
                     },

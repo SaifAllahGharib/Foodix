@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/models/food_model.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/services/db_services.dart';
 import 'package:yummy_home/core/services/firebase_service.dart';
@@ -72,13 +73,12 @@ class FirebaseDBServices extends DBServices {
   }
 
   @override
-  Future<void> createRestaurant(String restaurantName) async {
+  Future<void> createRestaurant(RestaurantModel restaurant) async {
     await _firebaseService.db
         .ref()
         .child("restaurants")
         .child(_firebaseService.auth.currentUser!.uid)
-        .child(restaurantName)
-        .set({});
+        .set(restaurant.toJson());
   }
 
   @override

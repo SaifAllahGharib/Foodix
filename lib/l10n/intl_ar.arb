@@ -43,7 +43,7 @@
   "confirmPassword": "تأكيد كلمة المرور",
   "foodName": "اسم الطعام",
   "foodDesc": "وصف الطعام",
-  "foodCost": "جنيه مصري",
+  "foodCost": "ج.م",
   "add": "إضافة",
   "addFood": "إضافة طعام",
   "search": "بحث",

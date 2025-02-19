@@ -8,6 +8,7 @@ import 'package:yummy_home/core/utils/image_picker_helper.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
+import 'package:yummy_home/core/widgets/loading.dart';
 import 'package:yummy_home/features/home/data/repos/home/home_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/main_buyer/main_buyer_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/main_seller/main_seller_repo_imp.dart';
@@ -21,7 +22,6 @@ import 'package:yummy_home/generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeApp();
 
   runApp(const MyApp());
 }
@@ -31,48 +31,57 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<LocalCubit>(
-          create: (context) => LocalCubit(getIt.get<MySharedPreferences>()),
-        ),
-        BlocProvider<HomeCubit>(
-          create: (context) => HomeCubit(getIt.get<HomeRepositoryImp>()),
-        ),
-        BlocProvider<ProfileCubit>(
-          create: (context) => ProfileCubit(
-            getIt.get<ImagePickerHelper>(),
-            getIt.get<ProfileRepositoryImp>(),
+    return FutureBuilder(
+      future: initializeApp(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const MaterialApp(home: Loading());
+        }
+
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<LocalCubit>(
+              create: (context) => LocalCubit(getIt.get<MySharedPreferences>()),
+            ),
+            BlocProvider<HomeCubit>(
+              create: (context) => HomeCubit(getIt.get<HomeRepositoryImp>()),
+            ),
+            BlocProvider<ProfileCubit>(
+              create: (context) => ProfileCubit(
+                getIt.get<ImagePickerHelper>(),
+                getIt.get<ProfileRepositoryImp>(),
+              ),
+            ),
+            BlocProvider<MainSellerCubit>(
+              create: (context) => MainSellerCubit(
+                getIt.get<MainSellerRepositoryImp>(),
+              ),
+            ),
+            BlocProvider<MainBuyerCubit>(
+              create: (context) => MainBuyerCubit(
+                getIt.get<MainBuyerRepositoryImp>(),
+              ),
+            ),
+            BlocProvider<OrdersCubit>(create: (context) => OrdersCubit()),
+          ],
+          child: BlocBuilder<LocalCubit, Locale>(
+            builder: (context, locale) {
+              return MaterialApp.router(
+                locale: locale,
+                routerConfig: AppRouter.router,
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate
+                ],
+                supportedLocales: S.delegate.supportedLocales,
+                theme: _buildAppTheme(locale),
+              );
+            },
           ),
-        ),
-        BlocProvider<MainSellerCubit>(
-          create: (context) => MainSellerCubit(
-            getIt.get<MainSellerRepositoryImp>(),
-          ),
-        ),
-        BlocProvider<MainBuyerCubit>(
-          create: (context) => MainBuyerCubit(
-            getIt.get<MainBuyerRepositoryImp>(),
-          ),
-        ),
-        BlocProvider<OrdersCubit>(create: (context) => OrdersCubit()),
-      ],
-      child: BlocBuilder<LocalCubit, Locale>(
-        builder: (context, locale) {
-          return MaterialApp.router(
-            locale: locale,
-            routerConfig: AppRouter.router,
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-            theme: _buildAppTheme(locale),
-          );
-        },
-      ),
+        );
+      },
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
@@ -9,10 +10,14 @@ import 'package:yummy_home/core/widgets/custom_rating_widget.dart';
 import 'package:yummy_home/features/home/presentation/view/widgets/custom_image_item_sliver_list_view_buyer_view.dart';
 
 class CustomItemSliverListViewBuyerView extends StatelessWidget {
+  final List<RestaurantModel> list;
+  final int index;
   final void Function() onClick;
 
   const CustomItemSliverListViewBuyerView({
     super.key,
+    required this.list,
+    required this.index,
     required this.onClick,
   });
 
@@ -37,13 +42,13 @@ class CustomItemSliverListViewBuyerView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Bazoka",
+                  list[index].name,
                   style: Styles.textStyle18(context),
                 ),
                 SizedBox(height: Dimensions.height15),
-                const CustomRatingWidget(
-                  rating: 4.8,
-                  ratingCount: 265,
+                CustomRatingWidget(
+                  rating: list[index].rates,
+                  ratingCount: list[index].countRates,
                 ),
                 SizedBox(height: Dimensions.height10 * 0.6),
                 Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
@@ -38,7 +39,7 @@ class CustomItemListViewCartView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomFoodImage(
-                image: " ",
+                image: Assets.food,
                 width: Dimensions.height130 * 0.8,
                 height: Dimensions.height130 * 0.8,
               ),

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_background_image.dart';
 import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_box_of_restaurant_details.dart';
 
 class TopSectionRestaurantView extends StatelessWidget {
-  const TopSectionRestaurantView({super.key});
+  final RestaurantModel restaurantModel;
+
+  const TopSectionRestaurantView({super.key, required this.restaurantModel});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +17,10 @@ class TopSectionRestaurantView extends StatelessWidget {
       child: Stack(
         children: [
           CustomBackgroundImage(
-            image: " ",
+            image: Assets.food,
             height: Dimensions.height130 * 1.6,
           ),
-          const CustomBoxOfRestaurantDetails(),
+          CustomBoxOfRestaurantDetails(restaurantModel: restaurantModel),
         ],
       ),
     );

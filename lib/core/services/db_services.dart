@@ -1,5 +1,6 @@
 import 'package:yummy_home/core/models/ProductModel.dart';
 import 'package:yummy_home/core/models/food_model.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/models/user_model.dart';
 
 abstract class DBServices {
@@ -15,7 +16,7 @@ abstract class DBServices {
 
   Stream<dynamic> getCategories();
 
-  Future<void> createRestaurant(String restaurantName);
+  Future<void> createRestaurant(RestaurantModel restaurant);
 
   Stream<dynamic> getRestaurants();
 }

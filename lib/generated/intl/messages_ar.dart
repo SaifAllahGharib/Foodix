@@ -74,7 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "فشل في إنشاء الحساب",
     ),
     "field": MessageLookupByLibrary.simpleMessage("الحقل"),
-    "foodCost": MessageLookupByLibrary.simpleMessage("جنيه مصري"),
+    "foodCost": MessageLookupByLibrary.simpleMessage("ج.م"),
     "foodDesc": MessageLookupByLibrary.simpleMessage("وصف الطعام"),
     "foodName": MessageLookupByLibrary.simpleMessage("اسم الطعام"),
     "forgetPass": MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور؟"),

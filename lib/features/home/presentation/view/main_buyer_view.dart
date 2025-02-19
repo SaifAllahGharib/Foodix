@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
@@ -16,6 +17,8 @@ class MainBuyerView extends StatefulWidget {
 }
 
 class _MainBuyerViewState extends State<MainBuyerView> {
+  final List<RestaurantModel> restaurants = [];
+
   @override
   void initState() {
     fetchRestaurants(context);
@@ -34,8 +37,7 @@ class _MainBuyerViewState extends State<MainBuyerView> {
         Map categories = snapshot.value as Map;
         categories.forEach(
           (key, value) {
-            print("KEY: $key");
-            print("VALUE: $value");
+            restaurants.add(RestaurantModel.fromJson(value));
           },
         );
       }
@@ -56,7 +58,7 @@ class _MainBuyerViewState extends State<MainBuyerView> {
             const SliverToBoxAdapter(child: CustomAppBarMainBuyerView()),
             SliverPadding(
               padding: EdgeInsets.all(Dimensions.height20),
-              sliver: const CustomSliverListViewMainBuyerView(),
+              sliver: CustomSliverListViewMainBuyerView(list: restaurants),
             ),
           ],
         );

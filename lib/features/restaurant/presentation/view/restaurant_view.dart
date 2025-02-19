@@ -5,14 +5,15 @@ import 'package:yummy_home/features/restaurant/viewmodel/cubits/restaurant/resta
 
 class RestaurantView extends StatelessWidget {
   static const String id = "/restaurant_view";
+  final Map<dynamic, dynamic> extra;
 
-  const RestaurantView({super.key});
+  const RestaurantView({super.key, required this.extra});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => RestaurantCubit(),
-      child: const Scaffold(body: RestaurantViewBody()),
+      child: Scaffold(body: RestaurantViewBody(extra: extra)),
     );
   }
 }

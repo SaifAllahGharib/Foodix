@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:yummy_home/core/errors/failure.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/models/user_model.dart';
 import 'package:yummy_home/core/services/auth_services.dart';
 import 'package:yummy_home/core/services/db_services.dart';
@@ -36,7 +37,12 @@ class SignupRepositoryImp extends SignupRepository {
         try {
           await Future.wait([
             _dbServices.setUser(userModel),
-            _dbServices.createRestaurant(userModel.name!),
+            _dbServices.createRestaurant(
+              RestaurantModel(
+                uid: uid,
+                name: userModel.name!,
+              ),
+            ),
           ]);
           return right(S.of(context).success);
         } catch (e) {

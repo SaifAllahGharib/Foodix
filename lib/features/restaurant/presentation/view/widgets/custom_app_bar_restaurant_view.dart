@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/models/ProductModel.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/widgets/custom_back_button.dart';
@@ -7,7 +7,7 @@ import 'package:yummy_home/features/restaurant/presentation/view/widgets/custom_
 
 class CustomAppBarRestaurantView extends StatelessWidget {
   final double opacity;
-  final List<ProductModel> list;
+  final RestaurantModel restaurantModel;
   final double appBarHeight;
   final TabController tabController;
   final void Function(int index) onClickCategory;
@@ -15,7 +15,7 @@ class CustomAppBarRestaurantView extends StatelessWidget {
   const CustomAppBarRestaurantView({
     super.key,
     required this.opacity,
-    required this.list,
+    required this.restaurantModel,
     required this.appBarHeight,
     required this.onClickCategory,
     required this.tabController,
@@ -85,7 +85,7 @@ class CustomAppBarRestaurantView extends StatelessWidget {
           CustomCategoryTabBar(
             tabController: tabController,
             onClickCategory: onClickCategory,
-            list: list,
+            restaurantModel: restaurantModel,
           ),
       ],
     );

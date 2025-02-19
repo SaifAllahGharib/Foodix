@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
+import 'package:yummy_home/core/utils/assets.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 import 'package:yummy_home/core/widgets/custom_rating_widget.dart';
 
 class ImageAndNameAndRatingWidget extends StatelessWidget {
-  const ImageAndNameAndRatingWidget({super.key});
+  final RestaurantModel restaurantModel;
+
+  const ImageAndNameAndRatingWidget({super.key, required this.restaurantModel});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class ImageAndNameAndRatingWidget extends StatelessWidget {
           height: Dimensions.height80 * 0.9,
           decoration: BoxDecoration(
             image: const DecorationImage(
-              image: AssetImage(" "),
+              image: AssetImage(Assets.food),
               fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.circular(Dimensions.radius10),
@@ -26,18 +30,18 @@ class ImageAndNameAndRatingWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Bazoka",
+              restaurantModel.name,
               style: Styles.textStyle16(context),
             ),
             SizedBox(height: Dimensions.height10 * 0.2),
             Text(
-              "Burger, Cheken, Beef",
+              "${restaurantModel.desc}",
               style: Styles.textStyle12(context),
             ),
             SizedBox(height: Dimensions.height10 * 0.2),
-            const CustomRatingWidget(
-              rating: 4.9,
-              ratingCount: 1925,
+            CustomRatingWidget(
+              rating: restaurantModel.rates,
+              ratingCount: restaurantModel.countRates,
             ),
           ],
         ),

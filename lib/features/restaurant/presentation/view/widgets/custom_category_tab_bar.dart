@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:yummy_home/core/models/ProductModel.dart';
+import 'package:yummy_home/core/models/restaurant_model.dart';
 import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/styles.dart';
 
 class CustomCategoryTabBar extends StatelessWidget {
   final TabController tabController;
-  final List<ProductModel> list;
+  final RestaurantModel restaurantModel;
   final void Function(int index) onClickCategory;
 
   const CustomCategoryTabBar({
     super.key,
     required this.tabController,
-    required this.list,
+    required this.restaurantModel,
     required this.onClickCategory,
   });
 
@@ -45,8 +45,8 @@ class CustomCategoryTabBar extends StatelessWidget {
         ),
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         tabs: List.generate(
-          list.length,
-          (index) => Text("${list[index].category}"),
+          restaurantModel.categories!.length,
+          (index) => Text("${restaurantModel.categories![index].category}"),
         ),
       ),
     );
