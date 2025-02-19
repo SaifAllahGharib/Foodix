@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:yummy_home/core/utils/colors.dart';
 import 'package:yummy_home/core/utils/dimensions.dart';
 import 'package:yummy_home/core/utils/functions/snack_bar.dart';
-import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/widgets/custom_button.dart';
 import 'package:yummy_home/core/widgets/custom_text.dart';
 import 'package:yummy_home/core/widgets/custom_text_field.dart';
 import 'package:yummy_home/core/widgets/loading.dart';
-import 'package:yummy_home/features/home/presentation/view/home_view.dart';
 import 'package:yummy_home/features/login/data/models/change_password_model.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/change_password/change_password_cubit.dart';
 import 'package:yummy_home/features/login/presentation/viewmodel/cubits/change_password/change_password_state.dart';
@@ -66,24 +62,6 @@ class _ChangePasswordViewBodyState extends State<ChangePasswordViewBody> {
 
   void _handleState(state) async {
     if (state is ChangePasswordSuccess) {
-      final msg = state.response.message;
-
-      if (msg == "Password updated successfully") {
-        snackBar(
-          context: context,
-          text: "change_password_successful",
-          color: AppColors.primaryColor,
-        );
-
-        await MySharedPreferences().storeUser(state.response.user!);
-
-        GoRouter.of(context).go(HomeView.id);
-      } else if (msg == "Failed to update password") {
-        snackBar(
-          context: context,
-          text: "change_password_failed",
-        );
-      }
     } else if (state is ChangePasswordFailure) {
       snackBar(
         context: context,

@@ -16,6 +16,10 @@ import 'package:yummy_home/features/verification/data/repos/verificatoin_repo_im
 
 final GetIt getIt = GetIt.instance;
 
+void registerSharedPreferences() {
+  getIt.registerSingleton<MySharedPreferences>(MySharedPreferences());
+}
+
 void setupServiceLocator() {
   getIt.registerSingleton<FirebaseService>(FirebaseService());
 
@@ -48,6 +52,4 @@ void setupServiceLocator() {
       AddFoodRepositoryImp(dbServices));
 
   getIt.registerSingleton<ImagePickerHelper>(ImagePickerHelper());
-
-  getIt.registerSingleton<MySharedPreferences>(MySharedPreferences());
 }
