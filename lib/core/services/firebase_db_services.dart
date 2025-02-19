@@ -80,4 +80,13 @@ class FirebaseDBServices extends DBServices {
         .child(restaurantName)
         .set({});
   }
+
+  @override
+  Stream<DataSnapshot> getRestaurants() {
+    return _firebaseService.db
+        .ref()
+        .child("restaurants")
+        .onValue
+        .map((event) => event.snapshot);
+  }
 }

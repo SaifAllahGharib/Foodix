@@ -16,4 +16,6 @@ abstract class DBServices {
   Stream<dynamic> getCategories();
 
   Future<void> createRestaurant(String restaurantName);
+
+  Stream<dynamic> getRestaurants();
 }

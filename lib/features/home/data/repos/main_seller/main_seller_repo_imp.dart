@@ -29,8 +29,11 @@ class MainSellerRepositoryImp extends MainSellerRepository {
         try {
           return right(snapshot);
         } catch (e) {
-          return left(FirebaseDBFailure(
-              e is FirebaseDBFailure ? e.errorMsg : e.toString()));
+          if (e is FirebaseDBFailure) {
+            return left(e);
+          } else {
+            return left(FirebaseFailure(e.toString()));
+          }
         }
       },
     );

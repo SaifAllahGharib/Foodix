@@ -8,6 +8,7 @@ import 'package:yummy_home/core/utils/image_picker_helper.dart';
 import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/features/add_food/data/repos/add_food_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/home/home_repo_imp.dart';
+import 'package:yummy_home/features/home/data/repos/main_buyer/main_buyer_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/main_seller/main_seller_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/profile/profile_repo_imp.dart';
 import 'package:yummy_home/features/login/data/repos/login_repo_imp.dart';
@@ -50,6 +51,9 @@ void setupServiceLocator() {
 
   getIt.registerSingleton<AddFoodRepositoryImp>(
       AddFoodRepositoryImp(dbServices));
+
+  getIt.registerSingleton<MainBuyerRepositoryImp>(
+      MainBuyerRepositoryImp(dbServices));
 
   getIt.registerSingleton<ImagePickerHelper>(ImagePickerHelper());
 }

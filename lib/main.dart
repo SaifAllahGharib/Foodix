@@ -9,10 +9,13 @@ import 'package:yummy_home/core/utils/my_shared_preferences.dart';
 import 'package:yummy_home/core/utils/service_locator.dart';
 import 'package:yummy_home/core/viewmodel/cubits/local_cubit.dart';
 import 'package:yummy_home/features/home/data/repos/home/home_repo_imp.dart';
+import 'package:yummy_home/features/home/data/repos/main_buyer/main_buyer_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/main_seller/main_seller_repo_imp.dart';
 import 'package:yummy_home/features/home/data/repos/profile/profile_repo_imp.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/home/home_cubit.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/main_buyer/main_buyer_cubit.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/main_seller/main_seller_cubit.dart';
+import 'package:yummy_home/features/home/presentation/viewmodel/cubits/orders/orders_cubit.dart';
 import 'package:yummy_home/features/home/presentation/viewmodel/cubits/profile/profile_cubit.dart';
 import 'package:yummy_home/generated/l10n.dart';
 
@@ -47,6 +50,12 @@ class MyApp extends StatelessWidget {
             getIt.get<MainSellerRepositoryImp>(),
           ),
         ),
+        BlocProvider<MainBuyerCubit>(
+          create: (context) => MainBuyerCubit(
+            getIt.get<MainBuyerRepositoryImp>(),
+          ),
+        ),
+        BlocProvider<OrdersCubit>(create: (context) => OrdersCubit()),
       ],
       child: BlocBuilder<LocalCubit, Locale>(
         builder: (context, locale) {
